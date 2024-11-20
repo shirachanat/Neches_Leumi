@@ -1,122 +1,114 @@
-// MapWithRealTimeUpdates.js
 import React, { useState, useEffect } from 'react';
-import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css'; // Ensure to import leaflet's CSS
+import L from 'leaflet';
 
 const MapWithRealTimeUpdates = ({ responders }) => {
-  const [locations, setLocations] = useState([]);  // מאגר המיקומים
-  const [mapCenter, setMapCenter] = useState({ lat: 32.0853, lng: 34.7818 });  // מרכז המפה (ברירת מחדל)
+  const [locations, setLocations] = useState([]); // Store filtered locations
+  const [mapCenter, setMapCenter] = useState([32.0853, 34.7818]); // Default center of the map
 
+  // Mock responders data with phone numbers and status
   const mockLocations = [
-    { id: '667788990', latitude: 32.0853, longitude: 34.7818 },
-    { id: '778899001', latitude: 32.1097, longitude: 34.8555 },
-    { id: '334455667', latitude: 31.7683, longitude: 35.2137 },
+    { id: '123456789', latitude: 32.0853, longitude: 34.7818, phone: '050-1234567' },
+    { id: '987654321', latitude: 32.7940, longitude: 34.9896, phone: '050-2345678' },
+    { id: '234567890', latitude: 31.7683, longitude: 35.2137, phone: '050-3456789' },
+    { id: '345678901', latitude: 32.1097, longitude: 34.8555, phone: '050-4567890' },
+    { id: '456789012', latitude: 32.0853, longitude: 34.7818, phone: '050-5678901' },
+    { id: '567890123', latitude: 32.7940, longitude: 34.9896, phone: '050-6789012' },
+    // More mock data...
   ];
 
-  // יצירת מיקומים דמיים בזמן אמת (לבדוק את המפה)
-  useEffect(() => {
-    // אם יש מיקומים דמיים, נעדכן את רשימת המיקומים
-    setLocations(mockLocations);
+  // Status descriptions in Hebrew
+  const statusDescriptions = {
+    3: 'בדרך',  // Status 3 = "On the way"
+    4: 'הגיע',   // Status 4 = "Arrived"
+  };
 
-    // עדכון מרכז המפה על פי המיקום הראשון
-    if (mockLocations.length > 0) {
-      setMapCenter({
-        lat: mockLocations[0].latitude,
-        lng: mockLocations[0].longitude,
-      });
+  // Effect to filter responders and set their locations on the map
+  useEffect(() => {
+    const filteredLocations = responders
+      .filter(responder => responder.status === 3 || responder.status === 4)  // Filter by status 3 or 4
+      .map(responder => {
+        const location = mockLocations.find(loc => loc.id === responder.id);
+        return location ? { ...location, name: responder.name, status: responder.status } : null;
+      })
+      .filter(location => location !== null);
+
+    console.log("Filtered Locations:", filteredLocations);
+    setLocations(filteredLocations);
+
+    if (filteredLocations.length > 0) {
+      setMapCenter([filteredLocations[0].latitude, filteredLocations[0].longitude]);
     }
-  }, []);  // עדכון רק בפעם הראשונה שהקומפוננטה נטענת
+  }, [responders]);
+
+  // Function to create marker icon based on responder status
+  const getMarkerIcon = (status) => {
+    const iconUrl =
+      status === 3
+        // ? 'https://img.icons8.com/ios/50/ff7043/marker.png' // Orange for status 3 ("בדרך")
+        // : 'https://img.icons8.com/ios/50/4caf50/marker.png'; // Green for status 4 ("הגעתי")
+        // ? 'https://img.icons8.com/ios/50/ff5722/marker.png' // Full orange for status 3 ("בדרך")
+        // : 'https://img.icons8.com/ios/50/388e3c/marker.png'; // Full green for status 4 ("הגעתי")
+        ? 'https://img.icons8.com/ios/50/ff6600/marker.png' // Full orange marker for status 3 ("בדרך")
+        : 'https://img.icons8.com/ios/50/4caf50/marker.png'; // Full green marker for status 4 ("הגעתי")
+
+    return L.icon({
+      iconUrl: iconUrl,
+      iconSize: [32, 32],  // Size of the marker
+      iconAnchor: [16, 32], // Anchor point for the icon (where it's placed on the map)
+      popupAnchor: [0, -32], // Popup offset from the marker
+    });
+  };
 
   return (
-    <div style={{ flex: 1, height: '400px' }}>
-      <LoadScript googleMapsApiKey="AIzaSyC-WLL34cv-nSfp-ImPs_DpC5mQ8BRq-P0">
-        <GoogleMap
-          center={mapCenter}
-          zoom={13}
-          mapContainerStyle={{ height: '100%', width: '100%' }}
-        >
-          {/* הצגת מיקומים של כל הסוהרים */}
-          {locations.map(location => (
+    <div style={{ height: '100%', width: '100%' }}>
+      <MapContainer
+        center={mapCenter}
+        zoom={13}
+        style={{ width: '100%', height: '100%' }}
+      >
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        
+        {locations.map(location => {
+          console.log("Rendering marker for:", location);
+          const icon = getMarkerIcon(location.status);
+
+          return (
             <Marker
               key={location.id}
-              position={{ lat: location.latitude, lng: location.longitude }}
-              label={location.id}  // הצגת מזהה הסוהר
-            />
-          ))}
-        </GoogleMap>
-      </LoadScript>
+              position={[location.latitude, location.longitude]}
+              icon={icon}
+            >
+              <Popup>
+                <strong>{location.name}</strong><br />
+                סטטוס: {statusDescriptions[location.status]}<br />
+                טלפון: {location.phone}<br />
+                מזהה: {location.id}<br />
+                קואורדינטות: {location.latitude}, {location.longitude}
+              </Popup>
+            </Marker>
+          );
+        })}
+      </MapContainer>
+
+      {/* Add a map legend (מִקְרָא מַפָּה) outside of the map */}
+      <div style={{
+        position: 'absolute',
+        top: '10px',
+        left: '10px',
+        backgroundColor: 'white',
+        padding: '10px',
+        borderRadius: '5px',
+        border: '1px solid #ccc',
+        fontSize: '14px',
+      }}>
+        <strong>מִקְרָא מַפָּה</strong>
+        <div><span style={{ color: 'orange' }}>🟠</span> - בדרך (סטטוס 3)</div>
+        <div><span style={{ color: 'green' }}>🟢</span> - הגיע (סטטוס 4)</div>
+      </div>
     </div>
   );
 };
 
 export default MapWithRealTimeUpdates;
-
-
-
-// ///////////////////////////////
-
-// // MapWithRealTimeUpdates.js
-// import React, { useState, useEffect } from 'react';
-// import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
-
-// const MapWithRealTimeUpdates = ({ responders }) => {
-//   const [locations, setLocations] = useState([]);  // מאגר המיקומים
-//   const [mapCenter, setMapCenter] = useState({ lat: 32.0853, lng: 34.7818 });  // מרכז המפה (ברירת מחדל)
-//   const mockLocations = [
-//     { id: '667788990', latitude: 32.0853, longitude: 34.7818 },
-//     { id: '778899001', latitude: 32.1097, longitude: 34.8555 },
-//     { id: '334455667', latitude: 31.7683, longitude: 35.2137 },
-//   ];
-
-//   // יצירת מיקומים דמיים בזמן אמת (לבדוק את המפה)
-//   useEffect(() => {
-   
-
-//     // פונקציה שמעדכנת את המיקומים הדמיים
-//     const updateMockLocations = () => {
-//       mockLocations.forEach((location, index) => {
-//         setTimeout(() => {
-//           setLocations(prevLocations => {
-//             const updatedLocations = [...prevLocations];
-//             const idx = updatedLocations.findIndex(loc => loc.id === location.id);
-//             if (idx === -1) {
-//               updatedLocations.push(location);
-//             } else {
-//               updatedLocations[idx] = location;
-//             }
-//             return updatedLocations;
-//           });
-//         }, index * 1000); // עדכון כל מיקום אחרי שנייה
-//       });
-//     };
-
-//     updateMockLocations(); // קריאה לפונקציה לעדכון המיקומים הדמיים
-
-//     // ניקוי החיבור ב-Unmount
-//     return () => {
-//       // כל פעולה שדורשת ניקוי (כמו סגירת חיבורים אם יש)
-//     };
-//   }, []);
-
-//   return (
-//     <div style={{ flex: 1, height: '400px' }}>
-//       <LoadScript googleMapsApiKey="AIzaSyC-WLL34cv-nSfp-ImPs_DpC5mQ8BRq-P0">
-//         <GoogleMap
-//           center={mapCenter}
-//           zoom={13}
-//           mapContainerStyle={{ height: '100%', width: '100%' }}
-//         >
-//           {/* הצגת מיקומים של הסוהרים */}
-//           {mockLocations.map(location => (
-//             <Marker
-//               key={location.id}
-//               position={{ lat: location.latitude, lng: location.longitude }}
-//               label={location.id}  // הצגת מזהה הסוהר
-//             />
-//           ))}
-//         </GoogleMap>
-//       </LoadScript>
-//     </div>
-//   );
-// };
-
-// export default MapWithRealTimeUpdates;

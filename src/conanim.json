@@ -17,7 +17,7 @@
         "responsibility": 2,
         "regions": [101],
         "yechida": [202],
-        "status": 1
+        "status": 4
       },
       {
         "name": "דני ישראלי",
@@ -27,7 +27,7 @@
         "responsibility": 3,
         "regions": [102, 104],
         "yechida": [203],
-        "status": 2
+        "status": 3
       },
       {
         "name": "מיכל כהן",
