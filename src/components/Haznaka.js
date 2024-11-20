@@ -1,6 +1,7 @@
 import { responsibilityDecode, regionsDecode, yechidaDecode } from '../dec';
 import emergencyConanim from '../conanim.json'; // טוען את נתוני הכוננים מקובץ JSON
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Haznaka.css'; // קובץ CSS מותאם אישית
 
 function Haznaka() {
@@ -9,6 +10,7 @@ function Haznaka() {
   const [selectedYechida, setSelectedYechida] = useState('');
   const [filteredResponders, setFilteredResponders] = useState([]); // State for filtered responders
   const [isFiltered, setIsFiltered] = useState(false); // State to toggle between filter view and form view
+  const navigate = useNavigate();
 
   const filterResponders = () => {
     return emergencyConanim.filter((responder) => {
@@ -20,8 +22,6 @@ function Haznaka() {
   };
 
   const handleFilterClick = () => {
-    //const filteredResponders = filterResponders();
-     //navigate('/filtered-responders', { state: { responders: filteredResponders } }); // מעבר למסך הבא עם המידע
     const results = filterResponders();
     setFilteredResponders(results);
     setIsFiltered(true); // Switch to display filtered results
@@ -31,10 +31,7 @@ function Haznaka() {
     const phoneNumbers = filteredResponders.map((responder) => responder.phone);
     console.log('Calling the following numbers:', phoneNumbers);
 
-    // Example: Send to API (mocked as console.log here)
-    // Replace this with an actual API call
-    fetch('/api/call-responders', {
-      // https://neches-leumi-server.onrender.com/sendMessage
+    fetch('https://neches-leumi-server.onrender.com/sendMessage', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -54,6 +51,10 @@ function Haznaka() {
       });
   };
 
+  const handleViewDashboard = () => {
+    navigate('/filtered-responders', { state: { responders: filteredResponders } });
+  };
+  
   return (
     <div className="haznaka-container">
       <h1 className="haznaka-title">סינון כונני חירום</h1>
@@ -130,12 +131,17 @@ function Haznaka() {
           ) : (
             <p>לא נמצאו כוננים מתאימים למצב חירום שנבחר</p>
           )}
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
-            <button className="filter-button" onClick={() => setIsFiltered(false)}>
-              חזרה לסינון
-            </button>
-            <button className="filter-button" onClick={handleConfirmCall}>
-              אישור קריאה לכל הכוננים
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '20px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <button className="filter-button" onClick={() => setIsFiltered(false)}>
+                חזרה לסינון
+              </button>
+              <button className="filter-button" onClick={handleConfirmCall}>
+                אישור קריאה לכל הכוננים
+              </button>
+            </div>
+            <button className="filter-button" onClick={handleViewDashboard}>
+              מעבר ללוח בקרה להצגת כל הכוננים
             </button>
           </div>
         </div>

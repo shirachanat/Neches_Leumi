@@ -168,6 +168,16 @@
         "regions": [103],
         "yechida": [201],
         "status": 1
+      },
+      {
+        "name": "ישי ב",
+        "id": "778899222",
+        "address": "רחוב המגדל 30, חיפה",
+        "phone": "972584406906",
+        "responsibility": 1,
+        "regions": [101],
+        "yechida": [203],
+        "status": 1
       }
     ]
 
