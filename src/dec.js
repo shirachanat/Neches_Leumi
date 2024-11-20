@@ -82,4 +82,4 @@ export const responsibilityDecode = {
     3: "בדרך",
     4: "הגיע"
   };
-
+  

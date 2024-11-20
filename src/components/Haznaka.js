@@ -54,6 +54,9 @@ function Haznaka() {
   const handleViewDashboard = () => {
     navigate('/filtered-responders', { state: { responders: filteredResponders } });
   };
+  const handleViewConanim = () => {
+    navigate('/conanim');
+  };
   
   return (
     <div className="haznaka-container">
@@ -146,6 +149,7 @@ function Haznaka() {
           </div>
         </div>
       )}
+            <button className="filter-button" onClick={handleViewConanim}>ניהול כוננים</button>
     </div>
   );
 }

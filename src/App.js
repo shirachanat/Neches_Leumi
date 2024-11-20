@@ -3,12 +3,14 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Haznaka from '../src/components/Haznaka';
 import FilteredResponders from '../src/components/FilteredResponders';
+import ShowConanim from './components/ManageConanim';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Haznaka />} />
+        <Route path="/conanim" element={<ShowConanim/>} />
         <Route path="/filtered-responders" element={<FilteredResponders />} />
       </Routes>
     </Router>

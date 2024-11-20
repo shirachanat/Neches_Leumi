@@ -1,0 +1,135 @@
+/* עיצוב כללי */
+body {
+  direction: rtl;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* עיצוב כותרת */
+.header {
+  background-color: #005f73;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header img {
+  height: 50px;
+}
+
+.header-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* עיצוב כפתור הוספת כונן */
+button {
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #005f73;
+}
+
+button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+/* עיצוב טבלה */
+.main-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-table th, .main-table td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.main-table th {
+  background-color: #009688;
+  color: white;
+}
+
+.main-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.main-table tr:hover {
+  background-color: #e1f5e1;
+}
+
+.main-table td input,
+.main-table td select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 90%;
+}
+
+/* עיצוב שורת עריכה */
+.editing-row {
+  background-color: #fff8e1;
+}
+
+.editing-row button {
+  margin: 5px;
+}
+
+/* עיצוב תגובה אם אין נתונים */
+p {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+}
+
+/* עיצוב כפתור עריכה ומחיקה */
+.main-table td button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.main-table td button:hover {
+  background-color: #45a049;
+}
+
+.main-table td button:active {
+  background-color: #388e3c;
+}
+
+.main-table td button:nth-child(2) {
+  background-color: #f44336;
+}
+
+.main-table td button:nth-child(2):hover {
+  background-color: #e53935;
+}
+
+/* עיצוב שדה טופס */
+input[type="text"], select {
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
