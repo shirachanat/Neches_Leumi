@@ -74,7 +74,14 @@ export const responsibilityDecode = {
     205: "כלא שאטה"
   };
     
-  
+  export const agafDecode = {
+    301: "אגף 1",
+    302:  "אגף 2",
+    303:  "אגף 3",
+    304:  "אגף 4",
+    305:  "אגף 5"
+  };
+    
   // Numeric mapping for statuses
   export const statusDecode = {
     1: "נשלחה ההודעה",

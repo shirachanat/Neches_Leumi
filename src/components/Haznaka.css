@@ -4,35 +4,53 @@
     text-align: right;
     margin: 20px auto;
     padding: 20px;
-    max-width: 500px;
+   
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Title */
-  .haznaka-title {
+    
+    flex-direction: row;
+    gap: 20px; /* רווח בין שני החלקים */
+}
+
+/* Title */
+.haznaka-title {
     text-align: center;
+    width: 100%; /* יישור טקסט בכותרת */
     margin-bottom: 20px;
     color: #333;
     font-size: 24px;
-  }
-  
-  /* Form Group */
-  .form-group {
+    grid-column: span 2;
+}
+
+/* Left Side: Filters */
+.haznaka-filters {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Form Group */
+.form-group {
     margin-bottom: 15px;
-  }
-  
-  /* Labels */
-  .form-label {
+    width:30%
+}
+.form-group-mikum{
+    display: flex;
+    width: 94%;
+    gap: 2%;
+}
+/* Labels */
+.form-label {
     display: block;
     font-size: 16px;
     margin-bottom: 5px;
     color: #555;
-  }
-  
-  /* Select Boxes */
-  .form-select {
+}
+
+/* Select Boxes */
+.form-select {
     width: 100%;
     padding: 10px;
     font-size: 14px;
@@ -41,17 +59,17 @@
     background-color: #fff;
     color: #333;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-  
-  .form-select:focus {
+}
+
+.form-select:focus {
     border-color: #007bff;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-  
-  /* Filter Button */
-  .filter-button {
-    width: 100%;
+}
+
+/* Filter Button */
+.filter-button {
+    width: 30%;
     padding: 10px;
     font-size: 16px;
     color: #fff;
@@ -60,26 +78,45 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-  }
-  
-  .filter-button:hover {
+}
+
+.filter-button:hover {
     background-color: #0056b3;
-  }
-  .responder-list {
+}
+
+/* Right Side: Responders List */
+.haznaka-responders {
+    /* flex: 2; */
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.haznaka-responders h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Responder List */
+.responder-list {
     list-style-type: none;
     padding: 0;
     margin: 0;
-  }
-  
-  .responder-item {
+}
+
+.responder-item {
     padding: 10px;
     margin-bottom: 10px;
     background-color: #f0f0f0;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .responder-item p {
+}
+
+.responder-item p {
     margin: 5px 0;
-  }
-  
+}
+.haznaka-content{
+    display: flex;
+}

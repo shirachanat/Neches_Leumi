@@ -1,36 +1,39 @@
-import { responsibilityDecode, regionsDecode, yechidaDecode } from '../dec';
-import emergencyConanim from '../conanim.json'; // טוען את נתוני הכוננים מקובץ JSON
-import React, { useState } from 'react';
+import { responsibilityDecode, regionsDecode, yechidaDecode, agafDecode } from '../dec';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Haznaka.css'; // קובץ CSS מותאם אישית
 import { useConanimContext } from '../contexts/context';
 
 function Haznaka() {
-  const { conanim, setConanim  }= useConanimContext();
+  const { conanim } = useConanimContext();
   const [selectedResponsibility, setSelectedResponsibility] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedYechida, setSelectedYechida] = useState('');
-  const {filteredResponders, setFilteredResponders}= useConanimContext() // State for filtered responders
-  const [isFiltered, setIsFiltered] = useState(false); // State to toggle between filter view and form view
+  const [selectedAgaf, setSelectedAgaf] = useState('');
+  const [filteredResponders, setFilteredResponders] = useState(conanim); // רשימת כוננים מסוננים
   const navigate = useNavigate();
 
-  const filterResponders = () => {
-    return conanim.filter((responder) => {
-      const matchesResponsibility = selectedResponsibility ? responder.responsibility === parseInt(selectedResponsibility) : true;
-      const matchesRegion = selectedRegion ? responder.regions.includes(parseInt(selectedRegion)) : true;
-      const matchesYechida = selectedYechida ? responder.yechida.includes(parseInt(selectedYechida)) : true;
+  // עדכון הרשימה המסוננת באופן דינמי
+  useEffect(() => {
+    const results = conanim.filter((responder) => {
+      const matchesResponsibility = selectedResponsibility
+        ? responder.responsibility === parseInt(selectedResponsibility)
+        : true;
+      const matchesRegion = selectedRegion
+        ? responder.regions.includes(parseInt(selectedRegion))
+        : true;
+      const matchesYechida = selectedYechida
+        ? responder.yechida.includes(parseInt(selectedYechida))
+        : true;
       return matchesResponsibility && matchesRegion && matchesYechida;
     });
-  };
-
-  const handleFilterClick = () => {
-    const results = filterResponders();
     setFilteredResponders(results);
-    setIsFiltered(true); // Switch to display filtered results
-  };
+  }, [selectedResponsibility, selectedRegion, selectedYechida, conanim]);
+
   const manageConanimClicked = () => {
     navigate('/conanim');
   };
+
   const handleConfirmCall = () => {
     const phoneNumbers = filteredResponders.map((responder) => responder.phone);
     console.log('Calling the following numbers:', phoneNumbers);
@@ -44,27 +47,28 @@ function Haznaka() {
     })
       .then((response) => {
         if (response.ok) {
-          alert('Call request sent successfully!');
+          alert('קריאה נשלחה בהצלחה!');
         } else {
-          alert('Failed to send call request.');
+          alert('שליחת הקריאה נכשלה.');
         }
       })
       .catch((error) => {
         console.error('Error sending call request:', error);
-        alert('An error occurred.');
+        alert('אירעה שגיאה.');
       });
   };
 
   const handleViewDashboard = () => {
     navigate('/filtered-responders');
   };
-  
+
   return (
     <div className="haznaka-container">
       <h1 className="haznaka-title">סינון כונני חירום</h1>
 
-      {!isFiltered ? (
-        <>
+      <div className="haznaka-content">
+        {/* פקדי סינון בצד שמאל */}
+        <div className="haznaka-filters">
           <div className="form-group">
             <label htmlFor="responsibility" className="form-label">סוג אירוע:</label>
             <select
@@ -73,7 +77,7 @@ function Haznaka() {
               onChange={(e) => setSelectedResponsibility(e.target.value)}
               value={selectedResponsibility}
             >
-              <option value="">בחר אירוע</option>
+              <option value="">בחר מצב חירום</option>
               {Object.entries(responsibilityDecode).map(([key, value]) => (
                 <option key={key} value={key}>
                   {value}
@@ -82,25 +86,22 @@ function Haznaka() {
             </select>
           </div>
 
-          <div className="form-group">
-            <label htmlFor="region" className="form-label">אזור:</label>
+          <div >
+            <label htmlFor="region" className="form-label">מיקום:</label>
+            <div className="form-group-mikum">
             <select
               id="region"
               className="form-select"
               onChange={(e) => setSelectedRegion(e.target.value)}
               value={selectedRegion}
             >
-              <option value="">בחר אזור</option>
+              <option value="">בחר מחוז</option>
               {Object.entries(regionsDecode).map(([key, value]) => (
                 <option key={key} value={key}>
                   {value}
                 </option>
               ))}
             </select>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="yechida" className="form-label">יחידה:</label>
             <select
               id="yechida"
               className="form-select"
@@ -114,17 +115,29 @@ function Haznaka() {
                 </option>
               ))}
             </select>
+            <select
+              id="agaf"
+              className="form-select"
+              onChange={(e) => setSelectedAgaf(e.target.value)}
+              value={selectedAgaf}
+            >
+              <option value="">בחר אגף</option>
+              {Object.entries(agafDecode).map(([key, value]) => (
+                <option key={key} value={key}>
+                  {value}
+                </option>
+              ))}
+            </select>
+            </div>
           </div>
-
-          <button className="filter-button" onClick={handleFilterClick}>
-            סנן
-          </button>
+        
           <button className="filter-button" onClick={manageConanimClicked}>
             ניהול כוננים
           </button>
-        </>
-      ) : (
-        <div>
+        </div>
+
+        {/* רשימת כוננים בצד ימין */}
+        <div className="haznaka-responders">
           <h2>כוננים מתאימים למצב חירום</h2>
           {filteredResponders.length > 0 ? (
             <ul className="responder-list">
@@ -138,21 +151,14 @@ function Haznaka() {
           ) : (
             <p>לא נמצאו כוננים מתאימים למצב חירום שנבחר</p>
           )}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '20px' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <button className="filter-button" onClick={() => setIsFiltered(false)}>
-                חזרה לסינון
-              </button>
-              <button className="filter-button" onClick={handleConfirmCall}>
-                אישור קריאה לכל הכוננים
-              </button>
-            </div>
-            <button className="filter-button" onClick={handleViewDashboard}>
-              מעבר ללוח בקרה להצגת כל הכוננים
-            </button>
-          </div>
+          <button className="filter-button" onClick={handleConfirmCall}>
+            אישור קריאה לכל הכוננים
+          </button>
+          <button className="filter-button" onClick={handleViewDashboard}>
+            מעבר ללוח בקרה להצגת כל הכוננים
+          </button>
         </div>
-      )}
+      </div>
     </div>
   );
 }
