@@ -1,25 +1,30 @@
-
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Haznaka from '../src/components/Haznaka';
-import FilteredResponders from '../src/components/FilteredResponders';
-import TestWebsocket from './components/TestWebsocket/TestWebsocket';
-import { ConanimProvider } from './contexts/context';
-import ShowConanim from './components/ManageConanim';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Haznaka from "../src/components/Haznaka";
+import FilteredResponders from "../src/components/FilteredResponders";
+import TestWebsocket from "./components/TestWebsocket/TestWebsocket";
+import { ConanimProvider } from "./contexts/context";
+import ShowConanim from "./components/ManageConanim";
+import Container from "./components/Container/Container";
+import './App.css'
 
 function App() {
   return (
     <ConanimProvider>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Haznaka />} />
-          <Route path="/conanim" element={<ShowConanim/>} />
-          <Route path="/filtered-responders" element={<FilteredResponders />} />
-          <Route path="/testWS" element={<TestWebsocket />} />
-        </Routes>
-      </Router>
+      <Container>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Haznaka />} />
+            <Route path="/conanim" element={<ShowConanim />} />
+            <Route
+              path="/filtered-responders"
+              element={<FilteredResponders />}
+            />
+            <Route path="/testWS" element={<TestWebsocket />} />
+          </Routes>
+        </Router>
+      </Container>
     </ConanimProvider>
-
   );
 }
 
