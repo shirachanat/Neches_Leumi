@@ -41,7 +41,7 @@ const ShowConanim = () => {
         const isEditing = editingIndex === index;
         return isEditing ? (
             ['regions', 'yechida', 'responsibility'].includes(field) ? (
-                <select value={newItemData[field] || ''} onChange={(e) => setNewItemData({ ...newItemData, [field]: e.target.value })}>
+                <select value={newItemData[field] || ''} onChange={(e) => setNewItemData({ ...newItemData, [field]: e.target.value.split(',') })}>
                     <option value="">בחר</option>
                     {Object.entries(field === 'regions' ? regionsDecode : field === 'yechida' ? yechidaDecode : responsibilityDecode).map(([key, value]) => (
                         <option key={key} value={key}>{value}</option>
