@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { responsibilityDecode, regionsDecode, yechidaDecode } from '../dec';
 import './ManageConanim.css'
 import emergencyConanim from '../conanim.json';
+import {useConanimContext} from '../contexts/context.jsx';
 
 const ShowConanim = () => {
-    const [data, setData] = useState(emergencyConanim);
+    const { conanim, setConanim  }= useConanimContext();
+   // const [data, setData] = useState(emergencyConanim);
     const [editingIndex, setEditingIndex] = useState(null);
     const [newItemData, setNewItemData] = useState({ id: '', name: '', address: '', phone: '', regions: '', yechida: '', responsibility: '' });
 
     const fields = ['id', 'name', 'address', 'phone', 'regions', 'yechida', 'responsibility'];
     const labels = { id: 'מספר זהות', name: 'שם', address: 'כתובת', phone: 'טלפון', regions: 'מחוז', yechida: 'יחידה', responsibility: 'תחום אחריות' };
-
     const getDecodedValue = (field, value) => {
         const decoders = { responsibility: responsibilityDecode, regions: regionsDecode, yechida: yechidaDecode };
         return decoders[field] ? (Array.isArray(value) ? value.map(code => decoders[field][code] || code).join(', ') : decoders[field][value] || value) : value;
@@ -19,18 +20,19 @@ const ShowConanim = () => {
     const handleSaveNewItem = () => {
         const { id, name, phone } = newItemData;
         if (!id || !name || !phone) return alert('מספר זהות, שם ומספר טלפון הם חובה');
-        setData(editingIndex === 0 && data[0].isNew ? [newItemData, ...data.slice(1)] : data.map((item, i) => i === editingIndex ? newItemData : item));
+        setConanim(editingIndex === 0 && conanim[0].isNew ? [newItemData, ...conanim.slice(1)] : conanim.map((item, i) => i === editingIndex ? newItemData : item));
         setNewItemData({ id: '', name: '', address: '', phone: '', regions: '', yechida: '', responsibility: '' });
         setEditingIndex(null);
+        
     };
 
     const handleEdit = (index) => {
         setEditingIndex(index);
-        setNewItemData({ ...data[index] });
+        setNewItemData({ ...conanim[index] });
     };
 
     const handleCancel = () => {
-        if (data[editingIndex]?.isNew) setData(data.filter((_, i) => i !== editingIndex));
+        if (conanim[editingIndex]?.isNew) setConanim(conanim.filter((_, i) => i !== editingIndex));
         setEditingIndex(null);
         setNewItemData({ id: '', name: '', address: '', phone: '', regions: '', yechida: '', responsibility: '' });
     };
@@ -58,9 +60,9 @@ const ShowConanim = () => {
                 <div className="header-title">נכס לאומי</div>
             </div>
             <div style={{ textAlign: 'center', margin: '50px 0' }}>
-                <button style={{height: '80px', width: '180px'}} onClick={() => { setNewItemData({ id: '', name: '', address: '', phone: '', regions: '', yechida: '', responsibility: '' }); setData([{ isNew: true }, ...data]); setEditingIndex(0); }} disabled={editingIndex !== null}>הוספת כונן חדש</button>
+                <button style={{height: '80px', width: '180px'}} onClick={() => { setNewItemData({ id: '', name: '', address: '', phone: '', regions: '', yechida: '', responsibility: '' }); setConanim([{ isNew: true }, ...conanim]); setEditingIndex(0); }} disabled={editingIndex !== null}>הוספת כונן חדש</button>
             </div>
-            {data.length ? (
+            {conanim.length ? (
                 <table className="main-table">
                     <thead>
                         <tr>{fields.map(field => <th key={field}>{labels[field]}</th>)}
@@ -68,7 +70,7 @@ const ShowConanim = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((item, index) => (
+                        {conanim.map((item, index) => (
                             <tr key={index} className={editingIndex === index ? 'editing-row' : ''}>
                                 {fields.map(field => <td key={field}>{renderTableCell(item, field, index)}</td>)}
                                 <td>
@@ -80,7 +82,7 @@ const ShowConanim = () => {
                                     ) : (
                                         <>
                                             <button onClick={() => handleEdit(index)}>ערוך</button>
-                                            <button onClick={() => { if (window.confirm('האם אתה בטוח שברצונך למחוק?')) setData(data.filter((_, i) => i !== index)); }}>מחק</button>
+                                            <button onClick={() => { if (window.confirm('האם אתה בטוח שברצונך למחוק?')) setConanim(conanim.filter((_, i) => i !== index)); }}>מחק</button>
                                         </>
                                     )}
                                 </td>

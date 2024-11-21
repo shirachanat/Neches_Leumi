@@ -6,6 +6,7 @@ import './Haznaka.css'; // קובץ CSS מותאם אישית
 import { useConanimContext } from '../contexts/context';
 
 function Haznaka() {
+  const { conanim, setConanim  }= useConanimContext();
   const [selectedResponsibility, setSelectedResponsibility] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedYechida, setSelectedYechida] = useState('');
@@ -14,7 +15,7 @@ function Haznaka() {
   const navigate = useNavigate();
 
   const filterResponders = () => {
-    return emergencyConanim.filter((responder) => {
+    return conanim.filter((responder) => {
       const matchesResponsibility = selectedResponsibility ? responder.responsibility === parseInt(selectedResponsibility) : true;
       const matchesRegion = selectedRegion ? responder.regions.includes(parseInt(selectedRegion)) : true;
       const matchesYechida = selectedYechida ? responder.yechida.includes(parseInt(selectedYechida)) : true;
@@ -27,7 +28,9 @@ function Haznaka() {
     setFilteredResponders(results);
     setIsFiltered(true); // Switch to display filtered results
   };
-
+  const manageConanimClicked = () => {
+    navigate('/conanim');
+  };
   const handleConfirmCall = () => {
     const phoneNumbers = filteredResponders.map((responder) => responder.phone);
     console.log('Calling the following numbers:', phoneNumbers);
@@ -115,6 +118,9 @@ function Haznaka() {
 
           <button className="filter-button" onClick={handleFilterClick}>
             סנן
+          </button>
+          <button className="filter-button" onClick={manageConanimClicked}>
+            ניהול כוננים
           </button>
         </>
       ) : (
