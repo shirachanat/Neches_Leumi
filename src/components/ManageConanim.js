@@ -2,13 +2,14 @@ import React, { useEffect, useState, useContext } from 'react';
 import { responsibilityDecode, regionsDecode, yechidaDecode } from '../dec';
 import './ManageConanim.css'
 import emergencyConanim from '../conanim.json';
-import {useConanimContext} from '../contexts/context.jsx';
+import { useConanimContext } from '../contexts/context.jsx';
 
 const ShowConanim = () => {
-    const { conanim, setConanim  }= useConanimContext();
-   // const [data, setData] = useState(emergencyConanim);
+    const { conanim, setConanim } = useConanimContext();
+    // const [data, setData] = useState(emergencyConanim);
     const [editingIndex, setEditingIndex] = useState(null);
     const [newItemData, setNewItemData] = useState({ id: '', name: '', address: '', phone: '', regions: '', yechida: '', responsibility: '' });
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     const fields = ['id', 'name', 'address', 'phone', 'regions', 'yechida', 'responsibility'];
     const labels = { id: 'מספר זהות', name: 'שם', address: 'כתובת', phone: 'טלפון', regions: 'מחוז', yechida: 'יחידה', responsibility: 'תחום אחריות' };
@@ -23,7 +24,8 @@ const ShowConanim = () => {
         setConanim(editingIndex === 0 && conanim[0].isNew ? [newItemData, ...conanim.slice(1)] : conanim.map((item, i) => i === editingIndex ? newItemData : item));
         setNewItemData({ id: '', name: '', address: '', phone: '', regions: '', yechida: '', responsibility: '' });
         setEditingIndex(null);
-        
+        setShowSuccessModal(true); // הצגת המודאל
+        setTimeout(() => setShowSuccessModal(false), 3000); // המודאל ייעלם לאחר 3 שניות
     };
 
     const handleEdit = (index) => {
@@ -59,8 +61,15 @@ const ShowConanim = () => {
                 <img src="./emergency-icon.png" alt="לוגו חירום" />
                 <div className="header-title">נכס לאומי</div>
             </div>
+            {showSuccessModal && (
+                <div className="success-modal">
+                    <div className="success-modal-content">
+                        <p>השמירה בוצעה בהצלחה!</p>
+                    </div>
+                </div>
+            )}
             <div style={{ textAlign: 'center', margin: '50px 0' }}>
-                <button style={{height: '80px', width: '180px'}} onClick={() => { setNewItemData({ id: '', name: '', address: '', phone: '', regions: '', yechida: '', responsibility: '' }); setConanim([{ isNew: true }, ...conanim]); setEditingIndex(0); }} disabled={editingIndex !== null}>הוספת כונן חדש</button>
+                <button style={{ height: '80px', width: '180px' }} onClick={() => { setNewItemData({ id: '', name: '', address: '', phone: '', regions: '', yechida: '', responsibility: '' }); setConanim([{ isNew: true }, ...conanim]); setEditingIndex(0); }} disabled={editingIndex !== null}>הוספת כונן חדש</button>
             </div>
             {conanim.length ? (
                 <table className="main-table">
