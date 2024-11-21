@@ -3,12 +3,13 @@ import emergencyConanim from '../conanim.json'; // טוען את נתוני הכ
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Haznaka.css'; // קובץ CSS מותאם אישית
+import { useConanimContext } from '../contexts/context';
 
 function Haznaka() {
   const [selectedResponsibility, setSelectedResponsibility] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedYechida, setSelectedYechida] = useState('');
-  const [filteredResponders, setFilteredResponders] = useState([]); // State for filtered responders
+  const {filteredResponders, setFilteredResponders}= useConanimContext() // State for filtered responders
   const [isFiltered, setIsFiltered] = useState(false); // State to toggle between filter view and form view
   const navigate = useNavigate();
 
@@ -52,7 +53,7 @@ function Haznaka() {
   };
 
   const handleViewDashboard = () => {
-    navigate('/filtered-responders', { state: { responders: filteredResponders } });
+    navigate('/filtered-responders');
   };
   
   return (

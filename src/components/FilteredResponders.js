@@ -1,13 +1,42 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import MapWithRealTimeUpdates from './MapWithRealTimeUpdates';
 import { responsibilityDecode, regionsDecode, yechidaDecode, statusDecode } from '../dec';
 import './FilteredResponders.css'; // Custom CSS for RTL design
+import { useConanimContext } from '../contexts/context';
 
 function FilteredResponders() {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const responders = state?.responders || [];
+  const {filteredResponders, setFilteredResponders}= useConanimContext() // State for filtered responders
+  useEffect(() => {
+    const ws = new WebSocket('wss://neches-leumi-server.onrender.com');
+
+    // Log messages from the server
+    ws.onmessage = (event) => {
+      try {
+        console.log(event.data);
+        const data = JSON.parse(event.data)
+        let senderIndex = filteredResponders.findIndex(conan=>conan.phone === data.sender)
+        if(senderIndex !== -1){
+          let copy = [...filteredResponders]
+          copy[senderIndex].body = data?.body
+          copy[senderIndex].latitude = data?.latitude
+          copy[senderIndex].longitude = data?.longitude
+          setFilteredResponders(copy)
+        }
+        
+      } catch (error) {
+        console.error(error);
+        
+      }
+    };
+    // Send a message to the server
+    // ws.onopen = () => ws.send('Hello from the client!');
+    ws.onclose = (event) => console.log('Connection closed:', event.code, event.reason);
+    return () => ws.close();
+  }, [])
+
 
   return (
     <div className="filtered-responders-container" dir="rtl">
@@ -16,14 +45,14 @@ function FilteredResponders() {
       <div className="content-wrapper">
         {/* Map Section */}
         <div className="map-container">
-          <MapWithRealTimeUpdates responders={responders} />
+          <MapWithRealTimeUpdates responders={filteredResponders} />
         </div>
 
         {/* Responder List Section */}
         <div className="responders-list-container">
-          {responders.length > 0 ? (
+          {filteredResponders.length > 0 ? (
             <ul className="responders-list">
-              {responders.map((responder) => (
+              {filteredResponders.map((responder) => (
                 <li key={responder.id} className="responder-card">
                   <h3>{responder.name}</h3>
                   <p><strong>תפקיד:</strong> {responsibilityDecode[responder.responsibility]}</p>

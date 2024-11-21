@@ -175,8 +175,8 @@
         "address": "רחוב המגדל 30, חיפה",
         "phone": "972584406906",
         "responsibility": 1,
-        "regions": [101],
-        "yechida": [203],
+        "regions": [101,102,103,104],
+        "yechida": [201,202,203,204],
         "status": 1
       }
     ]

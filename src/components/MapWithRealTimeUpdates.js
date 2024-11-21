@@ -69,23 +69,23 @@ const MapWithRealTimeUpdates = ({ responders }) => {
         style={{ width: '100%', height: '100%' }}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-        
-        {locations.map(location => {
-          console.log("Rendering marker for:", location);
-          const icon = getMarkerIcon(location.status);
+
+        {responders.map(conan => {
+          console.log("Rendering marker for:", conan);
+          const icon = getMarkerIcon(conan.status);
 
           return (
             <Marker
-              key={location.id}
-              position={[location.latitude, location.longitude]}
+              key={conan.id}
+              position={[conan?.latitude || 32.7940, conan?.longitude || 34.9896]}
               icon={icon}
             >
               <Popup>
-                <strong>{location.name}</strong><br />
-                סטטוס: {statusDescriptions[location.status]}<br />
-                טלפון: {location.phone}<br />
-                מזהה: {location.id}<br />
-                קואורדינטות: {location.latitude}, {location.longitude}
+                <strong>{conan.name}</strong><br />
+                סטטוס: {statusDescriptions[conan.status]}<br />
+                טלפון: {conan.phone}<br />
+                מזהה: {conan.id}<br />
+                קואורדינטות: {conan?.latitude}, {conan?.longitude}
               </Popup>
             </Marker>
           );
