@@ -65,7 +65,7 @@ function FilteredResponders() {
           ) : (
             <div className="no-responders-message">
               <p>לא נמצאו כוננים מתאימים למצב חירום שנבחר</p>
-              <button className="back-button" onClick={() => navigate('/haznaka')}>
+              <button className="back-button" onClick={() => navigate('/')}>
                 חזור לסינון
               </button>
             </div>
