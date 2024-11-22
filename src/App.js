@@ -11,19 +11,16 @@ import './App.css'
 function App() {
   return (
     <ConanimProvider>
-      <Container>
-        <Router>
+      <Router>
+        <Container>
           <Routes>
             <Route path="/" element={<Haznaka />} />
             <Route path="/conanim" element={<ShowConanim />} />
-            <Route
-              path="/filtered-responders"
-              element={<FilteredResponders />}
-            />
+            <Route path="/filtered-responders" element={<FilteredResponders />} />
             <Route path="/testWS" element={<TestWebsocket />} />
           </Routes>
-        </Router>
-      </Container>
+        </Container>
+      </Router>
     </ConanimProvider>
   );
 }

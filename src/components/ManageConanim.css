@@ -1,25 +1,5 @@
-/* עיצוב כותרת */
-.header {
-  background-color: #005f73;
-  color: #fff;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.header img {
-  height: 50px;
-}
-
-.header-title {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-/* עיצוב כפתור הוספת כונן */
 button {
-  background-color: #008CBA;
+  background-color: #f91307;
   color: white;
   border: none;
   padding: 12px 24px;
@@ -30,7 +10,7 @@ button {
 }
 
 button:hover {
-  background-color: #005f73;
+  background-color: #900606ee;
 }
 
 button:disabled {
@@ -54,7 +34,7 @@ button:disabled {
 }
 
 .main-table th {
-  background-color: #009688;
+  background-color: #e41f0a;
   color: white;
 }
 
@@ -68,7 +48,7 @@ button:disabled {
 
 .main-table td input,
 .main-table td select {
-  padding: 8px;
+  /* padding: 8px; */
   border-radius: 4px;
   border: 1px solid #ccc;
   width: 90%;
@@ -120,8 +100,8 @@ p {
 /* עיצוב שדה טופס */
 input[type="text"],
 select {
-  font-size: 16px;
-  padding: 8px;
+  /* font-size: 12px; */
+  padding: 4px;
   border-radius: 4px;
   border: 1px solid #ccc;
 }

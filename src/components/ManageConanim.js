@@ -57,10 +57,6 @@ const ShowConanim = () => {
 
     return (
         <div>
-            <div className="header">
-                <img src="./emergency-icon.png" alt="לוגו חירום" />
-                <div className="header-title">נכס לאומי</div>
-            </div>
             {showSuccessModal && (
                 <div className="success-modal">
                     <div className="success-modal-content">

@@ -67,16 +67,20 @@
   }
   
   .back-button {
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
+    /* width: 30%; */
+    /* padding: 10px; */
+    margin: 10px;
+    height: 70px;
+    width: 200px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #f91307;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .back-button:hover {
-    background-color: #0056b3;
-  }
-  
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #900606ee;
+}
