@@ -35,7 +35,7 @@
         "address": "רחוב תמר 8, פתח תקווה",
         "phone": "054-3456789",
         "responsibility": 4,
-        "regions": [103, 105],
+        "regions": [103],
         "yechida": [201, 204],
         "status": 4
       },
@@ -65,7 +65,7 @@
         "address": "רחוב הגפן 20, עכו",
         "phone": "057-6789012",
         "responsibility": 3,
-        "regions": [101, 105],
+        "regions": [101],
         "yechida": [202, 204],
         "status": 2
       },
@@ -145,7 +145,7 @@
         "address": "רחוב הברוש 6, ירושלים",
         "phone": "065-5566778",
         "responsibility": 2,
-        "regions": [105],
+        "regions": [102],
         "yechida": [203],
         "status": 2
       },
@@ -155,7 +155,7 @@
         "address": "רחוב האורן 18, תל אביב",
         "phone": "066-6677889",
         "responsibility": 4,
-        "regions": [102, 105],
+        "regions": [102, 103],
         "yechida": [204],
         "status": 3
       },
@@ -175,7 +175,7 @@
         "address": "רחוב המגדל 30, חיפה",
         "phone": "972584406906",
         "responsibility": 1,
-        "regions": [101,102,103,104],
+        "regions": [104],
         "yechida": [201,202,203,204],
         "status": 1
       }

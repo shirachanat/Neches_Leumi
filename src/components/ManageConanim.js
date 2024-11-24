@@ -25,7 +25,7 @@ const ShowConanim = () => {
         setNewItemData({ id: '', name: '', address: '', phone: '', regions: '', yechida: '', responsibility: '' });
         setEditingIndex(null);
         setShowSuccessModal(true); // הצגת המודאל
-        setTimeout(() => setShowSuccessModal(false), 3000); // המודאל ייעלם לאחר 3 שניות
+        setTimeout(() => setShowSuccessModal(false), 1500); // המודאל ייעלם לאחר 3 שניות
     };
 
     const handleEdit = (index) => {
