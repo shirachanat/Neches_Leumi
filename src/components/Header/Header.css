@@ -25,6 +25,25 @@
 .logo {
     width: 80px;
     height: 80px;
+    animation: scaleAnimation 2.5s infinite alternate;
+    /* הפעלת האנימציה */
+}
+
+@keyframes scaleAnimation {
+    0% {
+        transform: scale(1);
+        /* מצב התמונה בהתחלה (גודל רגיל) */
+    }
+
+    50% {
+        transform: scale(1.2);
+        /* מצב התמונה באמצע האנימציה (גדולה ב-50%) */
+    }
+
+    100% {
+        transform: scale(1);
+        /* מצב התמונה בסוף האנימציה (חוזר לגודל הרגיל) */
+    }
 }
 
 /* title */
