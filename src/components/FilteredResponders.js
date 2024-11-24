@@ -11,6 +11,8 @@ function FilteredResponders() {
   const {filteredResponders, setFilteredResponders}= useConanimContext() // State for filtered responders
   useEffect(() => {
     const ws = new WebSocket('wss://neches-leumi-server.onrender.com');
+    // console.log('filtered data'+filteredResponders)
+    console.log("Filtered responders:", filteredResponders);
 
     // Log messages from the server
     ws.onmessage = (event) => {
@@ -45,7 +47,7 @@ function FilteredResponders() {
       <div className="content-wrapper">
         {/* Map Section */}
         <div className="map-container">
-          <MapWithRealTimeUpdates responders={filteredResponders} />
+          <MapWithRealTimeUpdates/>
         </div>
 
         {/* Responder List Section */}

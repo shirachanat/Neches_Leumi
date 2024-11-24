@@ -1,22 +1,15 @@
+
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // Ensure to import leaflet's CSS
 import L from 'leaflet';
-
-const MapWithRealTimeUpdates = ({ responders }) => {
+import { useConanimContext } from '../contexts/context';
+const MapWithRealTimeUpdates = () => {
   const [locations, setLocations] = useState([]); // Store filtered locations
   const [mapCenter, setMapCenter] = useState([32.0853, 34.7818]); // Default center of the map
+  const {filteredResponders}= useConanimContext()
 
-  // Mock responders data with phone numbers and status
-  const mockLocations = [
-    { id: '123456789', latitude: 32.0853, longitude: 34.7818, phone: '050-1234567' },
-    { id: '987654321', latitude: 32.7940, longitude: 34.9896, phone: '050-2345678' },
-    { id: '234567890', latitude: 31.7683, longitude: 35.2137, phone: '050-3456789' },
-    { id: '345678901', latitude: 32.1097, longitude: 34.8555, phone: '050-4567890' },
-    { id: '456789012', latitude: 32.0853, longitude: 34.7818, phone: '050-5678901' },
-    { id: '567890123', latitude: 32.7940, longitude: 34.9896, phone: '050-6789012' },
-    // More mock data...
-  ];
+
 
   // Status descriptions in Hebrew
   const statusDescriptions = {
@@ -26,10 +19,10 @@ const MapWithRealTimeUpdates = ({ responders }) => {
 
   // Effect to filter responders and set their locations on the map
   useEffect(() => {
-    const filteredLocations = responders
+    const filteredLocations = filteredResponders
       .filter(responder => responder.status === 3 || responder.status === 4)  // Filter by status 3 or 4
       .map(responder => {
-        const location = mockLocations.find(loc => loc.id === responder.id);
+        const location = filteredResponders.find(loc => loc.id === responder.id);
         return location ? { ...location, name: responder.name, status: responder.status } : null;
       })
       .filter(location => location !== null);
@@ -40,7 +33,7 @@ const MapWithRealTimeUpdates = ({ responders }) => {
     if (filteredLocations.length > 0) {
       setMapCenter([filteredLocations[0].latitude, filteredLocations[0].longitude]);
     }
-  }, [responders]);
+  }, [filteredResponders]);
 
   // Function to create marker icon based on responder status
   const getMarkerIcon = (status) => {
@@ -61,6 +54,38 @@ const MapWithRealTimeUpdates = ({ responders }) => {
     });
   };
 
+  const fetchTravelTime = async (origin, destination) => {
+    try {
+      // בקשת ניתוב מה-API של OSRM
+      const response = await fetch(
+        `https://router.project-osrm.org/route/v1/driving/${origin};${destination}?overview=false`
+      );
+      const data = await response.json();
+  
+      if (data.code === "Ok") {
+        const duration = data.routes[0].duration; // זמן בשניות
+        const minutes = Math.round(duration / 60); // המרה לדקות
+        console.log(`זמן נסיעה משוער: ${minutes} דקות`);
+        return minutes;
+      } else {
+        throw new Error("לא ניתן לחשב זמן נסיעה");
+      }
+    } catch (error) {
+      console.error("שגיאה:", error.message);
+      return null;
+    }
+  };
+  
+  // קריאה לפונקציה עם מקור ויעד
+  const origin = "34.7818,32.0853"; // לדוגמה: תל אביב
+  const destination = "34.7647,32.0729"; // לדוגמה: יפו
+  
+  fetchTravelTime(origin, destination).then((time) => {
+    if (time !== null) {
+      console.log(`הזמן הוא ${time} דקות`);
+    }
+  });
+
   return (
     <div style={{ height: '100%', width: '100%' }}>
       <MapContainer
@@ -70,7 +95,7 @@ const MapWithRealTimeUpdates = ({ responders }) => {
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-        {responders.map(conan => {
+        {filteredResponders.map(conan => {
           console.log("Rendering marker for:", conan);
           const icon = getMarkerIcon(conan.status);
 

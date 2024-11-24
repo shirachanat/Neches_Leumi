@@ -42,12 +42,21 @@
     gap: 2%;
 }
 /* Labels */
-.form-label {
+/* .form-label {
     display: block;
     font-size: 16px;
     margin-bottom: 5px;
     color: #555;
+} */
+.form-label {
+    /* display: block; */
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bolder;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
 
 /* Select Boxes */
 .form-select {
