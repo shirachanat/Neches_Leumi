@@ -12,11 +12,11 @@ const MessageStatus = ({ status="sent" }) => {
     switch (status) {
       case "sent":
         return <i className="icon-single-check"></i>; // Single check
-      case "Delivered":
+      case "delivered":
         return (
           <i className="icon-double-check delivered"></i> // Double gray checks
         );
-      case "Read":
+      case "read":
         return <i className="icon-double-check read"></i>; // Double blue checks
       default:
         return null; // No icon for unknown status
