@@ -91,9 +91,9 @@ export const statusDecode = {
 };
 
 export const messageStatusDecode =
-  [{ code: 1, status: "Sent", statusHebrew: "נשלחה ההודעה" },
-  { code: 2, status: "Delivered", statusHebrew: "ההודעה התקבלה" },
-  { code: 3, status: "Read", statusHebrew: "ההודעה נקראה" }
+  [{ code: 1, status: "sent", statusHebrew: "נשלחה ההודעה" },
+  { code: 2, status: "delivered", statusHebrew: "ההודעה התקבלה" },
+  { code: 3, status: "read", statusHebrew: "ההודעה נקראה" }
   ]
 
 
