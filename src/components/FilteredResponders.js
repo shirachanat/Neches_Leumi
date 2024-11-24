@@ -8,7 +8,7 @@ import { useConanimContext } from '../contexts/context';
 function FilteredResponders() {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const {filteredResponders, setFilteredResponders}= useConanimContext() // State for filtered responders
+  const { filteredResponders, setFilteredResponders } = useConanimContext() // State for filtered responders
   useEffect(() => {
     const ws = new WebSocket('wss://neches-leumi-server.onrender.com');
 
@@ -17,18 +17,19 @@ function FilteredResponders() {
       try {
         console.log(event.data);
         const data = JSON.parse(event.data)
-        let senderIndex = filteredResponders.findIndex(conan=>conan.phone === data.sender)
-        if(senderIndex !== -1){
+        let senderIndex = filteredResponders.findIndex(conan => conan.phone === data.sender)
+        if (senderIndex !== -1) {
           let copy = [...filteredResponders]
-          copy[senderIndex].body = data?.body
-          copy[senderIndex].latitude = data?.latitude
-          copy[senderIndex].longitude = data?.longitude
+          if (data?.body) copy[senderIndex].body = data?.body
+          if (data?.latitude) copy[senderIndex].latitude = data?.latitude
+          if (data?.longitude) copy[senderIndex].longitude = data?.longitude
+          if (data?.status) copy[senderIndex].messageStatus = data?.status
           setFilteredResponders(copy)
         }
-        
+
       } catch (error) {
         console.error(error);
-        
+
       }
     };
     // Send a message to the server
