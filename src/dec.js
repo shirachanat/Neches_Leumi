@@ -90,8 +90,15 @@ export const statusDecode = {
   4: "הגיע"
 };
 
+export const messageStatusDecode =
+  [{ code: 1, status: "sent", statusHebrew: "נשלחה ההודעה" },
+  { code: 2, status: "delivered", statusHebrew: "ההודעה התקבלה" },
+  { code: 3, status: "read", statusHebrew: "ההודעה נקראה" }
+  ]
+
+
 export const nechesLeumiServiceUrl = "https://neches-leumi-server.onrender.com/"
 export const nechesLeumMethodes = { sendTemplate: "sendTemplate" }
-export const whatsappTemplates ={
-  emergency:'emergency'
+export const whatsappTemplates = {
+  emergency: 'emergency'
 }

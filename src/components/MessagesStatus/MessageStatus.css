@@ -1,0 +1,61 @@
+/* Container for the message status */
+.message-status {
+    display: flex;
+    align-items: center;
+    font-size: 14px; /* Adjust size for the icons */
+  }
+  
+  /* Single check icon */
+  .icon-single-check {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    border: 2px solid gray;
+    border-right: none;
+    border-top: none;
+    transform: rotate(-45deg);
+    border-radius: 50%;
+  }
+  
+  /* Double check icon (base style) */
+  .icon-double-check {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .icon-double-check::before,
+  .icon-double-check::after {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 4px;
+    border: 2px solid gray;
+    border-right: none;
+    border-top: none;
+    transform: rotate(-45deg);
+  }
+  
+  .icon-double-check::before {
+    left: 0;
+    z-index: 1;
+  }
+  
+  .icon-double-check::after {
+    left: 8px;
+  }
+  
+  /* Delivered state (gray checks) */
+  .icon-double-check.delivered::before,
+  .icon-double-check.delivered::after {
+    border-color: gray;
+  }
+  
+  /* Read state (blue checks) */
+  .icon-double-check.read::before,
+  .icon-double-check.read::after {
+    border-color: #34b7f1;
+  }
+  
