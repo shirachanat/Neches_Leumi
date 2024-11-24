@@ -31,10 +31,7 @@ function Haznaka() {
     setFilteredResponders(results);
   }, [selectedResponsibility, selectedRegion, selectedYechida, conanim]);
 
-  const manageConanimClicked = () => {
-    navigate('/conanim');
-  };
-
+  
   const handleConfirmCall = () => {
     const phoneNumbers = filteredResponders.map((responder) => responder.phone);
     console.log('Calling the following numbers:', phoneNumbers);
@@ -52,12 +49,15 @@ function Haznaka() {
         console.error('Error sending call request:', error);
         alert('אירעה שגיאה.');
       });
+      navigate('/filtered-responders');
   };
 
-  const handleViewDashboard = () => {
-    navigate('/filtered-responders');
+  const handleDelete = (id) => {
+    setFilteredResponders((prevResponders) =>
+      prevResponders.filter((responder) => responder.id !== id)
+    );
   };
-
+  
   return (
     <div className="haznaka-container">
       <h1 className="haznaka-title">סינון כונני חירום</h1>
@@ -128,33 +128,38 @@ function Haznaka() {
             </div>
           </div>
 
-          <button className="filter-button" onClick={manageConanimClicked}>
-            ניהול כוננים
-          </button>
+        
         </div>
-
+        <button className="filter-button" onClick={handleConfirmCall}>
+    הצילו!
+  </button>
         {/* רשימת כוננים בצד ימין */}
-        <div className="haznaka-responders">
-          <h2>כוננים מתאימים למצב חירום</h2>
-          {filteredResponders.length > 0 ? (
-            <ul className="responder-list">
-              {filteredResponders.map((responder) => (
-                <li key={responder.id} className="responder-item">
-                  <p><strong>{responder.name}</strong></p>
-                  <p>טלפון: {responder.phone}</p>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>לא נמצאו כוננים מתאימים למצב חירום שנבחר</p>
-          )}
-          <button className="filter-button" onClick={handleConfirmCall}>
-            אישור קריאה לכל הכוננים
-          </button>
-          <button className="filter-button" onClick={handleViewDashboard}>
-            מעבר ללוח בקרה להצגת כל הכוננים
-          </button>
-        </div>
+        <div className="haznaka-responders-container">
+      <div className="haznaka-responders">
+        <h2>כוננים מתאימים למצב חירום</h2>
+        {filteredResponders.length > 0 ? (
+          <ul className="responder-list">
+            {filteredResponders.map((responder) => (
+              <li key={responder.id} className="responder-item">
+                <p>
+                  <strong>{responder.name}</strong>
+                </p>
+                <p>טלפון: {responder.phone}</p>
+                <button
+                  className="delete-button"
+                  onClick={() => handleDelete(responder.id)}
+                >
+                  🗑️
+                </button>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>לא נמצאו כוננים מתאימים למצב חירום שנבחר</p>
+        )}
+      </div>
+  
+</div>
       </div>
     </div>
   );

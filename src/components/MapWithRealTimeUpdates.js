@@ -4,7 +4,10 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // Ensure to import leaflet's CSS
 import L from 'leaflet';
 import { useConanimContext } from '../contexts/context';
+
+
 const MapWithRealTimeUpdates = () => {
+  
   const [locations, setLocations] = useState([]); // Store filtered locations
   const [mapCenter, setMapCenter] = useState([32.0853, 34.7818]); // Default center of the map
   const {filteredResponders}= useConanimContext()

@@ -11,6 +11,7 @@
     
     flex-direction: row;
     gap: 20px; /* רווח בין שני החלקים */
+    height: 100vh;
 }
 
 /* Title */
@@ -77,9 +78,7 @@
 }
 
 /* Filter Button */
-.filter-button {
-    /* width: 30%; */
-    /* padding: 10px; */
+/* .filter-button {  
     margin: 10px;
     height: 70px;
     width: 200px;
@@ -94,17 +93,83 @@
 
 .filter-button:hover {
     background-color: #900606ee;
-}
-
+} */
+.haznaka-responders-container {
+    position: relative; /* Creates a positioning context for the button */
+  }
+  
+  .haznaka-responders {
+    max-height: 600px; /* Height of the scrollable area */
+    overflow-y: auto; /* Enables vertical scrolling */
+    border: 1px solid #ccc; /* Optional border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px; /* Adds padding */
+    background-color: #f9f9f9; /* Subtle background color */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds a nice shadow */
+  }
+  
+  /* Emergency button styles */
+  .filter-button {
+    position: absolute;
+    bottom: 317px;
+    left: 88%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 200px;
+    background-color: #d32f2f;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 46px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-family: 'Heebo';
+  }
+  
+  .filter-button:hover {
+    transform: translateX(-50%) scale(1.1); /* Slightly enlarge on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+  }
+  
+  .filter-button:active {
+    transform: translateX(-50%) scale(1.05); /* Slightly shrink when clicked */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3); /* Reduced shadow on click */
+  }
+  
 /* Right Side: Responders List */
-.haznaka-responders {
-    /* flex: 2; */
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
+.haznaka-responders {
+    max-height: 727px; /* Increased height */
+    overflow-y: auto; /* Enables vertical scrolling */
+    border: 1px solid #ccc; /* Adds a border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px; /* Adds some padding */
+    background-color: #f9f9f9; /* Subtle background color */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds a nice shadow */
+    width: 474px;
+  }
+  
+  /* Custom scrollbar styling */
+  .haznaka-responders::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+  }
+  
+  .haznaka-responders::-webkit-scrollbar-thumb {
+    background-color: #888; /* Scrollbar color */
+    border-radius: 4px; /* Rounded scrollbar */
+  }
+  
+  .haznaka-responders::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Darker on hover */
+  }
+  
+  .haznaka-responders::-webkit-scrollbar-track {
+    background: #e0e0e0; /* Background of the scrollbar track */
+    border-radius: 4px; /* Rounded scrollbar track */
+  }
+  
 .haznaka-responders h2 {
     font-size: 20px;
     margin-bottom: 15px;
@@ -124,8 +189,35 @@
     background-color: #f0f0f0;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between; /* Ensures proper spacing */
+    align-items: center; /* Centers the content vertically */
+    padding: 10px;
+    border-bottom: 1px solid #ccc; /* Divider for each item */
 }
 
+  
+  .delete-button {
+    background: none; /* No default background */
+    border: none; /* No border */
+    color: #d32f2f; /* Red for delete icon */
+    font-size: 20px; /* Larger icon size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: transform 0.2s ease; /* Smooth hover effect */
+  }
+ .filter-button:hover {
+    background-color:  #d32f2f !important;
+  }
+  
+  .delete-button:hover {
+    transform: scale(1.2); /* Slightly enlarge on hover */
+    background-color: unset !important;
+  }
+  
+  .delete-button:active {
+    transform: scale(1.1); /* Slightly shrink on click */
+  }
+  
 .responder-item p {
     margin: 5px 0;
 }
