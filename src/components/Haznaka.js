@@ -1,8 +1,9 @@
-import { responsibilityDecode, regionsDecode, yechidaDecode, agafDecode } from '../dec';
+import { responsibilityDecode, regionsDecode, yechidaDecode, agafDecode, whatsappTemplates } from '../dec';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Haznaka.css'; // קובץ CSS מותאם אישית
 import { useConanimContext } from '../contexts/context';
+import { sendTemplate } from '../api';
 
 function Haznaka() {
   const { conanim } = useConanimContext();
@@ -37,17 +38,12 @@ function Haznaka() {
   const handleConfirmCall = () => {
     const phoneNumbers = filteredResponders.map((responder) => responder.phone);
     console.log('Calling the following numbers:', phoneNumbers);
-
-    fetch('https://neches-leumi-server.onrender.com/sendMessage', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ phoneNumbers }),
-    })
+    const mikum = `מחוז: ${regionsDecode[parseInt(selectedRegion)]} ${yechidaDecode && `, יחידה: ${yechidaDecode[parseInt(selectedYechida)]}`} ${phoneNumbers.length &&`, אגף: ${phoneNumbers.length}`}`
+    sendTemplate(phoneNumbers.filter((phone) => phone[0] == '9'), whatsappTemplates.emergency, [{ type: "header", value: [mikum] }, { type: "body", value: [mikum, "בלגן לא נורמלי בכלא, אנשים זורקים כסאות על הדבופס"] }])
       .then((response) => {
         if (response.ok) {
-          alert('קריאה נשלחה בהצלחה!');
+          navigate('/filtered-responders');
+          // alert('קריאה נשלחה בהצלחה!');
         } else {
           alert('שליחת הקריאה נכשלה.');
         }
@@ -89,48 +85,48 @@ function Haznaka() {
           <div >
             <label htmlFor="region" className="form-label">מיקום:</label>
             <div className="form-group-mikum">
-            <select
-              id="region"
-              className="form-select"
-              onChange={(e) => setSelectedRegion(e.target.value)}
-              value={selectedRegion}
-            >
-              <option value="">בחר מחוז</option>
-              {Object.entries(regionsDecode).map(([key, value]) => (
-                <option key={key} value={key}>
-                  {value}
-                </option>
-              ))}
-            </select>
-            <select
-              id="yechida"
-              className="form-select"
-              onChange={(e) => setSelectedYechida(e.target.value)}
-              value={selectedYechida}
-            >
-              <option value="">בחר יחידה</option>
-              {Object.entries(yechidaDecode).map(([key, value]) => (
-                <option key={key} value={key}>
-                  {value}
-                </option>
-              ))}
-            </select>
-            <select
-              id="agaf"
-              className="form-select"
-              onChange={(e) => setSelectedAgaf(e.target.value)}
-              value={selectedAgaf}
-            >
-              <option value="">בחר אגף</option>
-              {Object.entries(agafDecode).map(([key, value]) => (
-                <option key={key} value={key}>
-                  {value}
-                </option>
-              ))}
-            </select>
+              <select
+                id="region"
+                className="form-select"
+                onChange={(e) => setSelectedRegion(e.target.value)}
+                value={selectedRegion}
+              >
+                <option value="">בחר מחוז</option>
+                {Object.entries(regionsDecode).map(([key, value]) => (
+                  <option key={key} value={key}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+              <select
+                id="yechida"
+                className="form-select"
+                onChange={(e) => setSelectedYechida(e.target.value)}
+                value={selectedYechida}
+              >
+                <option value="">בחר יחידה</option>
+                {Object.entries(yechidaDecode).map(([key, value]) => (
+                  <option key={key} value={key}>
+                    {value}
+                  </option>
+                ))}
+              </select>
+              <select
+                id="agaf"
+                className="form-select"
+                onChange={(e) => setSelectedAgaf(e.target.value)}
+                value={selectedAgaf}
+              >
+                <option value="">בחר אגף</option>
+                {Object.entries(agafDecode).map(([key, value]) => (
+                  <option key={key} value={key}>
+                    {value}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
-        
+
           <button className="filter-button" onClick={manageConanimClicked}>
             ניהול כוננים
           </button>

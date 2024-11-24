@@ -43,50 +43,55 @@
 //       4: "הגיע"
 //     }
 //   };
-  
+
 //   export default dec;
-  
+
 
 // Numeric mapping for responsibility
 export const responsibilityDecode = {
-    1: "כיבוי אש",
-    2: "טיפול רפואי",
-    3: "ניהול אירוע חירום",
-    4: "חילוץ והצלה",
-    5: "אירוע סייבר",
-    6: "הזנקת כח אדם",
-    7: "אחר"
-  };
-  
-  // Numeric mapping for regions
-  export const regionsDecode = {
-    101: "צפון",
-    102: "מרכז",
-    103: "דרום",
-    104: "הכל"
-  };
-  // Numeric mapping for units (yechidot)
-  export const yechidaDecode = {
-    201: "כלא איילון",
-    202: "כלא חרמון",
-    203: "כלא מעשיהו",
-    204: "כלא דקל",
-    205: "כלא שאטה"
-  };
-    
-  export const agafDecode = {
-    301: "אגף 1",
-    302:  "אגף 2",
-    303:  "אגף 3",
-    304:  "אגף 4",
-    305:  "אגף 5"
-  };
-    
-  // Numeric mapping for statuses
-  export const statusDecode = {
-    1: "נשלחה ההודעה",
-    2: "ההודעה התקבלה",
-    3: "בדרך",
-    4: "הגיע"
-  };
+  1: "כיבוי אש",
+  2: "טיפול רפואי",
+  3: "ניהול אירוע חירום",
+  4: "חילוץ והצלה",
+  5: "אירוע סייבר",
+  6: "הזנקת כח אדם",
+  7: "אחר"
+};
 
+// Numeric mapping for regions
+export const regionsDecode = {
+  101: "צפון",
+  102: "מרכז",
+  103: "דרום",
+  104: "הכל"
+};
+// Numeric mapping for units (yechidot)
+export const yechidaDecode = {
+  201: "כלא איילון",
+  202: "כלא חרמון",
+  203: "כלא מעשיהו",
+  204: "כלא דקל",
+  205: "כלא שאטה"
+};
+
+export const agafDecode = {
+  301: "אגף 1",
+  302: "אגף 2",
+  303: "אגף 3",
+  304: "אגף 4",
+  305: "אגף 5"
+};
+
+// Numeric mapping for statuses
+export const statusDecode = {
+  1: "נשלחה ההודעה",
+  2: "ההודעה התקבלה",
+  3: "בדרך",
+  4: "הגיע"
+};
+
+export const nechesLeumiServiceUrl = "https://neches-leumi-server.onrender.com/"
+export const nechesLeumMethodes = { sendTemplate: "sendTemplate" }
+export const whatsappTemplates ={
+  emergency:'emergency'
+}
