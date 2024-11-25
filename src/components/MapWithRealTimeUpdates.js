@@ -9,7 +9,7 @@ import { useConanimContext } from '../contexts/context';
 const MapWithRealTimeUpdates = () => {
   
   const [locations, setLocations] = useState([]); // Store filtered locations
-  const [mapCenter, setMapCenter] = useState([32.0853, 34.7818]); // Default center of the map
+  const [mapCenter, setMapCenter] = useState([31.788609, 35.225713]); // Default center of the map
   const {filteredResponders}= useConanimContext()
 
 
