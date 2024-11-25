@@ -65,7 +65,7 @@ const ShowConanim = () => {
                 </div>
             )}
             <div style={{ textAlign: 'center'}}>
-                <button style={{ height: '80px', width: '180px' }} onClick={() => { setNewItemData({ id: '', name: '', address: '', phone: '', regions: '', yechida: '', responsibility: '' }); setConanim([{ isNew: true }, ...conanim]); setEditingIndex(0); }} disabled={editingIndex !== null}>הוספת כונן חדש</button>
+                <button style={{ height: '50px', width: '100px' }} onClick={() => { setNewItemData({ id: '', name: '', address: '', phone: '', regions: '', yechida: '', responsibility: '' }); setConanim([{ isNew: true }, ...conanim]); setEditingIndex(0); }} disabled={editingIndex !== null}>הוספת כונן חדש</button>
             </div>
             {conanim.length ? (
                 <table className="main-table">

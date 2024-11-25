@@ -120,7 +120,7 @@ const MapWithRealTimeUpdates = () => {
       </MapContainer>
 
       {/* Add a map legend (מִקְרָא מַפָּה) outside of the map */}
-      <div style={{
+      {/* <div style={{
         position: 'absolute',
         top: '138px',
         left: '10px',
@@ -133,7 +133,7 @@ const MapWithRealTimeUpdates = () => {
         <strong>מִקְרָא מַפָּה</strong>
         <div><span style={{ color: 'orange' }}>🟠</span> - בדרך (סטטוס 3)</div>
         <div><span style={{ color: 'green' }}>🟢</span> - הגיע (סטטוס 4)</div>
-      </div>
+      </div> */}
     </div>
   );
 };

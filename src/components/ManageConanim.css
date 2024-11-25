@@ -1,146 +1,206 @@
+/* עיצוב כפתורים כללי */
 button {
-  background-color: #f91307;
+  background-color: #667881; /* צבע רך יותר */
   color: white;
   border: none;
-  padding: 12px 24px;
-  font-size: 16px;
+  padding: 8px 16px;
+  font-size: 14px;
   cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 button:hover {
-  background-color: #900606ee;
+  background-color: #6c7b81; /* צבע כהה יותר בעת hover */
+  transform: translateY(-1px);
 }
 
 button:disabled {
-  background-color: #aaa;
+  background-color: #d1d5db;
   cursor: not-allowed;
 }
 
 /* עיצוב טבלה */
 .main-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   margin: 20px 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border: 1px solid #e0e0e0; /* גבול בהיר יותר */
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .main-table th,
 .main-table td {
-  padding: 12px;
+  padding: 12px 16px;
   text-align: center;
-  border: 1px solid #ddd;
+  border-bottom: 1px solid #e0e0e0; /* גבול בהיר יותר */
+  font-size: 14px;
+  color: #4b5563; /* טקסט כהה יותר */
 }
 
 .main-table th {
-  background-color: #e41f0a;
-  color: white;
+  background-color: #f9f9f9; /* צבע בהיר יותר */
+  color: #666;
+  font-weight: 500;
+  letter-spacing: 0.3px;
 }
 
-.main-table tr:nth-child(even) {
-  background-color: #f2f2f2;
+.main-table tr:last-child td {
+  border-bottom: none;
 }
 
 .main-table tr:hover {
-  background-color: #e1f5e1;
+  background-color: #f7f7f7; /* צבע רקע בהיר יותר */
 }
 
+/* סטטוס זמין/לא זמין */
+.status-available {
+  color: #3a7c58; /* צבע ירוק בהיר יותר */
+  background-color: #f0f9f6; /* רקע בהיר יותר */
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  font-size: 12px;
+  border: 1px solid #e3f2e1; /* גבול בהיר יותר */
+}
+
+.status-unavailable {
+  color: #9e6e6e; /* צבע אדום יותר רך */
+  background-color: #f9f1f1; /* רקע אדום בהיר יותר */
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  font-size: 12px;
+  border: 1px solid #f0e0e0; /* גבול אדום בהיר יותר */
+}
+
+/* עיצוב מודרני לשדות קלט */
 .main-table td input,
 .main-table td select {
-  /* padding: 8px; */
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  appearance: none;
   width: 90%;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1.5px solid #e0e0e0; /* גבול בהיר יותר */
+  border-radius: 8px;
+  color: #4b5563;
+  background-color: #fff;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+}
+
+/* עיצוב ממוקד לשדות טקסט */
+.main-table td input {
+  padding-left: 12px;
+}
+
+.main-table td input::placeholder {
+  color: #a1aab3; /* צבע רך יותר */
+  font-size: 13px;
+}
+
+/* עיצוב hover לשדות */
+.main-table td input:hover,
+.main-table td select:hover {
+  border-color: #c1c7d0; /* גבול בהיר יותר בעת hover */
+  background-color: #f9fafb; /* רקע בהיר יותר */
+}
+
+/* עיצוב focus לשדות */
+.main-table td input:focus,
+.main-table td select:focus {
+  border-color: #a1b2c0; /* צבע כחול-אפוי יותר */
+  outline: none;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.1);
+}
+
+/* עיצוב מיוחד ל-select */
+.main-table td select {
+  padding-right: 36px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 12px center;
+  background-size: 16px;
+}
+
+/* עיצוב אייקונים */
+.icon-column {
+  width: 24px;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon-column:hover {
+  color: #4b5563;
+  transform: scale(1.1);
 }
 
 /* עיצוב שורת עריכה */
 .editing-row {
-  background-color: #fff8e1;
+  background-color: #fafafa;
 }
 
-.editing-row button {
-  margin: 5px;
-}
-
-/* עיצוב תגובה אם אין נתונים */
-p {
-  text-align: center;
-  font-size: 18px;
-  color: #666;
-}
-
-/* עיצוב כפתור עריכה ומחיקה */
-.main-table td button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.main-table td button:hover {
-  background-color: #45a049;
-}
-
-.main-table td button:active {
-  background-color: #388e3c;
-}
-
-.main-table td button:nth-child(2) {
-  background-color: #f44336;
-}
-
-.main-table td button:nth-child(2):hover {
-  background-color: #e53935;
-}
-
-/* עיצוב שדה טופס */
-input[type="text"],
-select {
-  /* font-size: 12px; */
-  padding: 4px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-/* רקע שמסתיר את כל התוכן */
+/* מודאל הצלחה */
 .success-modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  /* רקע חצי שקוף */
+  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
 }
 
-/* תוכן המודאל */
 .success-modal-content {
   background-color: white;
-  padding: 20px 40px;
-  border-radius: 10px;
+  padding: 24px 48px;
+  border-radius: 12px;
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  font-size: 20px;
-  color: green;
-  animation: fadeIn 0.3s ease-in-out;
-  /* אנימציה */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-size: 16px;
+  color: #4b5563;
+  animation: fadeIn 0.2s ease-in-out;
+  border: 1px solid #f0f0f0;
 }
 
-/* אנימציית הופעה */
+/* תוספת של קו מפריד בין האייקונים */
+.icon-separator {
+  display: inline-block;
+  width: 1px;
+  height: 16px;
+  background-color: #e5e7eb;
+  margin: 0 8px;
+  vertical-align: middle;
+}
+
+/* מצבי שגיאה והצלחה לשדות */
+.main-table td input.error,
+.main-table td select.error {
+  border-color: #ef4444;
+  background-color: #fff;
+}
+
+.main-table td input.success,
+.main-table td select.success {
+  border-color: #10b981;
+  background-color: #fff;
+}
+
+/* אנימציות */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: scale(0.8);
+    transform: scale(0.95);
   }
-
   to {
     opacity: 1;
     transform: scale(1);
