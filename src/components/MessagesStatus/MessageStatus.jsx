@@ -7,7 +7,7 @@ import "./MessageStatus.css"; // For styling (CSS included below)
  * @param {string} status - The message status ('sent', 'delivered', 'read')
  * @returns JSX Element
  */
-const MessageStatus = ({ status="read" }) => {
+const MessageStatus = ({ status="sent" }) => {
   const getStatusIcon = () => {
     switch (status) {
       case "sent":
