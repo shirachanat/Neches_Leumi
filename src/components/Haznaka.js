@@ -38,7 +38,7 @@ function Haznaka() {
     const phoneNumbers = filteredResponders.map((responder) => responder.phone);
     console.log('Calling the following numbers:', phoneNumbers);
     const mikum = `מחוז: ${regionsDecode[parseInt(selectedRegion)]} ${yechidaDecode && `, יחידה: ${yechidaDecode[parseInt(selectedYechida)]}`} ${phoneNumbers.length && `, אגף: ${phoneNumbers.length}`}`
-    sendTemplate(phoneNumbers.filter((phone) => phone[0] == '9'), whatsappTemplates.emergency, [{ type: "header", value: [mikum] }, { type: "body", value: [mikum, "בלגן לא נורמלי בכלא, אנשים זורקים כסאות על הדבופס"] }])
+    sendTemplate(phoneNumbers.filter((phone) => phone[0] == '9'), whatsappTemplates.emergency, [{ type: "header", value: [mikum] }, { type: "body", value: [mikum, "פרצה שריפה, יש אסירים וסוהרים לכודים"] }])
       .then((response) => {
         if (response.ok) {
           navigate('/filtered-responders');
