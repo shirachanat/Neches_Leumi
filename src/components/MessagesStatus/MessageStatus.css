@@ -1,8 +1,9 @@
 /* Container for the message status */
 .message-status {
     display: flex;
-    align-items: center;
-    font-size: 14px; /* Adjust size for the icons */
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
   }
   
   /* Single check icon */
@@ -19,10 +20,7 @@
   /* Double check icon (base style) */
   .icon-double-check {
     position: relative;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    justify-content: space-between;
+    height: 5px;
   }
   
   .icon-double-check::before,

@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { responsibilityDecode } from "../../dec";
 
 const ResponderItem = ({ responder, onDelete, additionalContent }) => {
   return (
     <li className="responder-item">
       <div className="responder-details">
         <p>
-          <strong>{responder.name}</strong>
+          <strong>{responder.name} - {responsibilityDecode[responder.responsibility]}</strong> 
         </p>
         <p>{responder.phone}</p>
       </div>
