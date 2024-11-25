@@ -4,6 +4,9 @@ import MapWithRealTimeUpdates from './MapWithRealTimeUpdates';
 import { responsibilityDecode, regionsDecode, yechidaDecode, statusDecode } from '../dec';
 import './FilteredResponders.css'; // Custom CSS for RTL design
 import { useConanimContext } from '../contexts/context';
+//import PropTypes from "prop-types";
+import ResponderItem from "./ResponderItem/ResponderItem";
+import MessageStatus from "./MessagesStatus/MessageStatus";
 
 function FilteredResponders() {
   const { state } = useLocation();
@@ -53,18 +56,22 @@ function FilteredResponders() {
 
         {/* Responder List Section */}
         <div className="responders-list-container">
-          {filteredResponders.length > 0 ? (
-            <ul className="responders-list">
-              {filteredResponders.map((responder) => (
-                <li key={responder.id} className="responder-card">
-                  <h3>{responder.name}</h3>
-                  <p><strong>תפקיד:</strong> {responsibilityDecode[responder.responsibility]}</p>
-                  <p><strong>אזור:</strong> {responder.regions.map((region) => regionsDecode[region]).join(', ')}</p>
-                  <p><strong>יחידה:</strong> {responder.yechida.map((yechida) => yechidaDecode[yechida]).join(', ')}</p>
-                  <p><strong>סטטוס:</strong> {statusDecode[responder.status]}</p>
-                </li>
-              ))}
-            </ul>
+          {filteredResponders.length > 0 ? (         
+            <ul className="responder-list">
+            {filteredResponders.map((responder) => (
+              <ResponderItem 
+              key={responder.id} 
+              responder={responder} 
+              additionalContent={
+                <div className="additional-content">
+                    <MessageStatus status={responder.messageStatus} />
+                    <p className="centered-role"> {responsibilityDecode[responder.responsibility]}</p>
+                    
+                  </div>
+              }
+              />
+            ))}
+          </ul>
           ) : (
             <div className="no-responders-message">
               <p>לא נמצאו כוננים מתאימים למצב חירום שנבחר</p>
@@ -79,4 +86,14 @@ function FilteredResponders() {
   );
 }
 
+// FilteredResponders.propTypes = {
+//   responders: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.number.isRequired,
+//       name: PropTypes.string.isRequired,
+//       phone: PropTypes.string.isRequired,
+//       messageStatus: PropTypes.oneOf(["sent", "delivered", "read"]).isRequired,
+//     })
+//   ).isRequired,
+// };
 export default FilteredResponders;

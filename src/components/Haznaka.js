@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import './Haznaka.css'; // קובץ CSS מותאם אישית
 import { useConanimContext } from '../contexts/context';
 import { sendTemplate } from '../api';
+//import PropTypes from "prop-types";
+import ResponderItem from "./ResponderItem/ResponderItem";
 
 function Haznaka() {
   const { conanim } = useConanimContext();
@@ -57,7 +59,7 @@ function Haznaka() {
       prevResponders.filter((responder) => responder.id !== id)
     );
   };
-  
+
   return (
     <div className="haznaka-container">
       <h1 className="haznaka-title">סינון כונני חירום</h1>
@@ -136,33 +138,37 @@ function Haznaka() {
         {/* רשימת כוננים בצד ימין */}
         <div className="haznaka-responders-container">
       <div className="haznaka-responders">
-        <h2>כוננים מתאימים למצב חירום</h2>
-        {filteredResponders.length > 0 ? (
-          <ul className="responder-list">
-            {filteredResponders.map((responder) => (
-              <li key={responder.id} className="responder-item">
-                <p>
-                  <strong>{responder.name}</strong>
-                </p>
-                <p>טלפון: {responder.phone}</p>
-                <button
-                  className="delete-button"
-                  onClick={() => handleDelete(responder.id)}
-                >
-                  🗑️
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>לא נמצאו כוננים מתאימים למצב חירום שנבחר</p>
-        )}
-      </div>
+      <h2>כוננים מתאימים למצב חירום</h2>
+      {filteredResponders.length > 0 ? (
+        <ul className="responder-list">
+          {filteredResponders.map((responder) => (
+            <ResponderItem
+              key={responder.id}
+              responder={responder}
+              onDelete={handleDelete} // Pass the delete handler
+            />
+          ))}
+        </ul>
+      ) : (
+        <p>לא נמצאו כוננים מתאימים למצב חירום שנבחר</p>
+      )}
+    </div>
   
 </div>
       </div>
     </div>
   );
 }
+
+// Haznaka.propTypes = {
+//   filteredResponders: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.number.isRequired,
+//       name: PropTypes.string.isRequired,
+//       phone: PropTypes.string.isRequired,
+//     })
+//   ).isRequired,
+//   handleDelete: PropTypes.func.isRequired,
+// };
 
 export default Haznaka;
