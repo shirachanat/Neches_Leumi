@@ -33,7 +33,7 @@ function Haznaka() {
     setFilteredResponders(results);
   }, [selectedResponsibility, selectedRegion, selectedYechida, conanim]);
 
-  
+
   const handleConfirmCall = () => {
     const phoneNumbers = filteredResponders.map((responder) => responder.phone);
     console.log('Calling the following numbers:', phoneNumbers);
@@ -51,7 +51,7 @@ function Haznaka() {
         console.error('Error sending call request:', error);
         alert('אירעה שגיאה.');
       });
-      navigate('/filtered-responders');
+    navigate('/filtered-responders');
   };
 
   const handleDelete = (id) => {
@@ -130,31 +130,31 @@ function Haznaka() {
             </div>
           </div>
 
-        
+
         </div>
         <button className="filter-button" onClick={handleConfirmCall}>
-    הצילו!
-  </button>
+          הפעל נוהל חירום
+        </button>
         {/* רשימת כוננים בצד ימין */}
         <div className="haznaka-responders-container">
-      <div className="haznaka-responders">
-      <h2>כוננים מתאימים למצב חירום</h2>
-      {filteredResponders.length > 0 ? (
-        <ul className="responder-list">
-          {filteredResponders.map((responder) => (
-            <ResponderItem
-              key={responder.id}
-              responder={responder}
-              onDelete={handleDelete} // Pass the delete handler
-            />
-          ))}
-        </ul>
-      ) : (
-        <p>לא נמצאו כוננים מתאימים למצב חירום שנבחר</p>
-      )}
-    </div>
-  
-</div>
+          <div className="haznaka-responders">
+            <h2>כוננים מתאימים למצב חירום</h2>
+            {filteredResponders.length > 0 ? (
+              <ul className="responder-list">
+                {filteredResponders.map((responder) => (
+                  <ResponderItem
+                    key={responder.id}
+                    responder={responder}
+                    onDelete={handleDelete} // Pass the delete handler
+                  />
+                ))}
+              </ul>
+            ) : (
+              <p>לא נמצאו כוננים מתאימים למצב חירום שנבחר</p>
+            )}
+          </div>
+
+        </div>
       </div>
     </div>
   );
