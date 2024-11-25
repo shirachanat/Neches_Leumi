@@ -54,7 +54,7 @@ function FilteredResponders() {
 
   return (
     <div className="filtered-responders-container" dir="rtl">
-
+     
       <div className="content-wrapper">
         {/* Map Section */}
         <div className="map-container">
