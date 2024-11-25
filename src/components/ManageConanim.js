@@ -56,7 +56,7 @@ const ShowConanim = () => {
     };
 
     return (
-        <div>
+        <div style={{padding: '100px', paddingTop: '50px'}}>
             {showSuccessModal && (
                 <div className="success-modal">
                     <div className="success-modal-content">
@@ -64,7 +64,7 @@ const ShowConanim = () => {
                     </div>
                 </div>
             )}
-            <div style={{ textAlign: 'center', margin: '50px 0' }}>
+            <div style={{ textAlign: 'center'}}>
                 <button style={{ height: '80px', width: '180px' }} onClick={() => { setNewItemData({ id: '', name: '', address: '', phone: '', regions: '', yechida: '', responsibility: '' }); setConanim([{ isNew: true }, ...conanim]); setEditingIndex(0); }} disabled={editingIndex !== null}>הוספת כונן חדש</button>
             </div>
             {conanim.length ? (
