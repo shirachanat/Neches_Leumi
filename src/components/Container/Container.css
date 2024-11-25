@@ -45,3 +45,9 @@
     height: 2px;
     background-color: #2563eb;
   }
+
+  .HeaderIcons {
+    margin-right: 10px;
+    height: 20px;
+    width: 20px;
+  }

@@ -12,17 +12,20 @@ const Container = ({ children }) => {
                     <ul className="ul">
                         <li className="li">
                             <NavLink to="/conanim" className={({ isActive }) => `link ${isActive ? 'active' : ''}`}>
-                            ניהול כוננים
+                                ניהול כוננים
+                                <img className='HeaderIcons' src="./conanim.png" alt="conanim icon" />
                             </NavLink>
                         </li>
                         <li className="li">
                             <NavLink to="/" className={({ isActive }) => `link ${isActive ? 'active' : ''}`}>
-                            הזנקת כוננים
+                                הזנקת כוננים
+                                <img className='HeaderIcons' src="./haznaka.png" alt="haznaka icon" />
                             </NavLink>
                         </li>
                         <li className="li">
                             <NavLink to="/filtered-responders" className={({ isActive }) => `link ${isActive ? 'active' : ''}`}>
-                            לוח הבקרה
+                                לוח הבקרה
+                                <img className='HeaderIcons' src="./dashboard.png" alt="Dashboard icon icon" />
                             </NavLink>
                         </li>
                     </ul>
