@@ -1,91 +1,12 @@
-/* header */
 .header {
-    background-color: #f62c0c;
-    color: #fff;
-    padding: 20px;
+    background-color: #f8f9fa;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* container */
-.container {
-    display: flex;
-    justify-content: space-between;
-    /* מפזר את האלמנטים */
-    align-items: center;
-    /* ממרכז את האלמנטים אנכית */
-    max-width: 1200px;
-    margin: 0 auto;
-    /* מרכז את ה-container */
-    padding: 0 20px;
-}
-
-/* logo */
 .logo {
-    width: 80px;
-    height: 80px;
-    animation: scaleAnimation 2.5s infinite alternate;
-    /* הפעלת האנימציה */
-}
-
-@keyframes scaleAnimation {
-    0% {
-        transform: scale(1);
-        /* מצב התמונה בהתחלה (גודל רגיל) */
-    }
-
-    50% {
-        transform: scale(1.2);
-        /* מצב התמונה באמצע האנימציה (גדולה ב-50%) */
-    }
-
-    100% {
-        transform: scale(1);
-        /* מצב התמונה בסוף האנימציה (חוזר לגודל הרגיל) */
-    }
-}
-
-/* title */
-.title {
-    margin-right: 500px;
-    font-size: 24px;
-    margin: 0 20px;
-    flex: 1;
-    text-align: center;
-    color: #fff;
-}
-
-/* navigation */
-.nav {
-    font-size: 18px;
-}
-
-/* unordered list */
-.ul {
-    list-style: none;
-    display: flex;
-    /* שורות באותו קו */
-    margin: 0;
-    padding: 0;
-}
-
-/* list item */
-.li {
-    margin-left: 20px;
-    /* מרווח בין הקישורים */
-}
-
-/* link */
-.link {
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-/* hover effect for links */
-.link:hover {
-    background-color: #791313;
+    height: 40px;
 }

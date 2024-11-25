@@ -13,20 +13,20 @@ function Haznaka() {
   const [selectedRegion, setSelectedRegion] = useState('');
   const [selectedYechida, setSelectedYechida] = useState('');
   const [selectedAgaf, setSelectedAgaf] = useState('');
-  const {filteredResponders, setFilteredResponders} = useConanimContext(conanim); // רשימת כוננים מסוננים
+  const { filteredResponders, setFilteredResponders } = useConanimContext(conanim); // רשימת כוננים מסוננים
   const navigate = useNavigate();
 
   // עדכון הרשימה המסוננת באופן דינמי
   useEffect(() => {
     const results = conanim.filter((responder) => {
       const matchesResponsibility = selectedResponsibility
-        ? responder.responsibility === parseInt(selectedResponsibility)
+        ? responder.responsibility == selectedResponsibility
         : true;
       const matchesRegion = selectedRegion
-        ? responder.regions.includes(parseInt(selectedRegion))
+        ? responder.regions.some(region => region == selectedRegion)
         : true;
       const matchesYechida = selectedYechida
-        ? responder.yechida.includes(parseInt(selectedYechida))
+        ? responder.yechida.some(yechida => yechida == selectedYechida)
         : true;
       return matchesResponsibility && matchesRegion && matchesYechida;
     });
@@ -37,7 +37,7 @@ function Haznaka() {
   const handleConfirmCall = () => {
     const phoneNumbers = filteredResponders.map((responder) => responder.phone);
     console.log('Calling the following numbers:', phoneNumbers);
-    const mikum = `מחוז: ${regionsDecode[parseInt(selectedRegion)]} ${yechidaDecode && `, יחידה: ${yechidaDecode[parseInt(selectedYechida)]}`} ${phoneNumbers.length &&`, אגף: ${phoneNumbers.length}`}`
+    const mikum = `מחוז: ${regionsDecode[parseInt(selectedRegion)]} ${yechidaDecode && `, יחידה: ${yechidaDecode[parseInt(selectedYechida)]}`} ${phoneNumbers.length && `, אגף: ${phoneNumbers.length}`}`
     sendTemplate(phoneNumbers.filter((phone) => phone[0] == '9'), whatsappTemplates.emergency, [{ type: "header", value: [mikum] }, { type: "body", value: [mikum, "בלגן לא נורמלי בכלא, אנשים זורקים כסאות על הדבופס"] }])
       .then((response) => {
         if (response.ok) {
@@ -85,7 +85,7 @@ function Haznaka() {
           </div>
 
           <div >
-          <svg stroke="currentColor" fill="currentColor" color='#555' stroke-width="0" viewBox="0 0 384 512" class="icon" height="1em" width="1em"  xmlns="http://www.w3.org/2000/svg"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>
+            <svg stroke="currentColor" fill="currentColor" color='#555' stroke-width="0" viewBox="0 0 384 512" class="icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>
             <label htmlFor="region" className="form-label">  מיקום:</label>
             <div className="form-group-mikum">
               <select

@@ -11,7 +11,7 @@ import MessageStatus from "./MessagesStatus/MessageStatus";
 function FilteredResponders() {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { filteredResponders, setFilteredResponders } = useConanimContext() // State for filtered responders
+  const {filteredResponders, setFilteredResponders}= useConanimContext() // State for filtered responders
   useEffect(() => {
     const ws = new WebSocket('wss://neches-leumi-server.onrender.com');
     // console.log('filtered data'+filteredResponders)
