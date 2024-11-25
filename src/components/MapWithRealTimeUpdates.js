@@ -40,20 +40,19 @@ const MapWithRealTimeUpdates = () => {
 
   // Function to create marker icon based on responder status
   const getMarkerIcon = (status) => {
-    const iconUrl =
-      status === 3
-        // ? 'https://img.icons8.com/ios/50/ff7043/marker.png' // Orange for status 3 ("בדרך")
-        // : 'https://img.icons8.com/ios/50/4caf50/marker.png'; // Green for status 4 ("הגעתי")
-        // ? 'https://img.icons8.com/ios/50/ff5722/marker.png' // Full orange for status 3 ("בדרך")
-        // : 'https://img.icons8.com/ios/50/388e3c/marker.png'; // Full green for status 4 ("הגעתי")
-        ? 'https://img.icons8.com/ios/50/ff6600/marker.png' // Full orange marker for status 3 ("בדרך")
-        : 'https://img.icons8.com/ios/50/4caf50/marker.png'; // Full green marker for status 4 ("הגעתי")
-
+    // Base URLs for markers
+    const iconUrl = status === 3
+      // ? 'https://img.icons8.com/ios/50/ff6600/marker.png'
+      // : 'https://img.icons8.com/ios/50/4caf50/marker.png';
+      ? 'https://img.icons8.com/color/48/000000/marker--v1.png'  // Solid orange marker
+      : 'https://img.icons8.com/color/48/000000/marker--v1.png'; // Solid green marker
+    // Option 1: Larger marker with adjusted anchor points
     return L.icon({
       iconUrl: iconUrl,
-      iconSize: [32, 32],  // Size of the marker
-      iconAnchor: [16, 32], // Anchor point for the icon (where it's placed on the map)
-      popupAnchor: [0, -32], // Popup offset from the marker
+      iconSize: [48, 48],  // Increased size from 32 to 48
+      iconAnchor: [24, 48], // Adjusted anchor point (half of width, full height)
+      popupAnchor: [0, -48], // Adjusted popup position
+      className: 'pulse-marker' // Add class for animation
     });
   };
 
