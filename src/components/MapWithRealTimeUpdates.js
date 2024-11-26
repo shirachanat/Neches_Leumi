@@ -42,11 +42,8 @@ const MapWithRealTimeUpdates = () => {
   const getMarkerIcon = (status) => {
     // Base URLs for markers
     const iconUrl = status === 3
-      // ? 'https://img.icons8.com/ios/50/ff6600/marker.png'
-      // : 'https://img.icons8.com/ios/50/4caf50/marker.png';
       ? 'https://img.icons8.com/color/48/000000/marker--v1.png'  // Solid orange marker
       : 'https://img.icons8.com/color/48/000000/marker--v1.png'; // Solid green marker
-    // Option 1: Larger marker with adjusted anchor points
     return L.icon({
       iconUrl: iconUrl,
       iconSize: [48, 48],  // Increased size from 32 to 48
@@ -95,8 +92,13 @@ const MapWithRealTimeUpdates = () => {
         zoom={13}
         style={{ width: '100%', height: '100%' }}
       >
-        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
+        {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" /> */}
+  <TileLayer
+        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>'
+      />
+      
+      
         {filteredResponders.map(conan => {
           console.log("Rendering marker for:", conan);
           const icon = getMarkerIcon(conan.status);
