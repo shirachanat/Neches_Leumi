@@ -1,6 +1,6 @@
 /* עיצוב כפתורים כללי */
-button {
-  background-color: #667881; /* צבע רך יותר */
+/* button {
+  background-color: #667881; 
   color: white;
   border: none;
   padding: 8px 16px;
@@ -12,14 +12,14 @@ button {
 }
 
 button:hover {
-  background-color: #6c7b81; /* צבע כהה יותר בעת hover */
+  background-color: #6c7b81; 
   transform: translateY(-1px);
 }
 
 button:disabled {
   background-color: #d1d5db;
   cursor: not-allowed;
-}
+} */
 
 /* עיצוב טבלה */
 .main-table {
@@ -39,6 +39,7 @@ button:disabled {
   text-align: center;
   border-bottom: 1px solid #e0e0e0; /* גבול בהיר יותר */
   font-size: 14px;
+  font-weight: bold;
   color: #4b5563; /* טקסט כהה יותר */
 }
 
@@ -58,25 +59,25 @@ button:disabled {
 }
 
 /* סטטוס זמין/לא זמין */
-.status-available {
-  color: #3a7c58; /* צבע ירוק בהיר יותר */
-  background-color: #f0f9f6; /* רקע בהיר יותר */
+/* .status-available {
+  color: #3a7c58; 
+  background-color: #f0f9f6; 
   padding: 6px 12px;
   border-radius: 20px;
   display: inline-block;
   font-size: 12px;
-  border: 1px solid #e3f2e1; /* גבול בהיר יותר */
-}
+  border: 1px solid #e3f2e1; 
+} */
 
-.status-unavailable {
-  color: #9e6e6e; /* צבע אדום יותר רך */
-  background-color: #f9f1f1; /* רקע אדום בהיר יותר */
+/* .status-unavailable {
+  color: #9e6e6e; 
+  background-color: #f9f1f1; 
   padding: 6px 12px;
   border-radius: 20px;
   display: inline-block;
   font-size: 12px;
-  border: 1px solid #f0e0e0; /* גבול אדום בהיר יותר */
-}
+  border: 1px solid #f0e0e0; 
+} */
 
 /* עיצוב מודרני לשדות קלט */
 .main-table td input,
@@ -85,7 +86,8 @@ button:disabled {
   width: 90%;
   padding: 8px 12px;
   font-size: 14px;
-  border: 1.5px solid #e0e0e0; /* גבול בהיר יותר */
+  font-weight: bold;
+  border: 1.5px solid #e0e0e0; 
   border-radius: 8px;
   color: #4b5563;
   background-color: #fff;
@@ -96,24 +98,25 @@ button:disabled {
 /* עיצוב ממוקד לשדות טקסט */
 .main-table td input {
   padding-left: 12px;
+  width: 130px;
 }
 
 .main-table td input::placeholder {
-  color: #a1aab3; /* צבע רך יותר */
+  color: #a1aab3; 
   font-size: 13px;
 }
 
 /* עיצוב hover לשדות */
 .main-table td input:hover,
 .main-table td select:hover {
-  border-color: #c1c7d0; /* גבול בהיר יותר בעת hover */
-  background-color: #f9fafb; /* רקע בהיר יותר */
+  border-color: #c1c7d0;
+  background-color: #f9fafb; 
 }
 
 /* עיצוב focus לשדות */
 .main-table td input:focus,
 .main-table td select:focus {
-  border-color: #a1b2c0; /* צבע כחול-אפוי יותר */
+  border-color: #a1b2c0; 
   outline: none;
   background-color: #fff;
   box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.1);
@@ -121,11 +124,11 @@ button:disabled {
 
 /* עיצוב מיוחד ל-select */
 .main-table td select {
-  padding-right: 36px;
+  /* padding-right: 10px; */
   background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: left 12px center;
-  background-size: 16px;
+  background-size: 10px;
 }
 
 /* עיצוב אייקונים */
@@ -205,4 +208,9 @@ button:disabled {
     opacity: 1;
     transform: scale(1);
   }
+}
+
+.Icons {
+  height: 30px;
+  width: 30px;
 }
