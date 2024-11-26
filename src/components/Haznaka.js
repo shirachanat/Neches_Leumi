@@ -129,8 +129,6 @@ function Haznaka() {
               </select>
             </div>
           </div>
-
-
         </div>
         <button className="filter-button" onClick={handleConfirmCall}>
           הפעל נוהל חירום
@@ -144,7 +142,7 @@ function Haznaka() {
                 {filteredResponders.map((responder) => (
                   <ResponderItem
                     key={responder.id}
-                    responder={responder}
+                    responder={responder}                    
                     onDelete={handleDelete} // Pass the delete handler
                   />
                 ))}
@@ -153,7 +151,6 @@ function Haznaka() {
               <p>לא נמצאו כוננים מתאימים למצב חירום שנבחר</p>
             )}
           </div>
-
         </div>
       </div>
     </div>

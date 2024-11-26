@@ -1,15 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { responsibilityDecode } from "../../dec";
+import { responsibilityDecode, yechidaDecode } from "../../dec";
 
 const ResponderItem = ({ responder, onDelete, additionalContent }) => {
   return (
     <li className="responder-item">
       <div className="responder-details">
         <p>
-          <strong>{responder.name} - {responsibilityDecode[responder.responsibility]}</strong> 
+          <strong> <span style={{fontSize: "1.2rem"}}>{responder.name}</span> - {responder.yechida.map(yechida => yechidaDecode[yechida]).join(", ")}</strong>
         </p>
-        <p>{responder.phone}</p>
+        <p>{responsibilityDecode[responder.responsibility]}</p>
       </div>
       {additionalContent && <div className="additional-content">{additionalContent}</div>}
       {onDelete && (
