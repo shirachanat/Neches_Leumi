@@ -5,7 +5,7 @@ import './Container.css'
 
 const Container = ({ children }) => {
     return (
-        <div>
+        <div className='mega-container' >
             <Header />
             <nav className="nav">
                 <ul className="ul">

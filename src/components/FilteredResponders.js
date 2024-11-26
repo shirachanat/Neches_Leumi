@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import MapWithRealTimeUpdates from './MapWithRealTimeUpdates';
-import { responsibilityDecode, regionsDecode, yechidaDecode, statusDecode } from '../dec';
+import { responsibilityDecode, regionsDecode, yechidaDecode, statusDecode, whatsappTemplates } from '../dec';
 import './FilteredResponders.css'; // Custom CSS for RTL design
 import { useConanimContext } from '../contexts/context';
 //import PropTypes from "prop-types";
 import ResponderItem from "./ResponderItem/ResponderItem";
 import MessageStatus from "./MessagesStatus/MessageStatus";
+import { sendTemplate } from '../api';
 
 function FilteredResponders() {
   const { state } = useLocation();
@@ -19,6 +20,21 @@ function FilteredResponders() {
       copy[senderIndex].arrived = true
       setFilteredResponders(copy)
     }
+  }
+  const chazlashHendler = () => {
+    const phoneNumbers = filteredResponders.map((responder) => responder.phone);
+    sendTemplate(phoneNumbers.filter((phone) => phone[0] == '9'), whatsappTemplates.chazlash, [])
+      .then((response) => {
+        if (response.ok) {
+          console.log('chazlash sent successfully.');
+        } else {
+          console.log('שליחת חזלש נכשלה.');
+        }
+      })
+      .catch((error) => {
+        console.error('Error sending call request:', error);
+        alert('אירעה שגיאה.');
+      });
   }
   useEffect(() => {
     const ws = new WebSocket('wss://neches-leumi-server.onrender.com');
@@ -54,9 +70,9 @@ function FilteredResponders() {
 
   return (
     <div className="filtered-responders-container" dir="rtl">
-     
-      <div className="content-wrapper">
         {/* Map Section */}
+          <button className='chazlash-button' onClick={chazlashHendler}>סיום אירוע</button>
+       <div className="map-and-list-container">
         <div className="map-container">
           <MapWithRealTimeUpdates />
         </div>
@@ -90,8 +106,8 @@ function FilteredResponders() {
               </button>
             </div>
           )}
+          </div>
         </div>
-      </div>
     </div>
   );
 }

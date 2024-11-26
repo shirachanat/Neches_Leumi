@@ -20,9 +20,12 @@
 }
 
 .filtered-responders-container {
-  /* padding: 20px; */
-  padding: 100px;
-  padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: hidden;
+    padding: 2rem;
+    flex-grow: 1;
 }
 
 .page-title {
@@ -38,19 +41,11 @@
   flex-grow: 1;
 }
 
-.content-wrapper {
-  display: flex;
-  flex-direction: row-reverse;
-  /* Ensures responders list is on the right */
-  gap: 20px;
-}
-
 .map-container {
   flex: 3 1;
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
-  height: 80vh;
 }
 
 .responders-list-container {
@@ -60,6 +55,7 @@
   background-color: #f9f9f9;
   padding: 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: auto;
 }
 
 .responders-list {
@@ -129,4 +125,31 @@
   /* Ensures the text is centered */
   margin: 0;
   /* Removes default margin */
+}
+.chazlash-button {
+  background-color: #F7DC6F; /* Yellow color */
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.5); /* Shining border */
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.chazlash-button:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.8); /* Increase shining effect on hover */
+}
+
+.chazlash-button:active {
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.5); /* Decrease shining effect on active */
+}
+.map-and-list-container{
+  display: flex;
+  flex-direction: row-reverse;
+  overflow: hidden;
+  gap: 2rem;
+  flex-grow: 1;
 }

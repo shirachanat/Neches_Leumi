@@ -100,5 +100,6 @@ export const messageStatusDecode =
 export const nechesLeumiServiceUrl = "https://neches-leumi-server.onrender.com/"
 export const nechesLeumMethodes = { sendTemplate: "sendTemplate" }
 export const whatsappTemplates = {
-  emergency: 'emergency'
+  emergency: 'emergency',
+  chazlash: 'chazlash_clali'
 }
