@@ -36,6 +36,15 @@ const BarChart = ({filteredResponders}) => {
     //     position: 'top',
     //   },
     // },
+    scales: {
+        y: {
+          beginAtZero: true, // Ensures the scale starts at 0
+          max: filteredResponders.length, // Set the maximum value for the Y-axis
+          ticks: {
+            stepSize: 5, // Set the step size (optional)
+          },
+        },
+      },
     onClick: (event) => {
       const chart = chartRef.current;
       if (!chart) return;
