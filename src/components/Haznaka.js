@@ -1,4 +1,4 @@
-import { responsibilityDecode, regionsDecode, yechidaDecode, agafDecode, whatsappTemplates } from '../dec';
+import { responsibilityDecode, regionsDecode,yechidaDecodeArray , agafDecode, whatsappTemplates } from '../dec';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Haznaka.css'; // קובץ CSS מותאם אישית
@@ -37,11 +37,14 @@ function Haznaka() {
   const handleConfirmCall = () => {
     const phoneNumbers = filteredResponders.map((responder) => responder.phone);
     console.log('Calling the following numbers:', phoneNumbers);
-    const mikum = `מחוז: ${regionsDecode[parseInt(selectedRegion)]} ${yechidaDecode && `, יחידה: ${yechidaDecode[parseInt(selectedYechida)]}`} ${phoneNumbers.length && `, אגף: ${phoneNumbers.length}`}`
+    const mikum = `מחוז: ${regionsDecode[parseInt(selectedRegion)]} ${yechidaDecodeArray && `, יחידה: ${yechidaDecodeArray[parseInt(selectedYechida)]}`} ${phoneNumbers.length && `, אגף: ${phoneNumbers.length}`}`
     sendTemplate(phoneNumbers.filter((phone) => phone[0] == '9'), whatsappTemplates.emergency, [{ type: "header", value: [mikum] }, { type: "body", value: [mikum, "פרצה שריפה, יש אסירים וסוהרים לכודים"] }])
       .then((response) => {
         if (response.ok) {
-          navigate('/filtered-responders');
+         // navigate('/filtered-responders');
+          navigate('/filtered-responders', {
+            state: { selectedYechida, filteredResponders },
+          });
           // alert('קריאה נשלחה בהצלחה!');
         } else {
           alert('שליחת הקריאה נכשלה.');
@@ -51,7 +54,10 @@ function Haznaka() {
         console.error('Error sending call request:', error);
         alert('אירעה שגיאה.');
       });
-    navigate('/filtered-responders');
+    //navigate('/filtered-responders');
+    navigate('/filtered-responders', {
+      state: { selectedYechida, filteredResponders },
+    });
   };
 
   const handleDelete = (id) => {
@@ -101,19 +107,20 @@ function Haznaka() {
                   </option>
                 ))}
               </select>
+             
               <select
-                id="yechida"
-                className="form-select"
-                onChange={(e) => setSelectedYechida(e.target.value)}
-                value={selectedYechida}
-              >
-                <option value="">בחר יחידה</option>
-                {Object.entries(yechidaDecode).map(([key, value]) => (
-                  <option key={key} value={key}>
-                    {value}
-                  </option>
-                ))}
-              </select>
+  id="yechida"
+  className="form-select"
+  onChange={(e) => setSelectedYechida(e.target.value)}
+  value={selectedYechida}
+>
+  <option value="">בחר יחידה</option>
+  {yechidaDecodeArray.map((item) => (
+    <option key={item.id} value={item.id}>
+      {item.name}
+    </option>
+  ))}
+</select>
               <select
                 id="agaf"
                 className="form-select"

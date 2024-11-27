@@ -9,10 +9,68 @@ import ResponderItem from "./ResponderItem/ResponderItem";
 import MessageStatus from "./MessagesStatus/MessageStatus";
 import { sendTemplate } from '../api';
 
+
 function FilteredResponders() {
+  const location = useLocation();
+  const { selectedYechida} = location.state || {};
   const { state } = useLocation();
   const navigate = useNavigate();
   const { filteredResponders, setFilteredResponders } = useConanimContext() // State for filtered responders
+   // Function to fetch travel time
+   const fetchTravelTime = async (origin, destination) => {
+    try {
+      const response = await fetch(
+        `https://router.project-osrm.org/route/v1/driving/${origin};${destination}?overview=false`
+      );
+      const data = await response.json();
+
+      if (data.code === "Ok") {
+        const duration = data.routes[0].duration; // Duration in seconds
+        return Math.round(duration / 60); // Convert to minutes
+      } else {
+        console.error("Failed to calculate travel time");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error fetching travel time:", error.message);
+      return null;
+    }
+  };
+
+  // Calculate travel time for responders
+  useEffect(() => {
+    const updateTravelTimes = async () => {
+      const updatedResponders = await Promise.all(
+        filteredResponders.map(async (responder) => {
+          // Skip responders that already have a travel time
+          if (
+            responder.latitude &&
+            responder.longitude &&
+            responder.estimatedTravelTime == null
+          ) {
+            const origin = `34.7818,32.0853`; // Replace with actual origin
+            const destination = `${responder.longitude},${responder.latitude}`;
+            const travelTime = await fetchTravelTime(origin, destination);
+            return { ...responder, estimatedTravelTime: travelTime };
+          }
+          return responder; // No change if travel time already exists
+        })
+      );
+
+      // Only update state if there's an actual change
+      setFilteredResponders((prev) => {
+        if (JSON.stringify(prev) !== JSON.stringify(updatedResponders)) {
+          return updatedResponders;
+        }
+        return prev;
+      });
+    };
+
+    if (filteredResponders.length > 0) {
+      updateTravelTimes();
+    }
+  }, [filteredResponders, setFilteredResponders]);
+  
   const arrivedButtunClicked = (responder) => {
     let senderIndex = filteredResponders.findIndex(conan => conan.id === responder.id)
     if (senderIndex !== -1) {
@@ -36,6 +94,28 @@ function FilteredResponders() {
         alert('אירעה שגיאה.');
       });
   }
+  // // Calculate travel time for responders
+  // useEffect(() => {
+  //   const updateTravelTimes = async () => {
+  //     const updatedResponders = await Promise.all(
+  //       filteredResponders.map(async (responder) => {
+  //         if (responder.latitude && responder.longitude) {
+  //           const origin = `34.7818,32.0853`; // Replace with actual origin
+  //           const destination = `${responder.longitude},${responder.latitude}`;
+  //           const travelTime = await fetchTravelTime(origin, destination);
+  //           return { ...responder, estimatedTravelTime: travelTime };
+  //         }
+  //         return responder;
+  //       })
+  //     );
+  //     setFilteredResponders(updatedResponders);
+  //   };
+
+  //   if (filteredResponders.length > 0) {
+  //     updateTravelTimes();
+  //   }
+  // }, [filteredResponders, setFilteredResponders]);
+
   useEffect(() => {
     const ws = new WebSocket('wss://neches-leumi-server.onrender.com');
     // console.log('filtered data'+filteredResponders)
@@ -74,7 +154,7 @@ function FilteredResponders() {
           <button className='chazlash-button' onClick={chazlashHendler}>סיום אירוע</button>
        <div className="map-and-list-container">
         <div className="map-container">
-          <MapWithRealTimeUpdates />
+          <MapWithRealTimeUpdates selectedYechida={selectedYechida}/>
         </div>
 
         {/* Responder List Section */}
@@ -88,6 +168,11 @@ function FilteredResponders() {
                   additionalContent={
                     <>
                       <MessageStatus status={responder.messageStatus} />
+                      {responder.estimatedTravelTime !== null ? (
+                  <div>זמן נסיעה משוער: {responder.estimatedTravelTime} דקות</div>
+                ) : (
+                  <div>מחשבים זמן נסיעה...</div>
+                )}
                       {responder.arrived ? <button onClick={() => { }} className="arrived-button" disabled >הגיע</button>
                        : responder.longitude && <div> שעת הגעה משוערת: 16:30</div>}
                       {!responder.arrived && <button onClick={() => { arrivedButtunClicked(responder)}} className="arrived-button" >סימון הגעה</button>}

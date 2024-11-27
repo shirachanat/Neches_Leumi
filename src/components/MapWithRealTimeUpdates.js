@@ -1,15 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // Ensure to import leaflet's CSS
 import L from 'leaflet';
 import { useConanimContext } from '../contexts/context';
+import { yechidaDecodeArray } from '../dec';
 
-
-const MapWithRealTimeUpdates = () => {
+const MapWithRealTimeUpdates = (selectedYechida) => {
   
   const [locations, setLocations] = useState([]); // Store filtered locations
-  const [mapCenter, setMapCenter] = useState([31.788609, 35.225713]); // Default center of the map
+  const [mapCenter, setMapCenter] = useState([32.0554, 34.7995]); // Default center of the map
   const {filteredResponders}= useConanimContext()
 
 
@@ -19,8 +19,26 @@ const MapWithRealTimeUpdates = () => {
     3: 'בדרך',  // Status 3 = "On the way"
     4: 'הגיע',   // Status 4 = "Arrived"
   };
-
-  // Effect to filter responders and set their locations on the map
+  const ChangeMapCenter = ({ center }) => {
+    const map = useMap();
+    useEffect(() => {
+      if (center) {
+        map.setView(center, map.getZoom());
+      }
+    }, [center, map]);
+    return null;
+  };
+ 
+  // useEffect(() => {
+  //   const selectedCoordinates = getCoordinatesFromArray(selectedYechida);
+  //   console.log('Selected coordinates:', selectedCoordinates); // Debugging log
+  //   if (selectedCoordinates) {
+  //     setMapCenter(selectedCoordinates);
+  //   } else {
+  //     console.warn('No valid coordinates found for selectedYechida:', selectedYechida);
+  //   }
+  // }, [selectedYechida]);
+  // // Effect to filter responders and set their locations on the map
   useEffect(() => {
     const filteredLocations = filteredResponders
       .filter(responder => responder.status === 3 || responder.status === 4)  // Filter by status 3 or 4
@@ -38,6 +56,23 @@ const MapWithRealTimeUpdates = () => {
     }
   }, [filteredResponders]);
 
+//   function getCoordinatesFromArray(selectedYechida) {
+//     const yechidaData = yechidaDecodeArray.find(item => item.id === parseInt(selectedYechida.selectedYechida));
+//     console.log('selectedYechida:', selectedYechida);
+// console.log('yechidaDecodeArray:', yechidaDecodeArray);
+//     if (yechidaData && yechidaData.coordinates) {
+//       return yechidaData.coordinates;
+//     } else {
+//       console.error('Coordinates not found for selected Yechida:', selectedYechida);
+//       return null;
+//     }
+//   }
+  const getCoordinatesFromArray = (id) => {
+    const result = yechidaDecodeArray.find((item) => item.id === Number(id));
+    console.log('Result from getCoordinatesFromArray:', result); // Debugging log
+    return result ? [result.coordinates.lat, result.coordinates.lng] : null;
+  };
+  
   // Function to create marker icon based on responder status
   const getMarkerIcon = (status) => {
     // Base URLs for markers
@@ -53,52 +88,55 @@ const MapWithRealTimeUpdates = () => {
     });
   };
 
-  const fetchTravelTime = async (origin, destination) => {
-    try {
-      // בקשת ניתוב מה-API של OSRM
-      const response = await fetch(
-        `https://router.project-osrm.org/route/v1/driving/${origin};${destination}?overview=false`
-      );
-      const data = await response.json();
+  // const fetchTravelTime = async (origin, destination) => {
+  //   try {
+  //     // בקשת ניתוב מה-API של OSRM
+  //     const response = await fetch(
+  //       `https://router.project-osrm.org/route/v1/driving/${origin};${destination}?overview=false`
+  //     );
+  //     const data = await response.json();
   
-      if (data.code === "Ok") {
-        const duration = data.routes[0].duration; // זמן בשניות
-        const minutes = Math.round(duration / 60); // המרה לדקות
-        console.log(`זמן נסיעה משוער: ${minutes} דקות`);
-        return minutes;
-      } else {
-        throw new Error("לא ניתן לחשב זמן נסיעה");
-      }
-    } catch (error) {
-      console.error("שגיאה:", error.message);
-      return null;
-    }
-  };
+  //     if (data.code === "Ok") {
+  //       const duration = data.routes[0].duration; // זמן בשניות
+  //       const minutes = Math.round(duration / 60); // המרה לדקות
+  //       console.log(`זמן נסיעה משוער: ${minutes} דקות`);
+  //       return minutes;
+  //     } else {
+  //       throw new Error("לא ניתן לחשב זמן נסיעה");
+  //     }
+  //   } catch (error) {
+  //     console.error("שגיאה:", error.message);
+  //     return null;
+  //   }
+  // };
   
   // קריאה לפונקציה עם מקור ויעד
   const origin = "34.7818,32.0853"; // לדוגמה: תל אביב
   const destination = "34.7647,32.0729"; // לדוגמה: יפו
   
-  fetchTravelTime(origin, destination).then((time) => {
-    if (time !== null) {
-      console.log(`הזמן הוא ${time} דקות`);
-    }
-  });
+  // fetchTravelTime(origin, destination).then((time) => {
+  //   if (time !== null) {
+  //     console.log(`הזמן הוא ${time} דקות`);
+  //   }
+  // });
 
   return (
     <div style={{ height: '100%', width: '100%' }}>
-      <MapContainer
+       <MapContainer
+      
         center={mapCenter}
         zoom={13}
         style={{ width: '100%', height: '100%' }}
-      >
+      > 
+       
+
         {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" /> */}
   <TileLayer
         url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>'
       />
       
-      
+      {/* <ChangeMapCenter center={mapCenter} /> */}
         {filteredResponders.map(conan => {
           console.log("Rendering marker for:", conan);
           const icon = getMarkerIcon(conan.status);

@@ -65,14 +65,27 @@ export const regionsDecode = {
   103: "דרום",
   104: "הכל"
 };
-// Numeric mapping for units (yechidot)
-export const yechidaDecode = {
-  201: "כלא איילון",
-  202: "כלא חרמון",
-  203: "כלא מעשיהו",
-  204: "כלא דקל",
-  205: "כלא שאטה"
-};
+
+// export const yechidaDecode = {
+//   201: { name: "כלא איילון", coordinates: { lat: 32.0554, lng: 34.7995 } },
+//   202: { name: "כלא חרמון", coordinates: { lat: 32.9256, lng: 35.2982 } },
+//   203: { name: "כלא מעשיהו", coordinates: { lat: 31.8668, lng: 34.8500 } },
+//   204: { name: "כלא דקל", coordinates: { lat: 31.2086, lng: 34.9315 } },
+//   205: { name: "כלא שאטה", coordinates: { lat: 32.5557, lng: 35.4106 } }
+// };
+
+export const yechidaDecodeArray = [
+  { id: 201, name: "כלא איילון", coordinates: { lat: 32.0554, lng: 34.7995 } },
+  { id: 202, name: "כלא חרמון", coordinates: { lat: 32.9256, lng: 35.2982 } },
+  { id: 203, name: "כלא מעשיהו", coordinates: { lat: 31.8668, lng: 34.8500 } },
+  { id: 204, name: "כלא דקל", coordinates: { lat: 31.2086, lng: 34.9315 } },
+  { id: 205, name: "כלא שאטה", coordinates: { lat: 32.5557, lng: 35.4106 } }
+];
+
+export const yechidaDecodeObject = Object.fromEntries(
+  yechidaDecodeArray.map((item) => [item.id, item])
+);
+
 
 export const agafDecode = {
   301: "אגף 1",

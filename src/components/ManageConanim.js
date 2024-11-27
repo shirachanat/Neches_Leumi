@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { responsibilityDecode, regionsDecode, yechidaDecode } from '../dec';
+import { responsibilityDecode, regionsDecode, yechidaDecodeArray } from '../dec';
 import './ManageConanim.css'
 
 
@@ -15,7 +15,7 @@ const ShowConanim = () => {
     const fields = ['id', 'name', 'address', 'phone', 'regions', 'yechida', 'responsibility'];
     const labels = { id: 'מספר זהות', name: 'שם', address: 'כתובת', phone: 'טלפון', regions: 'מחוז', yechida: 'יחידה', responsibility: 'תחום אחריות' };
     const getDecodedValue = (field, value) => {
-        const decoders = { responsibility: responsibilityDecode, regions: regionsDecode, yechida: yechidaDecode };
+        const decoders = { responsibility: responsibilityDecode, regions: regionsDecode, yechida: yechidaDecodeArray };
         return decoders[field] ? (Array.isArray(value) ? value.map(code => decoders[field][code] || code).join(', ') : decoders[field][value] || value) : value;
     };
 
@@ -46,7 +46,7 @@ const ShowConanim = () => {
             ['regions', 'yechida', 'responsibility'].includes(field) ? (
                 <select value={newItemData[field] || ''} onChange={(e) => setNewItemData({ ...newItemData, [field]: e.target.value.split(',') })}>
                     <option value="">בחר</option>
-                    {Object.entries(field === 'regions' ? regionsDecode : field === 'yechida' ? yechidaDecode : responsibilityDecode).map(([key, value]) => (
+                    {Object.entries(field === 'regions' ? regionsDecode : field === 'yechida' ? yechidaDecodeArray : responsibilityDecode).map(([key, value]) => (
                         <option key={key} value={key}>{value}</option>
                     ))}
                 </select>
