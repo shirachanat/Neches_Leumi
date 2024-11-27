@@ -72,15 +72,16 @@ function FilteredResponders() {
   return (
     <div className="filtered-responders-container" dir="rtl">
         {/* Map Section */}
-          <button className='chazlash-button' onClick={chazlashHendler}>סיום אירוע</button>
        <div className="map-and-list-container">
         <div className="map-container">
-          {/* <MapWithRealTimeUpdates /> */}
-          <BarChart filteredResponders={filteredResponders}/>
+          <MapWithRealTimeUpdates />
         </div>
 
         {/* Responder List Section */}
         <div className="responders-list-container">
+          <button className='chazlash-button' onClick={chazlashHendler}>סיום אירוע</button>
+        <BarChart filteredResponders={filteredResponders}/>
+
           {filteredResponders.length > 0 ? (
             <ul className="responder-list">
               {filteredResponders.map((responder) => (
