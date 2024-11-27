@@ -1,17 +1,17 @@
 /* Haznaka Container */
 .haznaka-container {
-  direction: rtl; 
-    /* text-align: right; */
-    /* margin: 20px auto; */
-    padding: 100px;
-    padding-top: 50px;
-    background-color: #f9f9f9;
-    /* border-radius: 10px; */
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-    flex-direction: row;
-    gap: 20px;
-    /* height: 100vh; */
-    overflow: hidden;
+  direction: rtl;
+  /* text-align: right; */
+  /* margin: 20px auto; */
+  padding: 100px;
+  padding-top: 50px;
+  background-color: #f9f9f9;
+  /* border-radius: 10px; */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  flex-direction: row;
+  gap: 20px;
+  /* height: 100vh; */
+  overflow: hidden;
 }
 
 /* Title */
@@ -27,7 +27,6 @@
 
 /* Left Side: Filters */
 .haznaka-filters {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -36,7 +35,7 @@
 /* Form Group */
 .form-group {
   margin-bottom: 15px;
-  width: 30%
+  width: 94%
 }
 
 .form-group-mikum {
@@ -99,11 +98,11 @@
 } */
 .haznaka-responders-container {
   position: relative;
+  overflow: scroll;
   /* Creates a positioning context for the button */
 }
 
 .haznaka-responders {
-  max-height: 600px;
   /* Height of the scrollable area */
   overflow-y: auto;
   /* Enables vertical scrolling */
@@ -121,10 +120,10 @@
 
 /* Emergency button styles */
 .filter-button {
-  position: absolute;
+  /* position: absolute;
   bottom: 50px;
-  left: 63.5%;
-  transform: translateX(-50%);
+  left: 63.5%; */
+  /* transform: translateX(-50%); */
   width: 300px;
   height: 300px;
   background-color: #d32f2f;
@@ -137,17 +136,19 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   font-family: 'Heebo';
+  align-self: center;
 }
 
 .filter-button:hover {
-  transform: translateX(-50%) scale(1.1);
+  transform: scale(1.1);
+  /* transform: translateX(-50%) scale(1.1); */
   /* Slightly enlarge on hover */
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
   /* Enhanced shadow on hover */
 }
 
 .filter-button:active {
-  transform: translateX(-50%) scale(1.05);
+  transform:  scale(1.05);
   /* Slightly shrink when clicked */
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
   /* Reduced shadow on click */
@@ -156,7 +157,6 @@
 /* Right Side: Responders List */
 
 .haznaka-responders {
-  max-height: 727px;
   /* Increased height */
   overflow-y: auto;
   /* Enables vertical scrolling */
@@ -259,6 +259,8 @@
 
 .haznaka-content {
   display: flex;
+  overflow: hidden;
+    height: 100%;
 }
 
 /* .centered-role {

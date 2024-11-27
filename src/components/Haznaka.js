@@ -66,73 +66,75 @@ function Haznaka() {
 
       <div className="haznaka-content">
         {/* פקדי סינון בצד שמאל */}
-        <div className="haznaka-filters">
-          <div className="form-group">
-            <label htmlFor="responsibility" className="form-label">סוג אירוע:</label>
-            <select
-              id="responsibility"
-              className="form-select"
-              onChange={(e) => setSelectedResponsibility(e.target.value)}
-              value={selectedResponsibility}
-            >
-              <option value="">בחר מצב חירום</option>
-              {Object.entries(responsibilityDecode).map(([key, value]) => (
-                <option key={key} value={key}>
-                  {value}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div >
-            <svg stroke="currentColor" fill="currentColor" color='#555' stroke-width="0" viewBox="0 0 384 512" class="icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>
-            <label htmlFor="region" className="form-label">  מיקום:</label>
-            <div className="form-group-mikum">
+        <div style={{flexGrow:1,display:'flex', flexDirection: 'column', gap:'5rem'}}>
+          <div className="haznaka-filters">
+            <div className="form-group">
+              <label htmlFor="responsibility" className="form-label">סוג אירוע:</label>
               <select
-                id="region"
+                id="responsibility"
                 className="form-select"
-                onChange={(e) => setSelectedRegion(e.target.value)}
-                value={selectedRegion}
+                onChange={(e) => setSelectedResponsibility(e.target.value)}
+                value={selectedResponsibility}
               >
-                <option value="">בחר מחוז</option>
-                {Object.entries(regionsDecode).map(([key, value]) => (
-                  <option key={key} value={key}>
-                    {value}
-                  </option>
-                ))}
-              </select>
-              <select
-                id="yechida"
-                className="form-select"
-                onChange={(e) => setSelectedYechida(e.target.value)}
-                value={selectedYechida}
-              >
-                <option value="">בחר יחידה</option>
-                {Object.entries(yechidaDecode).map(([key, value]) => (
-                  <option key={key} value={key}>
-                    {value}
-                  </option>
-                ))}
-              </select>
-              <select
-                id="agaf"
-                className="form-select"
-                onChange={(e) => setSelectedAgaf(e.target.value)}
-                value={selectedAgaf}
-              >
-                <option value="">בחר אגף</option>
-                {Object.entries(agafDecode).map(([key, value]) => (
+                <option value="">בחר מצב חירום</option>
+                {Object.entries(responsibilityDecode).map(([key, value]) => (
                   <option key={key} value={key}>
                     {value}
                   </option>
                 ))}
               </select>
             </div>
+
+            <div >
+              <svg stroke="currentColor" fill="currentColor" color='#555' stroke-width="0" viewBox="0 0 384 512" class="icon" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"></path></svg>
+              <label htmlFor="region" className="form-label">  מיקום:</label>
+              <div className="form-group-mikum">
+                <select
+                  id="region"
+                  className="form-select"
+                  onChange={(e) => setSelectedRegion(e.target.value)}
+                  value={selectedRegion}
+                >
+                  <option value="">בחר מחוז</option>
+                  {Object.entries(regionsDecode).map(([key, value]) => (
+                    <option key={key} value={key}>
+                      {value}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  id="yechida"
+                  className="form-select"
+                  onChange={(e) => setSelectedYechida(e.target.value)}
+                  value={selectedYechida}
+                >
+                  <option value="">בחר יחידה</option>
+                  {Object.entries(yechidaDecode).map(([key, value]) => (
+                    <option key={key} value={key}>
+                      {value}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  id="agaf"
+                  className="form-select"
+                  onChange={(e) => setSelectedAgaf(e.target.value)}
+                  value={selectedAgaf}
+                >
+                  <option value="">בחר אגף</option>
+                  {Object.entries(agafDecode).map(([key, value]) => (
+                    <option key={key} value={key}>
+                      {value}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
           </div>
+          <button className="filter-button" onClick={handleConfirmCall}>
+            הזנק כוננים
+          </button>
         </div>
-        <button className="filter-button" onClick={handleConfirmCall}>
-          הזנק כוננים
-        </button>
         {/* רשימת כוננים בצד ימין */}
         <div className="haznaka-responders-container">
           <div className="haznaka-responders">
@@ -142,7 +144,7 @@ function Haznaka() {
                 {filteredResponders.map((responder) => (
                   <ResponderItem
                     key={responder.id}
-                    responder={responder}                    
+                    responder={responder}
                     onDelete={handleDelete} // Pass the delete handler
                   />
                 ))}
