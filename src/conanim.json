@@ -7,7 +7,7 @@
         "responsibility": 1,
         "regions": [101, 102],
         "yechida": [201, 202],
-        "status": 3
+        "status": 1
       },
       {
         "name": "רונית לוי",
@@ -17,7 +17,7 @@
         "responsibility": 2,
         "regions": [101],
         "yechida": [202],
-        "status": 4
+        "status": 1
       },
       {
         "name": "דני ישראלי",
@@ -27,7 +27,7 @@
         "responsibility": 3,
         "regions": [102, 104],
         "yechida": [203],
-        "status": 3
+        "status": 1
       },
       {
         "name": "מיכל כהן",
@@ -37,7 +37,7 @@
         "responsibility": 4,
         "regions": [103],
         "yechida": [201, 204],
-        "status": 4
+        "status": 1
       },
       {
         "name": "איתן לוי",
@@ -107,7 +107,7 @@
         "responsibility": 3,
         "regions": [102],
         "yechida": [204],
-        "status": 3
+        "status": 1
       },
       {
         "name": "רבקה שמולביץ",
@@ -117,7 +117,7 @@
         "responsibility": 4,
         "regions": [103, 104],
         "yechida": [201],
-        "status": 2
+        "status": 1
       },
       {
         "name": "אביב מרום",
@@ -127,7 +127,7 @@
         "responsibility": 1,
         "regions": [102],
         "yechida": [202, 203],
-        "status": 4
+        "status": 1
       },
       {
         "name": "טליה סבן",
@@ -147,7 +147,7 @@
         "responsibility": 2,
         "regions": [102],
         "yechida": [203],
-        "status": 2
+        "status": 1
       },
       {
         "name": "יעל רוזן",
@@ -157,7 +157,7 @@
         "responsibility": 4,
         "regions": [102, 103],
         "yechida": [204],
-        "status": 3
+        "status": 1
       },
       {
         "name": "שני יוסף",
