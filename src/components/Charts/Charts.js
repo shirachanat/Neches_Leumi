@@ -19,9 +19,9 @@ const BarChart = ({filteredResponders}) => {
                    case statusesDesc.arrived:
                      return responder.arrived;
                  case statusesDesc.onWay:
-                   return responder.latitude;
+                   return !statusesDesc.arrived && responder.latitude;
                  default:
-                   return responder.messageStatus === status.codeStatus;
+                   return !responder.latitude && !responder.arrived && responder.messageStatus === status.codeStatus;
                }}).length
     ),
         backgroundColor: statuses.map((status) => status.color),
@@ -31,11 +31,6 @@ const BarChart = ({filteredResponders}) => {
 
   const options = {
     responsive: true,
-    // plugins: {
-    //   legend: {
-    //     position: 'top',
-    //   },
-    // },
     scales: {
         y: {
           beginAtZero: true, // Ensures the scale starts at 0
