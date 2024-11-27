@@ -168,10 +168,10 @@ function FilteredResponders() {
                   additionalContent={
                     <>
                       <MessageStatus status={responder.messageStatus} />
-                      {responder.estimatedTravelTime !== null ? (
-                  <div>זמן נסיעה משוער: {responder.estimatedTravelTime} דקות</div>
+                      {responder.estimatedTravelTime !== null && responder.estimatedTravelTime>0 ? (
+                  <div>זמן הגעה משוער: {responder.estimatedTravelTime} דקות</div>
                 ) : (
-                  <div>מחשבים זמן נסיעה...</div>
+                  <div>מחשב זמן הגעה...</div>
                 )}
                       {responder.arrived ? <button onClick={() => { }} className="arrived-button" disabled >הגיע</button>
                        : responder.longitude && <div> שעת הגעה משוערת: 16:30</div>}
