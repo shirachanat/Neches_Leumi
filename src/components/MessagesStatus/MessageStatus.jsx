@@ -1,22 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./MessageStatus.css"; // For styling (CSS included below)
+import { statusesDesc } from "../../dec";
 
 /**
  * MessageStatus Component
  * @param {string} status - The message status ('sent', 'delivered', 'read')
  * @returns JSX Element
  */
-const MessageStatus = ({ status="sent" }) => {
+const MessageStatus = ({ status=statusesDesc.sent }) => {
   const getStatusIcon = () => {
     switch (status) {
-      case "sent":
+      case statusesDesc.sent:
         return <i className="icon-single-check"></i>; // Single check
-      case "delivered":
+      case statusesDesc.delivered:
         return (
           <i className="icon-double-check delivered"></i> // Double gray checks
         );
-      case "read":
+      case statusesDesc.read:
         return <i className="icon-double-check read"></i>; // Double blue checks
       default:
         return null; // No icon for unknown status
@@ -27,7 +28,7 @@ const MessageStatus = ({ status="sent" }) => {
 };
 
 MessageStatus.propTypes = {
-  status: PropTypes.oneOf(["sent", "delivered", "read"]).isRequired,
+  status: PropTypes.oneOf([statusesDesc.sent, statusesDesc.delivered, statusesDesc.read]).isRequired,
 };
 
 export default MessageStatus;

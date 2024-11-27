@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import MapWithRealTimeUpdates from './MapWithRealTimeUpdates';
-import { responsibilityDecode, regionsDecode, yechidaDecode, statusDecode, whatsappTemplates } from '../dec';
+import { responsibilityDecode, regionsDecode, yechidaDecode, statusDecode, whatsappTemplates, statuses, statusesDesc } from '../dec';
 import './FilteredResponders.css'; // Custom CSS for RTL design
 import { useConanimContext } from '../contexts/context';
 //import PropTypes from "prop-types";
 import ResponderItem from "./ResponderItem/ResponderItem";
 import MessageStatus from "./MessagesStatus/MessageStatus";
 import { sendTemplate } from '../api';
+import { BarChart } from './Charts/Charts';
 
 
 function FilteredResponders() {
@@ -132,7 +133,7 @@ function FilteredResponders() {
           if (data?.body) copy[senderIndex].body = data?.body
           if (data?.latitude) copy[senderIndex].latitude = data?.latitude
           if (data?.longitude) copy[senderIndex].longitude = data?.longitude
-          if (data?.status) copy[senderIndex].messageStatus = data?.status
+          if (data?.status) copy[senderIndex].messageStatus = statusesDesc[data?.status]
           setFilteredResponders(copy)
         }
 
@@ -151,7 +152,6 @@ function FilteredResponders() {
   return (
     <div className="filtered-responders-container" dir="rtl">
         {/* Map Section */}
-          <button className='chazlash-button' onClick={chazlashHendler}>סיום אירוע</button>
        <div className="map-and-list-container">
         <div className="map-container">
           <MapWithRealTimeUpdates selectedYechida={selectedYechida}/>
@@ -159,6 +159,9 @@ function FilteredResponders() {
 
         {/* Responder List Section */}
         <div className="responders-list-container">
+          <button className='chazlash-button' onClick={chazlashHendler}>סיום אירוע</button>
+        <BarChart filteredResponders={filteredResponders}/>
+
           {filteredResponders.length > 0 ? (
             <ul className="responder-list">
               {filteredResponders.map((responder) => (

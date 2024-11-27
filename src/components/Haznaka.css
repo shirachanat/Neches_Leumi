@@ -1,18 +1,14 @@
 /* Haznaka Container */
 .haznaka-container {
   direction: rtl;
-  /* Right-to-left layout */
   text-align: right;
-  /* margin: 20px auto; */
   padding: 100px;
   padding-top: 50px;
   background-color: #f9f9f9;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
   flex-direction: row;
   gap: 20px;
-  /* רווח בין שני החלקים */
   height: 100vh;
 }
 
@@ -20,7 +16,6 @@
 .haznaka-title {
   text-align: center;
   width: 100%;
-  /* יישור טקסט בכותרת */
   margin-bottom: 20px;
   color: #333;
   font-size: 24px;
@@ -38,24 +33,18 @@
 /* Form Group */
 .form-group {
   margin-bottom: 15px;
-  width: 30%
+  width: 30%;
 }
 
 .form-group-mikum {
   display: flex;
   width: 94%;
   gap: 2%;
+  align-items: flex-end;
 }
 
 /* Labels */
-/* .form-label {
-    display: block;
-    font-size: 16px;
-    margin-bottom: 5px;
-    color: #555;
-} */
 .form-label {
-  /* display: block; */
   font-size: 16px;
   margin-bottom: 5px;
   color: #555;
@@ -63,9 +52,9 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-
-/* Select Boxes */
-.form-select {
+/* Select Boxes and MultiSelect */
+.form-select,
+.p-multiselect {
   width: 100%;
   padding: 10px;
   font-size: 14px;
@@ -74,130 +63,106 @@
   background-color: #fff;
   color: #333;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.form-select:focus {
+.form-select:focus,
+.p-multiselect:focus {
   border-color: #007bff;
   outline: none;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Filter Button */
-/* .filter-button {  
-    margin: 10px;
-    height: 70px;
-    width: 200px;
-    font-size: 18px;
-    color: #fff;
-    background-color: #f91307;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* PrimeReact MultiSelect Specific Styling */
+.p-multiselect {
+  display: flex;
+  align-items: center;
+  max-height: 120px; /* גובה מקסימלי למלבן */
+  overflow-y: auto; /* גלילה אנכית עבור צ'יפים רבים */
 }
 
-.filter-button:hover {
-    background-color: #900606ee;
-} */
+.p-multiselect-label-container {
+  white-space: normal; /* טקסט רב שורות */
+  height: auto; /* גובה משתנה בהתאם לתוכן */
+}
+
+.p-multiselect-token {
+  display: inline-block; /* מאפשר סידור הצ'יפים בשורות */
+  margin: 2px; /* ריווח בין צ'יפים */
+  background-color: #f0f0f0;
+  color: #000;
+  border-radius: 16px;
+  padding: 4px 8px;
+}
+
+.p-multiselect-token-icon {
+  margin-right: 5px;
+  color: #d32f2f;
+  cursor: pointer;
+}
+
+.p-multiselect-panel {
+  direction: rtl; /* מתאים לימין לשמאל */
+  text-align: right;
+}
+
+.p-multiselect-items-wrapper {
+  max-height: 250px; /* גובה מקסימלי לתפריט הנפתח */
+  overflow-y: auto; /* גלילה עבור רשימה ארוכה */
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+::-webkit-scrollbar-track {
+  background: #e0e0e0;
+  border-radius: 4px;
+}
+
+/* Haznaka Responders Container */
 .haznaka-responders-container {
   position: relative;
-  /* Creates a positioning context for the button */
 }
-
-.haznaka-responders {
-  max-height: 600px;
-  /* Height of the scrollable area */
-  overflow-y: auto;
-  /* Enables vertical scrolling */
-  border: 1px solid #ccc;
-  /* Optional border */
-  border-radius: 8px;
-  /* Rounded corners */
-  padding: 15px;
-  /* Adds padding */
-  background-color: #f9f9f9;
-  /* Subtle background color */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  /* Adds a nice shadow */
-}
-
-/* Emergency button styles */
-.filter-button {
-  position: absolute;
-  bottom: 50px;
-  left: 63.5%;
-  transform: translateX(-50%);
-  width: 300px;
-  height: 300px;
-  background-color: #d32f2f;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  font-weight: bold;
-  font-size: 46px;
-  cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  font-family: 'Heebo';
-}
-
-.filter-button:hover {
-  transform: translateX(-50%) scale(1.1);
-  /* Slightly enlarge on hover */
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-  /* Enhanced shadow on hover */
-}
-
-.filter-button:active {
-  transform: translateX(-50%) scale(1.05);
-  /* Slightly shrink when clicked */
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-  /* Reduced shadow on click */
-}
-
-/* Right Side: Responders List */
 
 .haznaka-responders {
   max-height: 727px;
-  /* Increased height */
   overflow-y: auto;
-  /* Enables vertical scrolling */
   border: 1px solid #ccc;
-  /* Adds a border */
   border-radius: 8px;
-  /* Rounded corners */
   padding: 15px;
-  /* Adds some padding */
   background-color: #f9f9f9;
-  /* Subtle background color */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  /* Adds a nice shadow */
   width: 474px;
 }
 
 /* Custom scrollbar styling */
 .haznaka-responders::-webkit-scrollbar {
   width: 8px;
-  /* Width of the scrollbar */
 }
 
 .haznaka-responders::-webkit-scrollbar-thumb {
   background-color: #888;
-  /* Scrollbar color */
   border-radius: 4px;
-  /* Rounded scrollbar */
 }
 
 .haznaka-responders::-webkit-scrollbar-thumb:hover {
   background-color: #555;
-  /* Darker on hover */
 }
 
 .haznaka-responders::-webkit-scrollbar-track {
   background: #e0e0e0;
-  /* Background of the scrollbar track */
   border-radius: 4px;
-  /* Rounded scrollbar track */
 }
 
 .haznaka-responders h2 {
@@ -221,15 +186,10 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
-  /* Ensures proper spacing */
   align-items: center;
-  /* Centers the content vertically */
-  padding: 10px;
   border-bottom: 1px solid #ccc;
-  /* Divider for each item */
   position: relative;
 }
-
 
 .delete-button {
   background: none;
@@ -240,19 +200,12 @@
   transition: transform 0.2s ease;
 }
 
-.filter-button:hover {
-  background-color: #d32f2f !important;
-}
-
 .delete-button:hover {
   transform: scale(1.2);
-  /* Slightly enlarge on hover */
-  background-color: unset !important;
 }
 
 .delete-button:active {
   transform: scale(1.1);
-  /* Slightly shrink on click */
 }
 
 .responder-item p {
@@ -263,15 +216,74 @@
   display: flex;
 }
 
-/* .centered-role {
-    text-align: center;
-    margin: 0 auto;     
-  }
-  
-  .responders-list-container .responder-list .additional-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    justify-content: center; 
-  }
-   */
+/* Emergency Button */
+.filter-button {
+  position: absolute;
+  bottom: 50px;
+  left: 63.5%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 300px;
+  background-color: #d32f2f;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 46px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: 'Heebo';
+}
+
+.filter-button:hover {
+  transform: translateX(-50%) scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.filter-button:active {
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* עיצוב לקומפוננטה הראשית */
+.p-dropdown-custom {
+  border-radius: 5px; 
+  padding: 8px; /* מרווח פנימי */
+  background-color: #fff; /* רקע */
+  color: #333; /* צבע טקסט */
+}
+
+/* עיצוב לרשימה הנפתחת */
+.custom-dropdown-panel {
+  max-height: 200px; /* גובה מקסימלי */
+  overflow-y: auto; /* גלילה עבור תוכן ארוך */
+  /* border: 2px solid #2196F3;  */
+  background-color: #fff; /* רקע לבן */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* הצללה */
+}
+
+/* עיצוב לפריטים הנבחרים (display: chip) */
+.p-multiselect-token {
+  color: #000; /* צבע טקסט שחור */
+  border-radius: 16px; /* פינות מעוגלות */
+  padding: 4px 8px; /* מרווח פנימי */
+  margin: 2px; /* ריווח בין הצ'יפים */
+}
+
+/* מסתיר את הסימון בתוך הרשימה */
+.p-multiselect-item .p-checkbox-box {
+  display: none;
+}
+
+/* עיצוב למניעת התרחבות המסגרת */
+.p-multiselect .p-multiselect-label-container {
+  white-space: normal; /* מאפשר טקסט רב-שורות */
+  height: auto; /* גובה אוטומטי בהתאם לתוכן */
+}
+
+/* התנהגות צ'יפים (tokens) במסגרות צרות */
+.p-multiselect-token {
+  display: inline-block; /* מאפשר סידור הצ'יפים בשורות */
+  margin: 2px; /* ריווח בין צ'יפים */
+}
