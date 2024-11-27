@@ -26,9 +26,7 @@ button:disabled {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  margin: 20px 0;
   background-color: #fff;
-  border: 1px solid #e0e0e0; /* גבול בהיר יותר */
   border-radius: 8px;
   overflow: hidden;
 }

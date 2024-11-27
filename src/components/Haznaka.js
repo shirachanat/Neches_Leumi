@@ -131,7 +131,7 @@ function Haznaka() {
           </div>
         </div>
         <button className="filter-button" onClick={handleConfirmCall}>
-          הפעל נוהל חירום
+          הזנק כוננים
         </button>
         {/* רשימת כוננים בצד ימין */}
         <div className="haznaka-responders-container">

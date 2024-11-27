@@ -57,7 +57,7 @@ const ShowConanim = () => {
     };
 
     return (
-        <div style={{ padding: '100px', paddingTop: '50px',   fontWeight: 'bold'}}>
+        <div style={{   fontWeight: 'bold', padding: '50px 100px 100px' ,height: 'calc(100vh - 20rem)',overflow: 'hidden'}}>
             {showSuccessModal && (
                 <div className="success-modal">
                     <div className="success-modal-content">

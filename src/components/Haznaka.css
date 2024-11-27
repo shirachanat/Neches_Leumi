@@ -1,19 +1,17 @@
 /* Haznaka Container */
 .haznaka-container {
-  direction: rtl;
-  /* Right-to-left layout */
-  text-align: right;
-  /* margin: 20px auto; */
-  padding: 100px;
-  padding-top: 50px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-  flex-direction: row;
-  gap: 20px;
-  /* רווח בין שני החלקים */
-  height: 100vh;
+  direction: rtl; 
+    /* text-align: right; */
+    /* margin: 20px auto; */
+    padding: 100px;
+    padding-top: 50px;
+    background-color: #f9f9f9;
+    /* border-radius: 10px; */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    flex-direction: row;
+    gap: 20px;
+    /* height: 100vh; */
+    overflow: hidden;
 }
 
 /* Title */
