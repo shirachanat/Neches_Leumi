@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import MapWithRealTimeUpdates from './MapWithRealTimeUpdates';
 import { responsibilityDecode, regionsDecode, yechidaDecode, statusDecode, whatsappTemplates, statuses, statusesDesc } from '../dec';
@@ -67,7 +67,13 @@ function FilteredResponders() {
     ws.onclose = (event) => console.log('Connection closed:', event.code, event.reason);
     return () => ws.close();
   }, [])
-
+  const[filterValue, setFilterValue] = useState('')
+  const veryfiltered = !filterValue? filteredResponders :
+  filteredResponders.filter((responder) => {
+    console.log('filterValueeeeeeeeeeee = ' +filterValue)
+    const filterWords = filterValue.split(' ')
+    return filterWords.every((word) => [responder.phone, responder.name, responder.id].some((str) => str.includes(word)))
+  })
 
   return (
     <div className="filtered-responders-container" dir="rtl">
@@ -81,10 +87,10 @@ function FilteredResponders() {
         <div className="responders-list-container">
           <button className='chazlash-button' onClick={chazlashHendler}>סיום אירוע</button>
         <BarChart filteredResponders={filteredResponders}/>
-
+<input type="text" placeholder="חיפוש כוננים" className="search-input" onChange={e=>setFilterValue(e.target.value)} />
           {filteredResponders.length > 0 ? (
             <ul className="responder-list">
-              {filteredResponders.map((responder) => (
+              {veryfiltered.map((responder) => (
                 <ResponderItem
                   key={responder.id}
                   responder={responder}
