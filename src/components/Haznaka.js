@@ -1,4 +1,4 @@
-import { responsibilityDecode, regionsDecode,yechidaDecodeArray , agafDecode, whatsappTemplates } from '../dec';
+import { responsibilityDecode, regionsDecode,yechidaDecodeArray , yechidaDecode, agafDecode, whatsappTemplates } from '../dec';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MultiSelect } from 'primereact/multiselect';
