@@ -24,7 +24,7 @@ const Container = ({ children }) => {
                                 <li className="li">
                                     <NavLink to="/" className={({ isActive }) => `link ${isActive ? 'active' : ''}`}>
                                         הזנקת כוננים
-                                        <img className='HeaderIcons' src="./haznaka.png" alt="haznaka icon" />
+                                        <img className='HeaderIcons' src="./haznaka2.png" alt="haznaka icon" />
                                     </NavLink>
                                 </li>
                                 <li className="li">
