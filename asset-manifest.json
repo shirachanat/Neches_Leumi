@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/Neches_Leumi/static/css/main.d6635ade.css",
+    "main.js": "/Neches_Leumi/static/js/main.a641637c.js",
+    "static/js/453.23f5092a.chunk.js": "/Neches_Leumi/static/js/453.23f5092a.chunk.js",
+    "static/media/1.png": "/Neches_Leumi/static/media/1.22695beb0e8f439828b2.png",
+    "static/media/mobileMain.png": "/Neches_Leumi/static/media/mobileMain.08c7acf004d6dbc9ae37.png",
+    "static/media/Heebo-Black.ttf": "/Neches_Leumi/static/media/Heebo-Black.b1975228ae0fed052ca8.ttf",
+    "static/media/Heebo-ExtraBold.ttf": "/Neches_Leumi/static/media/Heebo-ExtraBold.52e60a026c110bd2065a.ttf",
+    "static/media/Heebo-Bold.ttf": "/Neches_Leumi/static/media/Heebo-Bold.234058e06b34bc0c4656.ttf",
+    "static/media/Heebo-SemiBold.ttf": "/Neches_Leumi/static/media/Heebo-SemiBold.9ca18585899fafc9186a.ttf",
+    "static/media/Heebo-Medium.ttf": "/Neches_Leumi/static/media/Heebo-Medium.cb7e0b72e34fb7c3bff3.ttf",
+    "static/media/Heebo-ExtraLight.ttf": "/Neches_Leumi/static/media/Heebo-ExtraLight.d497cf0dd6fb56912fd8.ttf",
+    "static/media/Heebo-Regular.ttf": "/Neches_Leumi/static/media/Heebo-Regular.2f340fb1f89682582e66.ttf",
+    "static/media/Heebo-Light.ttf": "/Neches_Leumi/static/media/Heebo-Light.e6b96594c2b64714edda.ttf",
+    "static/media/Heebo-Thin.ttf": "/Neches_Leumi/static/media/Heebo-Thin.458579aeaf19dc10d490.ttf",
+    "index.html": "/Neches_Leumi/index.html",
+    "main.d6635ade.css.map": "/Neches_Leumi/static/css/main.d6635ade.css.map",
+    "main.a641637c.js.map": "/Neches_Leumi/static/js/main.a641637c.js.map",
+    "453.23f5092a.chunk.js.map": "/Neches_Leumi/static/js/453.23f5092a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d6635ade.css",
+    "static/js/main.a641637c.js"
+  ]
+}
