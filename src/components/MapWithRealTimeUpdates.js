@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // Ensure to import leaflet's CSS
@@ -10,9 +9,9 @@ const MapWithRealTimeUpdates = () => {
   
   const [locations, setLocations] = useState([]); // Store filtered locations
   const [mapCenter, setMapCenter] = useState([31.788609, 35.225713]); // Default center of the map
-  const {filteredResponders}= useConanimContext()
+  const { filteredResponders } = useConanimContext();
 
-
+  
 
   // Status descriptions in Hebrew
   const statusDescriptions = {
@@ -40,7 +39,6 @@ const MapWithRealTimeUpdates = () => {
 
   // Function to create marker icon based on responder status
   const getMarkerIcon = (status) => {
-    // Base URLs for markers
     const iconUrl = status === 3
       ? 'https://img.icons8.com/color/48/000000/marker--v1.png'  // Solid orange marker
       : 'https://img.icons8.com/color/48/000000/marker--v1.png'; // Solid green marker
@@ -52,10 +50,19 @@ const MapWithRealTimeUpdates = () => {
       className: 'pulse-marker' // Add class for animation
     });
   };
+  const getCenterMarkerIcon = () => {
+    const iconUrl = 'https://media.tenor.com/8vSJsVW-1pQAAAAj/police-car-light-joypixels.gif';
+    return L.icon({
+      iconUrl: iconUrl,
+      iconSize: [30, 30],  // Increased size from 32 to 48
+      iconAnchor: [24, 48], // Adjusted anchor point (half of width, full height)
+      popupAnchor: [0, -48], // Adjusted popup position
+      className: 'pulse-marker' // Add class for animation
+    });
+  };
 
   const fetchTravelTime = async (origin, destination) => {
     try {
-      // בקשת ניתוב מה-API של OSRM
       const response = await fetch(
         `https://router.project-osrm.org/route/v1/driving/${origin};${destination}?overview=false`
       );
@@ -74,8 +81,7 @@ const MapWithRealTimeUpdates = () => {
       return null;
     }
   };
-  
-  // קריאה לפונקציה עם מקור ויעד
+
   const origin = "34.7818,32.0853"; // לדוגמה: תל אביב
   const destination = "34.7647,32.0729"; // לדוגמה: יפו
   
@@ -92,13 +98,14 @@ const MapWithRealTimeUpdates = () => {
         zoom={13}
         style={{ width: '100%', height: '100%' }}
       >
-        {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" /> */}
-  <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>'
-      />
-      
-      
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>'
+        />
+        
+        {/* Marker for the map center */}
+         <Marker position={[31.788620, 35.225100]} icon={getCenterMarkerIcon()} >
+     </Marker> 
         {filteredResponders.map(conan => {
           console.log("Rendering marker for:", conan);
           const icon = getMarkerIcon(conan.status);
@@ -110,32 +117,22 @@ const MapWithRealTimeUpdates = () => {
               icon={icon}
             >
               <Popup>
+              <a href={conan.img} target="_blank" rel="noopener noreferrer">
+              <img src={conan.img} alt="icon" 
+              style={{ width: '15%', height: '15%',display:"flex" ,
+                      borderRadius: '50%', // הופך את התמונה לעיגול
+                      objectFit: 'cover', // שומר על פרופורציות התמונה וממלא את העיגול
+                      border: '1px solid #ccc',}}/> 
+                </a>
                 <strong>{conan.name}</strong><br />
                 סטטוס: {statusDescriptions[conan.status]}<br />
                 טלפון: {conan.phone}<br />
                 מזהה: {conan.id}<br />
-                קואורדינטות: {conan?.latitude}, {conan?.longitude}
               </Popup>
             </Marker>
           );
         })}
       </MapContainer>
-
-      {/* Add a map legend (מִקְרָא מַפָּה) outside of the map */}
-      {/* <div style={{
-        position: 'absolute',
-        top: '138px',
-        left: '10px',
-        backgroundColor: 'white',
-        padding: '10px',
-        borderRadius: '5px',
-        border: '1px solid #ccc',
-        fontSize: '12px',
-      }}>
-        <strong>מִקְרָא מַפָּה</strong>
-        <div><span style={{ color: 'orange' }}>🟠</span> - בדרך (סטטוס 3)</div>
-        <div><span style={{ color: 'green' }}>🟢</span> - הגיע (סטטוס 4)</div>
-      </div> */}
     </div>
   );
 };

@@ -7,6 +7,13 @@ const ResponderItem = ({ responder, onDelete, additionalContent }) => {
     <li className="responder-item">
       <div className="responder-details">
         <p>
+        <a href={responder.img} target="_blank" rel="noopener noreferrer" style={{width: '100%', height: '100%'}}>
+        <img src={responder.img} alt="icon" 
+        style={{ width: '30px', height: '30px',
+          borderRadius: '50%', // הופך את התמונה לעיגול
+            objectFit: 'cover', // שומר על פרופורציות התמונה וממלא את העיגול
+            border: '1px solid #ccc',}}/> 
+      </a>
           <strong> <span style={{fontSize: "1.2rem"}}>{responder.name}</span> - {responder.yechida.map(yechida => yechidaDecode[yechida]).join(", ")}</strong>
         </p>
         <p>{responsibilityDecode[responder.responsibility]}</p>
