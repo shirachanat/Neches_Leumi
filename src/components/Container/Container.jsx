@@ -8,7 +8,7 @@ const Container = ({ children }) => {
     const [appStarted, setAppStarted] = useState(false);
     return (
         <>{!appStarted ? <MobileMain setAppStarted={setAppStarted}/> :
-            <div className='mega-container' >
+            <div className='mega-container'>
                 <Header />
                 <nav className="nav">
                     <ul className="ul">

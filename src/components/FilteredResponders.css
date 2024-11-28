@@ -27,6 +27,11 @@
     padding: 2rem;
     flex-grow: 1;
 }
+body, .filtered-responders-container {
+  background-color: #181818; /* Dark background */
+  color: #fff; /* White text for contrast */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
 .page-title {
   text-align: center;
@@ -43,19 +48,23 @@
 
 .map-container {
   flex: 3 1;
+  height: 90vh;
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .responders-list-container {
   flex: 1;
   border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #f9f9f9;
-  padding: 15px;
+  padding: 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   overflow: auto;
+  background-color: #2c2c2c; /* Slightly lighter dark background for contrast */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .responders-list {
@@ -95,8 +104,6 @@
 }
 
 .back-button {
-  /* width: 30%; */
-  /* padding: 10px; */
   margin: 10px;
   height: 70px;
   width: 200px;
@@ -122,30 +129,25 @@
 
 .centered-role {
   text-align: center;
-  /* Ensures the text is centered */
   margin: 0;
-  /* Removes default margin */
 }
 .chazlash-button {
-  background-color: #F7DC6F; /* Yellow color */
+  background-color: #f44336; /* Red button */
+  color: white;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  color: #333;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(255, 255, 0, 0.5); /* Shining border */
-  transition: box-shadow 0.3s ease-in-out;
-  float: inline-end;
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
 
 .chazlash-button:hover {
-  box-shadow: 0 0 20px rgba(255, 255, 0, 0.8); /* Increase shining effect on hover */
+  background-color: #d32f2f; /* Darker red on hover */
 }
 
 .chazlash-button:active {
-  box-shadow: 0 0 10px rgba(255, 255, 0, 0.5); /* Decrease shining effect on active */
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.5); 
 }
 .map-and-list-container{
   display: flex;
@@ -153,4 +155,76 @@
   overflow: hidden;
   gap: 2rem;
   flex-grow: 1;
+  justify-content: space-between;
+}
+.responder-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.responder-list li {
+  background-color: #3a3a3a;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.arrived-button {
+  background-color: #4caf50;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.arrived-button:disabled {
+  background-color: #9e9e9e;
+  cursor: not-allowed;
+}
+
+.arrived-button:hover:not(:disabled) {
+  background-color: #388e3c;
+}
+
+.no-responders-message {
+  text-align: center;
+}
+
+.no-responders-message p {
+  color: #bbb;
+}
+
+.back-button {
+  background-color: #2196f3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #1976d2;
+}
+
+/* Input Styling */
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #555;
+  color: white;
+  border: 1px solid #777;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #2196f3;
 }
