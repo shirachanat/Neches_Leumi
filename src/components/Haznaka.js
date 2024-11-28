@@ -1,4 +1,4 @@
-import { responsibilityDecode, regionsDecode, yechidaDecode, agafDecode, whatsappTemplates } from '../dec';
+import { responsibilityDecode, regionsDecode,yechidaDecodeArray , yechidaDecode, agafDecode, whatsappTemplates } from '../dec';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MultiSelect } from 'primereact/multiselect';
@@ -58,7 +58,10 @@ function Haznaka() {
         console.error('Error sending call request:', error);
         alert('אירעה שגיאה.');
       });
-    navigate('/filtered-responders');
+    //navigate('/filtered-responders');
+    navigate('/filtered-responders', {
+      state: { selectedYechida, filteredResponders },
+    });
   };
 
   const handleDelete = (id) => {
