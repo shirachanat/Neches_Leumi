@@ -57,7 +57,7 @@ const BarChart = ({ filteredResponders, setFilterValue }) => {
                 const label = chart.data.labels[firstPoint.index];
                 const value = chart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
                 const status = statuses.find((status) => status.label === label).codeStatus;
-                setFilterValue(prev => ({ ...prev, status: status }))
+                setFilterValue(prev => ({ ...prev, status: prev.status == status ? '' : status }));
             }
         },
     };
