@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Neches_Leumi/static/css/main.d6635ade.css",
-    "main.js": "/Neches_Leumi/static/js/main.a641637c.js",
+    "main.js": "/Neches_Leumi/static/js/main.18940cc7.js",
     "static/js/453.23f5092a.chunk.js": "/Neches_Leumi/static/js/453.23f5092a.chunk.js",
     "static/media/1.png": "/Neches_Leumi/static/media/1.22695beb0e8f439828b2.png",
     "static/media/mobileMain.png": "/Neches_Leumi/static/media/mobileMain.08c7acf004d6dbc9ae37.png",
@@ -16,11 +16,11 @@
     "static/media/Heebo-Thin.ttf": "/Neches_Leumi/static/media/Heebo-Thin.458579aeaf19dc10d490.ttf",
     "index.html": "/Neches_Leumi/index.html",
     "main.d6635ade.css.map": "/Neches_Leumi/static/css/main.d6635ade.css.map",
-    "main.a641637c.js.map": "/Neches_Leumi/static/js/main.a641637c.js.map",
+    "main.18940cc7.js.map": "/Neches_Leumi/static/js/main.18940cc7.js.map",
     "453.23f5092a.chunk.js.map": "/Neches_Leumi/static/js/453.23f5092a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d6635ade.css",
-    "static/js/main.a641637c.js"
+    "static/js/main.18940cc7.js"
   ]
 }
