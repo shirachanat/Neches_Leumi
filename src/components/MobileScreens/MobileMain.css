@@ -30,6 +30,7 @@
     left: 60.8rem;
     fill: var(--icon-color);
     animation: fill-animation 1.5s infinite;
+    cursor: pointer;
 }
 
 @keyframes fill-animation {
