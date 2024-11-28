@@ -8,7 +8,8 @@ import { useConanimContext } from '../contexts/context';
 import ResponderItem from "./ResponderItem/ResponderItem";
 import MessageStatus from "./MessagesStatus/MessageStatus";
 import { sendTemplate } from '../api';
-import { BarChart } from './Charts/Charts';
+import { BarChart, filterMessageStatus } from './Charts/Charts';
+import { Input } from './Input/Input';
 
 function FilteredResponders() {
   const { state } = useLocation();
@@ -67,18 +68,18 @@ function FilteredResponders() {
     ws.onclose = (event) => console.log('Connection closed:', event.code, event.reason);
     return () => ws.close();
   }, [])
-  const[filterValue, setFilterValue] = useState('')
-  const veryfiltered = !filterValue? filteredResponders :
-  filteredResponders.filter((responder) => {
-    console.log('filterValueeeeeeeeeeee = ' +filterValue)
-    const filterWords = filterValue.split(' ')
-    return filterWords.every((word) => [responder.phone, responder.name, responder.id].some((str) => str.includes(word)))
-  })
+  const [filterValue, setFilterValue] = useState({ text: '', status: '' })
+  const veryfiltered = !filterValue.status && !filterValue.text ? filteredResponders :
+    filteredResponders.filter((responder) => {
+      const filterWords = filterValue.text.split(' ')
+      return filterWords.every((word) => [responder.phone, responder.name, responder.id].some((str) => str.includes(word)))
+      && (filterValue.status === '' || filterMessageStatus( filterValue.status, responder))
+    })
 
   return (
     <div className="filtered-responders-container" dir="rtl">
-        {/* Map Section */}
-       <div className="map-and-list-container">
+      {/* Map Section */}
+      <div className="map-and-list-container">
         <div className="map-container">
           <MapWithRealTimeUpdates />
         </div>
@@ -86,8 +87,8 @@ function FilteredResponders() {
         {/* Responder List Section */}
         <div className="responders-list-container">
           <button className='chazlash-button' onClick={chazlashHendler}>סיום אירוע</button>
-        <BarChart filteredResponders={filteredResponders}/>
-<input type="text" placeholder="חיפוש כוננים" className="search-input" onChange={e=>setFilterValue(e.target.value)} />
+          <BarChart filteredResponders={filteredResponders} setFilterValue={setFilterValue}/>
+         <Input onChange={e => setFilterValue(prev => ({ ...prev, text: e.target.value }))} onClean={() => setFilterValue(prev => ({ ...prev, text: '' }))} value={filterValue.text}/>
           {filteredResponders.length > 0 ? (
             <ul className="responder-list">
               {veryfiltered.map((responder) => (
@@ -98,10 +99,8 @@ function FilteredResponders() {
                     <>
                       <MessageStatus status={responder.messageStatus} />
                       {responder.arrived ? <button onClick={() => { }} className="arrived-button" disabled >הגיע</button>
-                       : responder.longitude && <div> שעת הגעה משוערת: 16:30</div>}
-                      {!responder.arrived && <button onClick={() => { arrivedButtunClicked(responder)}} className="arrived-button" >סימון הגעה</button>}
-                      {/* <p className="centered-role"> {responsibilityDecode[responder.responsibility]}</p> */}
-
+                        : responder.longitude && <div> שעת הגעה משוערת: 16:30</div>}
+                      {!responder.arrived && <button onClick={() => { arrivedButtunClicked(responder) }} className="arrived-button" >סימון הגעה</button>}
                     </>
                   }
                 />
@@ -115,8 +114,8 @@ function FilteredResponders() {
               </button>
             </div>
           )}
-          </div>
         </div>
+      </div>
     </div>
   );
 }
