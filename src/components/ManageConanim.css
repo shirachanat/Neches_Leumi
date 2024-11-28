@@ -26,24 +26,25 @@ button:disabled {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  background-color: #fff;
+  background-color: #4b4848;
   border-radius: 8px;
   overflow: hidden;
+  border-bottom: 2px solid #ccc;
 }
 
 .main-table th,
 .main-table td {
   padding: 12px 16px;
   text-align: center;
-  border-bottom: 1px solid #e0e0e0; /* גבול בהיר יותר */
+  border-bottom: 1px solid #ccc;
   font-size: 14px;
-  font-weight: bold;
-  color: #4b5563; /* טקסט כהה יותר */
+  color: white;
 }
 
 .main-table th {
-  background-color: #f9f9f9; /* צבע בהיר יותר */
-  color: #666;
+  /* background-color: #f9f9f9; */
+  color: white;
+  font-size: 18px;
   font-weight: 500;
   letter-spacing: 0.3px;
 }
@@ -53,7 +54,7 @@ button:disabled {
 }
 
 .main-table tr:hover {
-  background-color: #f7f7f7; /* צבע רקע בהיר יותר */
+  /* background-color: #f7f7f7;  */
 }
 
 /* סטטוס זמין/לא זמין */
@@ -85,7 +86,7 @@ button:disabled {
   padding: 8px 12px;
   font-size: 14px;
   font-weight: bold;
-  border: 1.5px solid #e0e0e0; 
+  border: 1.5px solid #e0e0e0;
   border-radius: 8px;
   color: #4b5563;
   background-color: #fff;
@@ -100,7 +101,7 @@ button:disabled {
 }
 
 .main-table td input::placeholder {
-  color: #a1aab3; 
+  color: #a1aab3;
   font-size: 13px;
 }
 
@@ -108,13 +109,13 @@ button:disabled {
 .main-table td input:hover,
 .main-table td select:hover {
   border-color: #c1c7d0;
-  background-color: #f9fafb; 
+  /* background-color: #f9fafb; */
 }
 
 /* עיצוב focus לשדות */
 .main-table td input:focus,
 .main-table td select:focus {
-  border-color: #a1b2c0; 
+  border-color: #a1b2c0;
   outline: none;
   background-color: #fff;
   box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.1);
@@ -131,7 +132,7 @@ button:disabled {
 
 /* עיצוב אייקונים */
 .icon-column {
-  width: 24px;
+  /* width: 24px; */
   color: #9ca3af;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -144,7 +145,7 @@ button:disabled {
 
 /* עיצוב שורת עריכה */
 .editing-row {
-  background-color: #fafafa;
+  /* background-color: #fafafa; */
 }
 
 /* מודאל הצלחה */
@@ -202,6 +203,7 @@ button:disabled {
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);

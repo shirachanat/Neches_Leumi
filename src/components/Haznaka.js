@@ -154,7 +154,7 @@ function Haznaka() {
         </button>
         <div className="haznaka-responders-container">
           <div className="haznaka-responders">
-            <h2>כוננים מתאימים למצב חירום</h2>
+            <h2>כוננים מתאימים למצב החירום:</h2>
             {filteredResponders.length > 0 ? (
               <ul className="responder-list">
                 {filteredResponders.map((responder) => (

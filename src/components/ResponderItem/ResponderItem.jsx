@@ -17,7 +17,7 @@ const ResponderItem = ({ responder, onDelete, additionalContent }) => {
           <strong> <span style={{fontSize: "1.2rem"}}>{responder.name}</span> - {responder.yechida.map(yechida => yechidaDecode[yechida]).join(", ")}</strong>
         </p>
         <p>{responsibilityDecode[responder.responsibility]}</p>
-        <p> {responder.name}</p>
+        {/* <p> {responder.name}</p> */}
       </div>
       {additionalContent && <div className="additional-content">{additionalContent}</div>}
       {onDelete && (
