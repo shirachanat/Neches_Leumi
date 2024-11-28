@@ -121,7 +121,7 @@ function Haznaka() {
                 ))}
               </select>
 
-              <MultiSelect
+              {/* <MultiSelect
                 value={selectedYechida}
                 options={yechidaOptions}
                 onChange={(e) => setSelectedYechida(e.value)}
@@ -132,7 +132,21 @@ function Haznaka() {
                 className="w-full p-dropdown-custom"
                 panelClassName="custom-dropdown-panel"
                 filter={false}
-              />
+              /> */}
+
+            <select
+                id="ychida"
+                className="form-select"
+                onChange={(e) => setSelectedYechida(e.target.value)}
+                value={selectedAgaf}
+              >
+                <option value="">בחר יחידה</option>
+                {Object.entries(yechidaDecode).map(([key, value]) => (
+                  <option key={key} value={key}>
+                    {value}
+                  </option>
+                ))}
+              </select>
 
               <select
                 id="agaf"

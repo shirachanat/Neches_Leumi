@@ -64,7 +64,7 @@ const MapWithRealTimeUpdates = (selectedYechida) => {
        <MapContainer
       
         center={mapCenter}
-        zoom={10}
+        zoom={9}
         style={{ width: '100%', height: '100%' }}
       >
         <TileLayer

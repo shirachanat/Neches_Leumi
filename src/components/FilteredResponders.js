@@ -63,7 +63,7 @@ function FilteredResponders() {
           estimatedTravelTime: Math.floor(Math.random() * 30) + 1, // Random time between 1-30 minutes
         }))
       );
-    }, 5000); // Update every 5 seconds
+    }, 2000); // Update every 5 seconds
 
     return () => clearInterval(intervalId); // Cleanup on unmount
   }, [setFilteredResponders]);
@@ -113,6 +113,8 @@ const mockMessages = [
   { sender: '972505711183', latitude: 31.934634508465482, longitude: 34.8802014541373 },
   { sender: '972505711183', latitude: 31.934671, longitude: 34.879987, delay: 9000 }, 
   { sender: '972505711183', latitude: 31.934716, longitude: 34.879933, delay: 11000, status:5 }, // Delayed message
+  { sender: '972586529546', latitude: 31.935272, longitude: 34.879880, delay: 5000, status:5 }, // Delayed message
+   
 ];
 
   useEffect(() => {
