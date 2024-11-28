@@ -37,7 +37,6 @@ function Haznaka() {
 
   const handleConfirmCall = () => {
     const phoneNumbers = filteredResponders.map((responder) => responder.phone);
-    console.log('Calling the following numbers:', phoneNumbers);
     const mikum = `מחוז: ${regionsDecode[parseInt(selectedRegion)]} ${selectedYechida.length > 0
       ? `, יחידות: ${selectedYechida.map(y => yechidaDecode[parseInt(y)]).join(', ')}`
       : ''
