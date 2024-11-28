@@ -1,5 +1,5 @@
 .header {
-    background-color: #f8f9fa;
+    background-color: #181818;
     padding: 10px 20px;
     display: flex;
     align-items: center;
@@ -9,4 +9,12 @@
 
 .logo {
     height: 40px;
+}
+
+.logoShabas {
+    height: 90px;
+}
+
+.logoDigital {
+    height: 90px;
 }

@@ -8,7 +8,11 @@ const Header = () => {
             <div className="container">
                 <img className='logo' src="./Icon.svg" alt="לוגו חירום" />
             </div>
-        </header>
+            <div className="imeages">
+                <img className='logoShabas' src="./logoShabas.png" alt="לוגו שבס" />
+                <img className='logoDigital' src="./Digital.png" alt="לוגו דיגיטל" />
+            </div>
+        </header >
     );
 };
 

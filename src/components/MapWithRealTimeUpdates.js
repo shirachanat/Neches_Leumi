@@ -64,18 +64,18 @@ const MapWithRealTimeUpdates = (selectedYechida) => {
        <MapContainer
       
         center={mapCenter}
-        zoom={13}
+        zoom={10}
         style={{ width: '100%', height: '100%' }}
-      > 
-       
-
-        {/* <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" /> */}
-  <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>'
-      />
-      
-      {/* <ChangeMapCenter center={mapCenter} /> */}
+      >
+        <TileLayer
+          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+          // attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>'
+          attribution= '&copy; <a href="https://carto.com/attributions/">CartoDB</a>'
+        />
+        
+        {/* Marker for the map center */}
+         <Marker position={mapCenter} icon={getCenterMarkerIcon()} >
+     </Marker> 
         {filteredResponders.map(conan => {
           console.log("Rendering marker for:", conan);
           const icon = getMarkerIcon(conan.status);

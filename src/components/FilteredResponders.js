@@ -9,6 +9,7 @@ import MessageStatus from "./MessagesStatus/MessageStatus";
 import { sendTemplate } from '../api';
 import { BarChart, filterMessageStatus } from './Charts/Charts';
 import { Input } from './Input/Input';
+import './FilteredResponders.css';
 
 function FilteredResponders() {
   const location = useLocation();
@@ -129,25 +130,20 @@ mockMessages.forEach((msg, index) => {
     // Log messages from the server
     ws.onmessage = (event) => {
       try {
-        console.log(event.data);
-        const data = JSON.parse(event.data)
-        let senderIndex = filteredResponders.findIndex(conan => conan.phone === data.sender)
+        const data = JSON.parse(event.data);
+        let senderIndex = filteredResponders.findIndex(conan => conan.phone === data.sender);
         if (senderIndex !== -1) {
-          let copy = [...filteredResponders]
-          if (data?.body) copy[senderIndex].body = data?.body
-          if (data?.latitude) copy[senderIndex].latitude = data?.latitude
-          if (data?.longitude) copy[senderIndex].longitude = data?.longitude
-          if (data?.status) copy[senderIndex].messageStatus = statusesDesc[data?.status]
-          setFilteredResponders(copy)
+          let copy = [...filteredResponders];
+          if (data?.body) copy[senderIndex].body = data?.body;
+          if (data?.latitude) copy[senderIndex].latitude = data?.latitude;
+          if (data?.longitude) copy[senderIndex].longitude = data?.longitude;
+          if (data?.status) copy[senderIndex].messageStatus = statusesDesc[data?.status];
+          setFilteredResponders(copy);
         }
-
       } catch (error) {
         console.error(error);
-
       }
     };
-    // Send a message to the server
-    // ws.onopen = () => ws.send('Hello from the client!');
     ws.onclose = (event) => console.log('Connection closed:', event.code, event.reason);
     return () => ws.close();
   }, [])
@@ -155,7 +151,7 @@ mockMessages.forEach((msg, index) => {
   const [filterValue, setFilterValue] = useState({ text: '', status: '' })
   const veryfiltered = !filterValue.status && !filterValue.text ? filteredResponders :
     filteredResponders.filter((responder) => {
-      const filterWords = filterValue.text.split(' ')
+      const filterWords = filterValue.text.split(' ');
       return filterWords.every((word) => [responder.phone, responder.name, responder.id].some((str) => str.includes(word)))
       && (filterValue.status === '' || filterMessageStatus( filterValue.status, responder))
     })
@@ -223,9 +219,7 @@ mockMessages.forEach((msg, index) => {
           ) : (
             <div className="no-responders-message">
               <p>לא נמצאו כוננים מתאימים למצב חירום שנבחר</p>
-              <button className="back-button" onClick={() => navigate('/')}>
-                חזור לסינון
-              </button>
+              <button className="back-button" onClick={() => navigate('/')}>חזור לסינון</button>
             </div>
           )}
         </div>
