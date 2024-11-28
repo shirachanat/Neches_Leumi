@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import MapWithRealTimeUpdates from './MapWithRealTimeUpdates';
 import { statusesDesc, whatsappTemplates } from '../dec';
@@ -7,7 +7,8 @@ import { useConanimContext } from '../contexts/context';
 import ResponderItem from "./ResponderItem/ResponderItem";
 import MessageStatus from "./MessagesStatus/MessageStatus";
 import { sendTemplate } from '../api';
-import { BarChart } from './Charts/Charts';
+import { BarChart, filterMessageStatus } from './Charts/Charts';
+import { Input } from './Input/Input';
 
 function FilteredResponders() {
   const location = useLocation();
@@ -150,6 +151,14 @@ mockMessages.forEach((msg, index) => {
     ws.onclose = (event) => console.log('Connection closed:', event.code, event.reason);
     return () => ws.close();
   }, [])
+
+  const [filterValue, setFilterValue] = useState({ text: '', status: '' })
+  const veryfiltered = !filterValue.status && !filterValue.text ? filteredResponders :
+    filteredResponders.filter((responder) => {
+      const filterWords = filterValue.text.split(' ')
+      return filterWords.every((word) => [responder.phone, responder.name, responder.id].some((str) => str.includes(word)))
+      && (filterValue.status === '' || filterMessageStatus( filterValue.status, responder))
+    })
   return (
     <div className="filtered-responders-container" dir="rtl">
       <div className="map-and-list-container">
@@ -161,11 +170,11 @@ mockMessages.forEach((msg, index) => {
           <button className="chazlash-button" onClick={chazlashHandler}>
             סיום אירוע
           </button>
-          <BarChart filteredResponders={filteredResponders} />
-
+          <BarChart filteredResponders={filteredResponders} setFilterValue={setFilterValue}/>
+         <Input onChange={e => setFilterValue(prev => ({ ...prev, text: e.target.value }))} onClean={() => setFilterValue(prev => ({ ...prev, text: '' }))} value={filterValue.text}/>
           {filteredResponders.length > 0 ? (
             <ul className="responder-list">
-             {filteredResponders.map((responder) => {
+             {veryfiltered.map((responder) => {
   const estimatedArrivalTime =
     responder.estimatedTravelTime !== null && responder.estimatedTravelTime > 0
       ? (() => {
