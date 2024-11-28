@@ -11,7 +11,8 @@ function Haznaka() {
   const { conanim } = useConanimContext();
   const [selectedResponsibility, setSelectedResponsibility] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
-  const [selectedYechida, setSelectedYechida] = useState([]);
+  // const [selectedYechida, setSelectedYechida] = useState([]);
+  const [selectedYechida, setSelectedYechida] = useState('');
   const [selectedAgaf, setSelectedAgaf] = useState('');
   const { filteredResponders, setFilteredResponders } = useConanimContext(conanim);
   const navigate = useNavigate();
@@ -25,11 +26,10 @@ function Haznaka() {
       const matchesRegion = selectedRegion
         ? responder.regions.some(region => region == selectedRegion)
         : true;
-      const matchesYechida = selectedYechida.length > 0
-        ? selectedYechida.some(yechida =>
-          responder.yechida.some(responderYechida => responderYechida == yechida)
-        )
-        : true;
+      const matchesYechida = selectedYechida
+        ? responder.yechida.some(yechida => yechida == selectedYechida)
+         : true;
+        
       return matchesResponsibility && matchesRegion && matchesYechida;
     });
     setFilteredResponders(results);
@@ -39,7 +39,9 @@ function Haznaka() {
     const phoneNumbers = filteredResponders.map((responder) => responder.phone);
     console.log('Calling the following numbers:', phoneNumbers);
     const mikum = `מחוז: ${regionsDecode[parseInt(selectedRegion)]} ${selectedYechida.length > 0
-      ? `, יחידות: ${selectedYechida.map(y => yechidaDecode[parseInt(y)]).join(', ')}`
+      // ? `, יחידות: ${selectedYechida.map(y => yechidaDecode[parseInt(y)]).join(', ')}`
+      // : ''
+        ? `, יחידות: ${selectedYechida[parseInt(selectedYechida)]}`
       : ''
       } ${phoneNumbers.length && `, אגף: ${phoneNumbers.length}`}`;
 
@@ -53,12 +55,12 @@ function Haznaka() {
         if (response.ok) {
           navigate('/filtered-responders');
         } else {
-          alert('שליחת הקריאה נכשלה.');
+          //alert('שליחת הקריאה נכשלה.');
         }
       })
       .catch((error) => {
         console.error('Error sending call request:', error);
-        alert('אירעה שגיאה.');
+        //alert('אירעה שגיאה.');
       });
     //navigate('/filtered-responders');
     navigate('/filtered-responders', {
@@ -120,8 +122,8 @@ function Haznaka() {
                   </option>
                 ))}
               </select>
-
-              {/* <MultiSelect
+{/* 
+              <MultiSelect
                 value={selectedYechida}
                 options={yechidaOptions}
                 onChange={(e) => setSelectedYechida(e.value)}
@@ -134,11 +136,24 @@ function Haznaka() {
                 filter={false}
               /> */}
 
-            <select
-                id="ychida"
+            {/* <select
+                id="yechida"
                 className="form-select"
                 onChange={(e) => setSelectedYechida(e.target.value)}
-                value={selectedAgaf}
+                value={selectedYechida}
+              >
+                <option value="">בחר יחידה</option>
+                {Object.entries(yechidaDecode).map(([key, value]) => (
+                  <option key={key} value={key}>
+                    {value}
+                  </option>
+                ))}
+              </select> */}
+              <select
+                id="yechida"
+                className="form-select"
+                onChange={(e) => setSelectedYechida(e.target.value)}
+                value={selectedYechida}
               >
                 <option value="">בחר יחידה</option>
                 {Object.entries(yechidaDecode).map(([key, value]) => (
@@ -147,7 +162,6 @@ function Haznaka() {
                   </option>
                 ))}
               </select>
-
               <select
                 id="agaf"
                 className="form-select"

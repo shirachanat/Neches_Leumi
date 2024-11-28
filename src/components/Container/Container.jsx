@@ -6,34 +6,37 @@ import { MobileMain } from '../MobileScreens/MobileMain';
 
 const Container = ({ children }) => {
     const [appStarted, setAppStarted] = useState(false);
+    const [opened, setOpened] = useState(false);
     return (
-        <>{!appStarted ? <MobileMain setAppStarted={setAppStarted}/> :
-            <div className='mega-container'>
-                <Header />
-                <nav className="nav">
-                    <ul className="ul">
-                        <li className="li">
-                            <NavLink to="/conanim" className={({ isActive }) => `link ${isActive ? 'active' : ''}`}>
-                                ניהול כוננים
-                                <img className='HeaderIcons' src="./conanim.png" alt="conanim icon" />
-                            </NavLink>
-                        </li>
-                        <li className="li">
-                            <NavLink to="/" className={({ isActive }) => `link ${isActive ? 'active' : ''}`}>
-                                הזנקת כוננים
-                                <img className='HeaderIcons' src="./haznaka.png" alt="haznaka icon" />
-                            </NavLink>
-                        </li>
-                        <li className="li">
-                            <NavLink to="/filtered-responders" className={({ isActive }) => `link ${isActive ? 'active' : ''}`}>
-                                לוח הבקרה
-                                <img className='HeaderIcons' src="./dashboard.png" alt="Dashboard icon" />
-                            </NavLink>
-                        </li>
-                    </ul>
-                </nav>
-                {children}
-            </div >}
+        <>{
+            !opened ? <div className='loader' onClick={() => setOpened(true)}></div> :
+                !appStarted ? <MobileMain setAppStarted={setAppStarted} /> :
+                    <div className='mega-container' >
+                        <Header />
+                        <nav className="nav">
+                            <ul className="ul">
+                                <li className="li">
+                                    <NavLink to="/conanim" className={({ isActive }) => `link ${isActive ? 'active' : ''}`}>
+                                        ניהול כוננים
+                                        <img className='HeaderIcons' src="./conanim.png" alt="conanim icon" />
+                                    </NavLink>
+                                </li>
+                                <li className="li">
+                                    <NavLink to="/" className={({ isActive }) => `link ${isActive ? 'active' : ''}`}>
+                                        הזנקת כוננים
+                                        <img className='HeaderIcons' src="./haznaka.png" alt="haznaka icon" />
+                                    </NavLink>
+                                </li>
+                                <li className="li">
+                                    <NavLink to="/filtered-responders" className={({ isActive }) => `link ${isActive ? 'active' : ''}`}>
+                                        לוח הבקרה
+                                        <img className='HeaderIcons' src="./dashboard.png" alt="Dashboard icon" />
+                                    </NavLink>
+                                </li>
+                            </ul>
+                        </nav>
+                        {children}
+                    </div >}
         </>
     );
 }

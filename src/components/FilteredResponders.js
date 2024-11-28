@@ -89,7 +89,7 @@ function FilteredResponders() {
       })
       .catch((error) => {
         console.error('Error sending call request:', error);
-        alert('אירעה שגיאה.');
+        //alert('אירעה שגיאה.');
       });
   };
 
