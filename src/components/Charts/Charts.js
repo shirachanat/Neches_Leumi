@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { statuses, statusesDesc } from '../../dec';
@@ -10,7 +10,7 @@ export const filterMessageStatus = (status, responder) => {
         case statusesDesc.arrived:
             return responder.arrived;
         case statusesDesc.onWay:
-            return !statusesDesc.arrived && responder.latitude;
+            return !responder.arrived && responder.latitude;
         default:
             return !responder.latitude && !responder.arrived && responder.messageStatus === status;
     }
@@ -18,6 +18,7 @@ export const filterMessageStatus = (status, responder) => {
 
 const BarChart = ({ filteredResponders, setFilterValue }) => {
     const chartRef = useRef(null);
+    const [highlightIndex, setHighlightIndex] = useState(null);
     const data = {
         labels: statuses.map((status) => status.label),
         datasets: [
@@ -30,6 +31,8 @@ const BarChart = ({ filteredResponders, setFilterValue }) => {
                     ).length
                 ),
                 backgroundColor: statuses.map((status) => status.color),
+                borderColor: context => context.dataIndex === highlightIndex ? 'rgb(255, 99, 132)' :'',
+                borderWidth: context => context.dataIndex === highlightIndex ? 3:0,
             },
         ],
     };
@@ -57,7 +60,8 @@ const BarChart = ({ filteredResponders, setFilterValue }) => {
                 const label = chart.data.labels[firstPoint.index];
                 const value = chart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
                 const status = statuses.find((status) => status.label === label).codeStatus;
-                setFilterValue(prev => ({ ...prev, status: status }))
+                setHighlightIndex(prev => prev === firstPoint.index ? null : firstPoint.index);
+                setFilterValue(prev => ({ ...prev, status: prev.status == status ? '' : status }));
             }
         },
     };

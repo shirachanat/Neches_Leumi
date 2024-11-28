@@ -1,4 +1,4 @@
-import { responsibilityDecode, regionsDecode, yechidaDecode, agafDecode, whatsappTemplates } from '../dec';
+import { responsibilityDecode, regionsDecode, yechidaDecodeArray, yechidaDecode, agafDecode, whatsappTemplates } from '../dec';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MultiSelect } from 'primereact/multiselect';
@@ -44,8 +44,10 @@ function Haznaka() {
       } ${phoneNumbers.length && `, אגף: ${phoneNumbers.length}`}`;
 
     sendTemplate(phoneNumbers.filter((phone) => phone[0] == '9'), whatsappTemplates.emergency, [
-      { type: "header", value: [mikum] },
-      { type: "body", value: [mikum, "פרצה שריפה, יש אסירים וסוהרים לכודים"] }
+      // { type: "header", value: [mikum] },
+      // { type: "body", value: [mikum, "פרצה שריפה, יש אסירים וסוהרים לכודים"] }
+      { type: "header", value: ['כלא איילון'] },
+      { type: "body", value: ['כלא איילון אגף 6', "ארוע אלימות קשה, אסירים וסוהרים רבים פצועים"] }
     ])
       .then((response) => {
         if (response.ok) {
@@ -58,7 +60,10 @@ function Haznaka() {
         console.error('Error sending call request:', error);
         alert('אירעה שגיאה.');
       });
-    navigate('/filtered-responders');
+    //navigate('/filtered-responders');
+    navigate('/filtered-responders', {
+      state: { selectedYechida, filteredResponders },
+    });
   };
 
   const handleDelete = (id) => {
@@ -128,7 +133,7 @@ function Haznaka() {
                 panelClassName="custom-dropdown-panel"
                 filter={false}
               />
-              
+
               <select
                 id="agaf"
                 className="form-select"
