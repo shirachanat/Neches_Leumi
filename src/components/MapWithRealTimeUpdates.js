@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // Ensure to import leaflet's CSS
@@ -38,13 +37,22 @@ const MapWithRealTimeUpdates = (selectedYechida) => {
 
   // Function to create marker icon based on responder status
   const getMarkerIcon = (status) => {
-    // Base URLs for markers
     const iconUrl = status === 3
       ? 'https://img.icons8.com/color/48/000000/marker--v1.png'  // Solid orange marker
       : 'https://img.icons8.com/color/48/000000/marker--v1.png'; // Solid green marker
     return L.icon({
       iconUrl: iconUrl,
       iconSize: [48, 48],  // Increased size from 32 to 48
+      iconAnchor: [24, 48], // Adjusted anchor point (half of width, full height)
+      popupAnchor: [0, -48], // Adjusted popup position
+      className: 'pulse-marker' // Add class for animation
+    });
+  };
+  const getCenterMarkerIcon = () => {
+    const iconUrl = 'https://media.tenor.com/8vSJsVW-1pQAAAAj/police-car-light-joypixels.gif';
+    return L.icon({
+      iconUrl: iconUrl,
+      iconSize: [30, 30],  // Increased size from 32 to 48
       iconAnchor: [24, 48], // Adjusted anchor point (half of width, full height)
       popupAnchor: [0, -48], // Adjusted popup position
       className: 'pulse-marker' // Add class for animation
@@ -79,32 +87,22 @@ const MapWithRealTimeUpdates = (selectedYechida) => {
               icon={icon}
             >
               <Popup>
+              <a href={conan.img} target="_blank" rel="noopener noreferrer">
+              <img src={conan.img} alt="icon" 
+              style={{ width: '15%', height: '15%',display:"flex" ,
+                      borderRadius: '50%', // הופך את התמונה לעיגול
+                      objectFit: 'cover', // שומר על פרופורציות התמונה וממלא את העיגול
+                      border: '1px solid #ccc',}}/> 
+                </a>
                 <strong>{conan.name}</strong><br />
                 סטטוס: {statusDescriptions[conan.status]}<br />
                 טלפון: {conan.phone}<br />
                 מזהה: {conan.id}<br />
-                קואורדינטות: {conan?.latitude}, {conan?.longitude}
               </Popup>
             </Marker>
           );
         })}
       </MapContainer>
-
-      {/* Add a map legend (מִקְרָא מַפָּה) outside of the map */}
-      {/* <div style={{
-        position: 'absolute',
-        top: '138px',
-        left: '10px',
-        backgroundColor: 'white',
-        padding: '10px',
-        borderRadius: '5px',
-        border: '1px solid #ccc',
-        fontSize: '12px',
-      }}>
-        <strong>מִקְרָא מַפָּה</strong>
-        <div><span style={{ color: 'orange' }}>🟠</span> - בדרך (סטטוס 3)</div>
-        <div><span style={{ color: 'green' }}>🟢</span> - הגיע (סטטוס 4)</div>
-      </div> */}
     </div>
   );
 };

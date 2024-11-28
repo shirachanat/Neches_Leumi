@@ -1,0 +1,47 @@
+
+.mobile-screen {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    position: relative;
+    --icon-color:#91910d
+}
+
+.mobile-screen::after {
+    content: '';
+    width: 375px;
+    /* Adjust to your desired mobile screen width */
+    height: 667px;
+    /* Adjust to your desired mobile screen height */
+    background-image: url('../../../public/mobileMain.png');
+    /* Replace with your background image */
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+.app-icon{
+    position: absolute;
+    bottom: 9.4rem;
+    left: 60.8rem;
+    fill: var(--icon-color);
+    animation: fill-animation 1.5s infinite;
+    cursor: pointer;
+}
+
+@keyframes fill-animation {
+  0% {
+    fill: var(--icon-color);
+  }
+  50%{
+    fill: red;
+
+  }
+  100% {
+    fill: var(--icon-color);
+  }
+}
