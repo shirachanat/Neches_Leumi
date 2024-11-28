@@ -55,3 +55,13 @@
   height: 20px;
   width: 20px;
 }
+.loader {
+  background-image: url('../../../public/1.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
