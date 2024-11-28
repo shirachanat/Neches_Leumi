@@ -10,7 +10,7 @@ export const filterMessageStatus = (status, responder) => {
         case statusesDesc.arrived:
             return responder.arrived;
         case statusesDesc.onWay:
-            return !statusesDesc.arrived && responder.latitude;
+            return !responder.arrived && responder.latitude;
         default:
             return !responder.latitude && !responder.arrived && responder.messageStatus === status;
     }
