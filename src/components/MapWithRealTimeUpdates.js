@@ -9,7 +9,8 @@ import { yechidaDecodeArray } from '../dec';
 const MapWithRealTimeUpdates = (selectedYechida) => {
   
   const [locations, setLocations] = useState([]); // Store filtered locations
-  const [mapCenter, setMapCenter] = useState([31.935053339768253, 34.879815216053515]); // Default center of the map
+  const [mapCenter, setMapCenter] = useState([31.935053339768253, 34.879815216053515]);
+  
   const {filteredResponders}= useConanimContext()
 
   // Status descriptions in Hebrew
@@ -18,22 +19,22 @@ const MapWithRealTimeUpdates = (selectedYechida) => {
     4: 'הגיע',   // Status 4 = "Arrived"
   };
  
-  useEffect(() => {
-    const filteredLocations = filteredResponders
-      .filter(responder => responder.status === 3 || responder.status === 4)  // Filter by status 3 or 4
-      .map(responder => {
-        const location = filteredResponders.find(loc => loc.id === responder.id);
-        return location ? { ...location, name: responder.name, status: responder.status } : null;
-      })
-      .filter(location => location !== null);
+  // useEffect(() => {
+  //   const filteredLocations = filteredResponders
+  //     .filter(responder => responder.status === 3 || responder.status === 4)  // Filter by status 3 or 4
+  //     .map(responder => {
+  //       const location = filteredResponders.find(loc => loc.id === responder.id);
+  //       return location ? { ...location, name: responder.name, status: responder.status } : null;
+  //     })
+  //     .filter(location => location !== null);
 
-    console.log("Filtered Locations:", filteredLocations);
-    setLocations(filteredLocations);
+  //   console.log("Filtered Locations:", filteredLocations);
+  //   setLocations(filteredLocations);
 
-    if (filteredLocations.length > 0) {
-      setMapCenter([filteredLocations[0].latitude, filteredLocations[0].longitude]);
-    }
-  }, [filteredResponders]);
+  //   if (filteredLocations.length > 0) {
+  //     setMapCenter([filteredLocations[0].latitude, filteredLocations[0].longitude]);
+  //   }
+  // }, [filteredResponders]);
 
   // Function to create marker icon based on responder status
   const getMarkerIcon = (status) => {

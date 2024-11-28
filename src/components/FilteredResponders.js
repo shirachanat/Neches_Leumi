@@ -1,41 +1,25 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import MapWithRealTimeUpdates from './MapWithRealTimeUpdates';
-import { responsibilityDecode, regionsDecode, yechidaDecode, statusDecode, whatsappTemplates, statuses, statusesDesc } from '../dec';
+import { statusesDesc, whatsappTemplates } from '../dec';
 import './FilteredResponders.css'; // Custom CSS for RTL design
 import { useConanimContext } from '../contexts/context';
-//import PropTypes from "prop-types";
 import ResponderItem from "./ResponderItem/ResponderItem";
 import MessageStatus from "./MessagesStatus/MessageStatus";
 import { sendTemplate } from '../api';
 import { BarChart } from './Charts/Charts';
 
-
 function FilteredResponders() {
   const location = useLocation();
-  const { selectedYechida} = location.state || {};
+  const { selectedYechida } = location.state || {};
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { filteredResponders, setFilteredResponders } = useConanimContext() // State for filtered responders
-   // Function to fetch travel time
-   const fetchTravelTime = async (origin, destination) => {
-    try {
-      const response = await fetch(
-        `https://router.project-osrm.org/route/v1/driving/${origin};${destination}?overview=false`
-      );
-      const data = await response.json();
+  const { filteredResponders, setFilteredResponders } = useConanimContext(); // State for filtered responders
 
-      if (data.code === "Ok") {
-        const duration = data.routes[0].duration; // Duration in seconds
-        return Math.round(duration / 60); // Convert to minutes
-      } else {
-        console.error("Failed to calculate travel time");
-        return null;
-      }
-    } catch (error) {
-      console.error("Error fetching travel time:", error.message);
-      return null;
-    }
+  // Simulate fetching travel time
+  const fetchTravelTime = async (origin, destination) => {
+    // Generate a random travel time between 1 and 30 minutes
+    return Math.floor(Math.random() * 30) + 1;
   };
 
   // Calculate travel time for responders
@@ -43,22 +27,18 @@ function FilteredResponders() {
     const updateTravelTimes = async () => {
       const updatedResponders = await Promise.all(
         filteredResponders.map(async (responder) => {
-          // Skip responders that already have a travel time
           if (
             responder.latitude &&
             responder.longitude &&
             responder.estimatedTravelTime == null
           ) {
-            const origin = `34.7818,32.0853`; // Replace with actual origin
-            const destination = `${responder.longitude},${responder.latitude}`;
-            const travelTime = await fetchTravelTime(origin, destination);
+            const travelTime = await fetchTravelTime(); // Simulated travel time
             return { ...responder, estimatedTravelTime: travelTime };
           }
           return responder; // No change if travel time already exists
         })
       );
 
-      // Only update state if there's an actual change
       setFilteredResponders((prev) => {
         if (JSON.stringify(prev) !== JSON.stringify(updatedResponders)) {
           return updatedResponders;
@@ -71,18 +51,33 @@ function FilteredResponders() {
       updateTravelTimes();
     }
   }, [filteredResponders, setFilteredResponders]);
-  
-  const arrivedButtunClicked = (responder) => {
-    let senderIndex = filteredResponders.findIndex(conan => conan.id === responder.id)
+
+  // Periodically update travel times
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setFilteredResponders((prev) =>
+        prev.map((responder) => ({
+          ...responder,
+          estimatedTravelTime: Math.floor(Math.random() * 30) + 1, // Random time between 1-30 minutes
+        }))
+      );
+    }, 5000); // Update every 5 seconds
+
+    return () => clearInterval(intervalId); // Cleanup on unmount
+  }, [setFilteredResponders]);
+
+  const arrivedButtonClicked = (responder) => {
+    const senderIndex = filteredResponders.findIndex((conan) => conan.id === responder.id);
     if (senderIndex !== -1) {
-      let copy = [...filteredResponders]
-      copy[senderIndex].arrived = true
-      setFilteredResponders(copy)
+      const copy = [...filteredResponders];
+      copy[senderIndex].arrived = true;
+      setFilteredResponders(copy);
     }
-  }
-  const chazlashHendler = () => {
+  };
+
+  const chazlashHandler = () => {
     const phoneNumbers = filteredResponders.map((responder) => responder.phone);
-    sendTemplate(phoneNumbers.filter((phone) => phone[0] == '9'), whatsappTemplates.chazlash, [])
+    sendTemplate(phoneNumbers.filter((phone) => phone[0] === '9'), whatsappTemplates.chazlash, [])
       .then((response) => {
         if (response.ok) {
           console.log('chazlash sent successfully.');
@@ -94,8 +89,8 @@ function FilteredResponders() {
         console.error('Error sending call request:', error);
         alert('אירעה שגיאה.');
       });
-  }
- 
+  };
+
 // Helper function to create mock messages
 const createMockMessage = (sender, latitude, longitude, status = 'active') => {
   return JSON.stringify({
@@ -157,62 +152,64 @@ mockMessages.forEach((msg, index) => {
   }, [])
   return (
     <div className="filtered-responders-container" dir="rtl">
-      {/* Map Section */}
       <div className="map-and-list-container">
         <div className="map-container">
           <MapWithRealTimeUpdates selectedYechida={selectedYechida} />
         </div>
-  
-        {/* Responder List Section */}
+
         <div className="responders-list-container">
-          <button className="chazlash-button" onClick={chazlashHendler}>
+          <button className="chazlash-button" onClick={chazlashHandler}>
             סיום אירוע
           </button>
           <BarChart filteredResponders={filteredResponders} />
-  
+
           {filteredResponders.length > 0 ? (
             <ul className="responder-list">
-              {filteredResponders.map((responder) => {
-                // Calculate Estimated Arrival Time
-                const estimatedArrivalTime =
-                  responder.estimatedTravelTime !== null && responder.estimatedTravelTime > 0
-                    ? (() => {
-                        const currentTime = new Date();
-                        currentTime.setMinutes(currentTime.getMinutes() + responder.estimatedTravelTime); // Add travel time
-                        return currentTime.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' }); // Format as HH:mm
-                      })()
-                    : null;
-  
-                return (
-                  <ResponderItem
-                    key={responder.id}
-                    responder={responder}
-                    additionalContent={
-                      <>
-                        <MessageStatus status={responder.messageStatus} />
-                        <div> {responder.name}</div>
-                        {responder.estimatedTravelTime !== null && responder.estimatedTravelTime > 0 ? (
-                          <div>זמן נסיעה משוער: {responder.estimatedTravelTime} דקות</div>
-                        ) : (
-                          <div>מחשב זמן נסיעה...</div>
-                        )}
-                        {responder.arrived ? (
-                          <button onClick={() => {}} className="arrived-button" disabled>
-                            הגיע
-                          </button>
-                        ) : responder.longitude && estimatedArrivalTime ? (
-                          <div>שעת הגעה משוערת: {estimatedArrivalTime}</div>
-                        ) : null}
-                        {!responder.arrived && (
-                          <button onClick={() => arrivedButtunClicked(responder)} className="arrived-button">
-                            סימון הגעה
-                          </button>
-                        )}
-                      </>
-                    }
-                  />
-                );
-              })}
+             {filteredResponders.map((responder) => {
+  const estimatedArrivalTime =
+    responder.estimatedTravelTime !== null && responder.estimatedTravelTime > 0
+      ? (() => {
+          const currentTime = new Date();
+          currentTime.setMinutes(currentTime.getMinutes() + responder.estimatedTravelTime); // Add travel time
+          return currentTime.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' }); // Format as HH:mm
+        })()
+      : null;
+
+  return (
+    <ResponderItem
+      key={responder.id}
+      responder={responder}
+      additionalContent={
+        <>
+          <MessageStatus status={responder.messageStatus} />
+
+          {/* Show Estimated Travel Time if not arrived */}
+          {!responder.arrived && responder.estimatedTravelTime !== null && responder.estimatedTravelTime > 0 ? (
+            <div>זמן נסיעה משוער: {responder.estimatedTravelTime} דקות</div>
+          ) : !responder.arrived ? (
+            <div>מחשב זמן נסיעה...</div>
+          ) : null}
+
+          {/* Show Estimated Arrival Time if not arrived */}
+          {!responder.arrived && responder.longitude && estimatedArrivalTime ? (
+            <div>שעת הגעה משוערת: {estimatedArrivalTime}</div>
+          ) : null}
+
+          {/* Arrived Button Logic */}
+          {responder.arrived ? (
+            <button onClick={() => {}} className="arrived-button" disabled>
+              הגיע
+            </button>
+          ) : (
+            <button onClick={() => arrivedButtonClicked(responder)} className="arrived-button">
+              סימון הגעה
+            </button>
+          )}
+        </>
+      }
+    />
+  );
+})}
             </ul>
           ) : (
             <div className="no-responders-message">
@@ -228,14 +225,4 @@ mockMessages.forEach((msg, index) => {
   );
 }
 
-// FilteredResponders.propTypes = {
-//   responders: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       name: PropTypes.string.isRequired,
-//       phone: PropTypes.string.isRequired,
-//       messageStatus: PropTypes.oneOf(["sent", "delivered", "read"]).isRequired,
-//     })
-//   ).isRequired,
-// };
 export default FilteredResponders;
