@@ -7,7 +7,8 @@
         "responsibility": 1,
         "regions": [101, 102],
         "yechida": [201, 202],
-        "status": 3
+        "status": 3,
+        "img": "https://img.icons8.com/?size=100&id=JuYRir6takAY&format=png&color=000000"
       },
       {
         "name": "רונית לוי",
@@ -17,7 +18,9 @@
         "responsibility": 2,
         "regions": [101],
         "yechida": [202],
-        "status": 4
+        "status": 4,
+        "img": "https://img.icons8.com/?size=100&id=JuYRir6takAY&format=png&color=000000"
+
       },
       {
         "name": "דני ישראלי",
@@ -27,7 +30,8 @@
         "responsibility": 3,
         "regions": [102, 104],
         "yechida": [203],
-        "status": 3
+        "status": 3,
+        "img": "https://img.icons8.com/?size=100&id=YKpwlBiRmJhp&format=png&color=000000"
       },
       {
         "name": "מיכל כהן",
@@ -37,7 +41,8 @@
         "responsibility": 4,
         "regions": [103],
         "yechida": [201, 204],
-        "status": 4
+        "status": 4,
+        "img": "https://img.icons8.com/?size=100&id=oS6NgSTpZMrg&format=png&color=000000"
       },
       {
         "name": "איתן לוי",
@@ -47,7 +52,8 @@
         "responsibility": 1,
         "regions": [101],
         "yechida": [202],
-        "status": 3
+        "status": 3,
+        "img": "https://img.icons8.com/?size=100&id=oS6NgSTpZMrg&format=png&color=000000"
       },
       {
         "name": "שירי ברזני",
@@ -57,7 +63,8 @@
         "responsibility": 2,
         "regions": [104],
         "yechida": [203],
-        "status": 1
+        "status": 1,
+        "img": "https://img.icons8.com/?size=100&id=33eehKAPq3JB&format=png&color=000000"
       },
       {
         "name": "שלומי מרגלית",
@@ -67,7 +74,8 @@
         "responsibility": 3,
         "regions": [101],
         "yechida": [202, 204],
-        "status": 2
+        "status": 2,
+        "img": "https://img.icons8.com/?size=100&id=undHw4gd3Sky&format=png&color=000000"
       },
       {
         "name": "אורית גולן",
@@ -77,7 +85,8 @@
         "responsibility": 4,
         "regions": [102],
         "yechida": [201, 202],
-        "status": 4
+        "status": 4,
+        "img": "https://img.icons8.com/?size=100&id=kpbkCrY93ltE&format=png&color=000000"
       },
       {
         "name": "נועם פז",
@@ -87,7 +96,8 @@
         "responsibility": 1,
         "regions": [101],
         "yechida": [201],
-        "status": 1
+        "status": 1,
+        "img": "https://img.icons8.com/?size=100&id=eSInjKHibWVK&format=png&color=000000"
       },
       {
         "name": "רותם כהן",
@@ -97,7 +107,8 @@
         "responsibility": 2,
         "regions": [104],
         "yechida": [202, 203],
-        "status": 4
+        "status": 4,
+        "img": "https://img.icons8.com/?size=100&id=YctBELhPwDbI&format=png&color=000000"
       },
       {
         "name": "חיים הלוי",
@@ -107,7 +118,8 @@
         "responsibility": 3,
         "regions": [102],
         "yechida": [204],
-        "status": 3
+        "status": 3,
+        "img": "https://img.icons8.com/?size=100&id=gdDBcAwSpJLn&format=png&color=000000"
       },
       {
         "name": "רבקה שמולביץ",
@@ -117,7 +129,8 @@
         "responsibility": 4,
         "regions": [103, 104],
         "yechida": [201],
-        "status": 2
+        "status": 2,
+        "img": "https://img.icons8.com/?size=100&id=rf6oxsoL827x&format=png&color=000000"
       },
       {
         "name": "אביב מרום",
@@ -127,7 +140,8 @@
         "responsibility": 1,
         "regions": [102],
         "yechida": [202, 203],
-        "status": 4
+        "status": 4,
+        "img": "https://img.icons8.com/?size=100&id=33eehKAPq3JB&format=png&color=000000"
       },
       {
         "name": "טליה סבן",
@@ -137,7 +151,8 @@
         "responsibility": 3,
         "regions": [101, 104],
         "yechida": [201, 204],
-        "status": 1
+        "status": 1,
+        "img": "https://img.icons8.com/?size=100&id=JuYRir6takAY&format=png&color=000000"
       },
       {
         "name": "מאור טל",
@@ -147,7 +162,8 @@
         "responsibility": 2,
         "regions": [102],
         "yechida": [203],
-        "status": 2
+        "status": 2,
+        "img": "https://img.icons8.com/?size=100&id=YKpwlBiRmJhp&format=png&color=000000"
       },
       {
         "name": "יעל רוזן",
@@ -157,7 +173,8 @@
         "responsibility": 4,
         "regions": [102, 103],
         "yechida": [204],
-        "status": 3
+        "status": 3,
+        "img": "https://img.icons8.com/?size=100&id=NochdpwxHddY&format=png&color=000000"
       },
       {
         "name": "שני יוסף",
@@ -167,7 +184,8 @@
         "responsibility": 1,
         "regions": [103],
         "yechida": [201],
-        "status": 1
+        "status": 1,
+        "img": "https://img.icons8.com/?size=100&id=yfMgyPM9Zrzr&format=png&color=000000"
       },
       {
         "name": "ישי ב",
@@ -177,7 +195,8 @@
         "responsibility": 1,
         "regions": [104],
         "yechida": [201,202,203,204],
-        "status": 1
+        "status": 1,
+        "img": "https://img.icons8.com/?size=100&id=KxtY3rktVoKg&format=png&color=000000"
       },
       {
         "name": "אליעזר קליין",
@@ -187,7 +206,8 @@
         "responsibility": 1,
         "regions": [104],
         "yechida": [201,202,203,204],
-        "status": 1
+        "status": 1,
+        "img": "https://img.icons8.com/?size=100&id=mpSjd7TWQWiy&format=png&color=000000"
       }
     ]
 
