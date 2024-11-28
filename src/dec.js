@@ -90,11 +90,14 @@ export const statusDecode = {
   4: "הגיע"
 };
 
-export const messageStatusDecode =
-  [{ code: 1, status: "sent", statusHebrew: "נשלחה ההודעה" },
-  { code: 2, status: "delivered", statusHebrew: "ההודעה התקבלה" },
-  { code: 3, status: "read", statusHebrew: "ההודעה נקראה" }
-  ]
+export const statusesDesc = { sent: 1, delivered: 2, read: 3, onWay: 4, arrived: 5 }
+export const statuses =
+  [{ label: 'נשלחה הודעה', color: '#8884d8', codeStatus: statusesDesc.sent },
+  { label: 'התקבלה', color: '#82ca9d', codeStatus: statusesDesc.delivered },
+  { label: 'נקראה', color: '#ffc658', codeStatus: statusesDesc.read },
+  { label: 'בדרך', color: '#d84a64', codeStatus: statusesDesc.onWay },
+  { label: 'הגיע', color: '#d84a64', codeStatus: statusesDesc.arrived },
+  ];
 
 
 export const nechesLeumiServiceUrl = "https://neches-leumi-server.onrender.com/"
