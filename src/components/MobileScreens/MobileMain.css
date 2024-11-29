@@ -7,6 +7,7 @@
     --icon-color: #91910d;
     --backgraound-image:url('../../../public/mobileMain.png');
     padding-top: 7rem;
+    background-image: url('../../../public/bg.jpg') ;
 }
 
 .mobile-screen::after {
