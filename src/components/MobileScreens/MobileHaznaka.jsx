@@ -4,7 +4,7 @@ import { useConanimContext } from "../../contexts/context";
 import { sendTemplate } from "../../api";
 import { useNavigate } from 'react-router-dom';
 import { whatsappTemplates } from "../../dec";
-export const MobileHaznaka = ({setAppStarted}) => {
+export const MobileHaznaka = ({setHuzneku}) => {
     const { filteredResponders, setFilteredResponders,conanim } = useConanimContext();
     const navigate = useNavigate();
     useEffect(() => {
@@ -17,7 +17,7 @@ export const MobileHaznaka = ({setAppStarted}) => {
         setFilteredResponders(results);
       }, [ conanim]);
     const handleConfirmCall = () => {
-        setAppStarted(true);
+        setHuzneku(true);
         const phoneNumbers = filteredResponders.map((responder) => responder.phone);
     
         sendTemplate(phoneNumbers.filter((phone) => phone[0] == '9'), whatsappTemplates.emergency, [
