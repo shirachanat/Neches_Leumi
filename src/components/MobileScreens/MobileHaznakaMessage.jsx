@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
+import { useMobileContext } from "../../contexts/MobileContext";
 
-export const MobileHaznakaMessage = ({ setBackgroundImage, setAppStarted }) => {
+export const MobileHaznakaMessage = ({ setBackgroundImage }) => {
+    const {setAppStarted} = useMobileContext();
     useEffect(() => {
         setBackgroundImage(`url('${process.env.PUBLIC_URL}/haznaka-message.png')`);
     }, [])

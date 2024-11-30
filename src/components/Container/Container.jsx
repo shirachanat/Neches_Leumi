@@ -7,17 +7,23 @@ import { MobileHaznaka } from '../MobileScreens/MobileHaznaka';
 import dashboardIcon from '../../assetst/dashboard.png';
 import haznakaIcon from '../../assetst/haznaka2.png';
 import conanimIcon from '../../assetst/conanim.png';
+import { useMobileContext } from '../../contexts/MobileContext';
 
 <img className='HeaderIcons' src={dashboardIcon} alt="Dashboard icon" />
 
 
 const Container = ({ children }) => {
-    const [appStarted, setAppStarted] = useState(false);
+    const {appStarted, setHuzneku, setAppStarted, setIconIphoneClicked} = useMobileContext();
     const [opened, setOpened] = useState(false);
+    const handleHaznakaNav=()=>{
+        setHuzneku(false);
+        setAppStarted(false);
+        setIconIphoneClicked(true);
+    }
     return (
         <>{
             !opened ? <div className='loader' onClick={() => setOpened(true)}></div> :
-                !appStarted ? <MobileMain setAppStarted={setAppStarted} /> :
+                !appStarted ? <MobileMain /> :
                         <div className='mega-container' >
                             <Header />
                             <nav className="nav">
@@ -29,7 +35,7 @@ const Container = ({ children }) => {
                                         </NavLink>
                                     </li>
                                     <li className="li">
-                                        <NavLink to="/" className={({ isActive }) => `link ${isActive ? 'active' : ''}`}>
+                                        <NavLink  className={({ isActive }) => `link`} onClick={handleHaznakaNav}>
                                             הזנקת כוננים
                                             <img className='HeaderIcons' src={haznakaIcon} alt="haznaka icon" />
                                         </NavLink>
