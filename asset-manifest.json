@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/Neches_Leumi/static/css/main.125b9405.css",
-    "main.js": "/Neches_Leumi/static/js/main.3abc7c3d.js",
+    "main.css": "/Neches_Leumi/static/css/main.a0d73e24.css",
+    "main.js": "/Neches_Leumi/static/js/main.a1633db6.js",
     "static/js/453.23f5092a.chunk.js": "/Neches_Leumi/static/js/453.23f5092a.chunk.js",
     "static/media/1.png": "/Neches_Leumi/static/media/1.1e65f1ce29f98ec48ac2.png",
     "static/media/bg.jpg": "/Neches_Leumi/static/media/bg.d251e7d97d1ff6a9c2e8.jpg",
     "static/media/mobileMain.png": "/Neches_Leumi/static/media/mobileMain.9c76c58713e6371458be.png",
-    "static/media/logoShabas.png": "/Neches_Leumi/static/media/logoShabas.eb932fe49c9a1ce1a356.png",
+    "static/media/logoShabas-removebg-preview.png": "/Neches_Leumi/static/media/logoShabas-removebg-preview.5ff4465bb6b58faaaf11.png",
     "static/media/Heebo-Black.ttf": "/Neches_Leumi/static/media/Heebo-Black.b1975228ae0fed052ca8.ttf",
     "static/media/Heebo-ExtraBold.ttf": "/Neches_Leumi/static/media/Heebo-ExtraBold.52e60a026c110bd2065a.ttf",
     "static/media/Heebo-Bold.ttf": "/Neches_Leumi/static/media/Heebo-Bold.234058e06b34bc0c4656.ttf",
@@ -19,12 +19,12 @@
     "static/media/haznaka2.png": "/Neches_Leumi/static/media/haznaka2.801b35042b9387039ede.png",
     "static/media/Icon.svg": "/Neches_Leumi/static/media/Icon.3a62d0dafeca59ae25d6ba4c8678acfb.svg",
     "index.html": "/Neches_Leumi/index.html",
-    "main.125b9405.css.map": "/Neches_Leumi/static/css/main.125b9405.css.map",
-    "main.3abc7c3d.js.map": "/Neches_Leumi/static/js/main.3abc7c3d.js.map",
+    "main.a0d73e24.css.map": "/Neches_Leumi/static/css/main.a0d73e24.css.map",
+    "main.a1633db6.js.map": "/Neches_Leumi/static/js/main.a1633db6.js.map",
     "453.23f5092a.chunk.js.map": "/Neches_Leumi/static/js/453.23f5092a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.125b9405.css",
-    "static/js/main.3abc7c3d.js"
+    "static/css/main.a0d73e24.css",
+    "static/js/main.a1633db6.js"
   ]
 }
