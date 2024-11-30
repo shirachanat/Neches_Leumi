@@ -5,32 +5,30 @@
     background: black;
     position: relative;
     --icon-color: #91910d;
+    --backgraound-image:url('../../../public/mobileMain.png');
     padding-top: 7rem;
+    background-image: url('../../../public/bg.jpg') ;
 }
 
 .mobile-screen::after {
     content: '';
     width: 375px;
-    /* Adjust to your desired mobile screen width */
-    height: 667px;
-    /* Adjust to your desired mobile screen height */
-    background-image: url('../../../public/mobileMain.png');
-    /* Replace with your background image */
-    background-size: cover;
+    height: 1021px;
+    background-image: var(--backgraound-image);
+    background-size: contain;
     background-position: center;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
 }
 
 .app-icon {
     position: absolute;
-    top: 41.7rem;
-    left: calc(50% + 0.7rem);
+    top: 38.6rem;
+    left: calc(50% + 0.1rem);
     fill: var(--icon-color);
     animation: fill-animation 1.5s infinite;
     cursor: pointer;
+    height: 72px;
+    width: 72px;
 }
 
 @keyframes fill-animation {

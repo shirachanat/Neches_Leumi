@@ -1,0 +1,9 @@
+.transparent-haznaka-button{
+    width: 238px;
+    height: 254px;
+    border-radius: 1000px;
+    position: absolute;
+    top: 28rem;
+    right: 53rem;
+    cursor: pointer;
+}

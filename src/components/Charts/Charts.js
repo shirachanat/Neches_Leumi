@@ -23,16 +23,14 @@ const BarChart = ({ filteredResponders, setFilterValue }) => {
         labels: statuses.map((status) => status.label),
         datasets: [
             {
-                // label: statuses.map((status) => status.label),
                 data: statuses.map((status) =>
                     filteredResponders.filter((responder) =>
-                        //switch case instead of if else
                         filterMessageStatus(status.codeStatus, responder)
                     ).length
                 ),
                 backgroundColor: statuses.map((status) => status.color),
-                borderColor: context => context.dataIndex === highlightIndex ? 'rgb(255, 99, 132)' :'',
-                borderWidth: context => context.dataIndex === highlightIndex ? 3:0,
+                borderColor: context => context.dataIndex === highlightIndex ? 'rgb(255, 99, 132)' : '',
+                borderWidth: context => context.dataIndex === highlightIndex ? 3 : 0,
             },
         ],
     };
@@ -41,18 +39,41 @@ const BarChart = ({ filteredResponders, setFilterValue }) => {
         responsive: true,
         scales: {
             y: {
-                beginAtZero: true, // Ensures the scale starts at 0
-                max: filteredResponders.length, // Set the maximum value for the Y-axis
+                beginAtZero: true,
+                max: filteredResponders.length,
                 ticks: {
-                    stepSize: 5, // Set the step size (optional)
+                    stepSize: 5,
+                    color: 'white',
                 },
+                grid: {
+                    color: 'gray',
+                },
+            },
+            x: {
+                ticks: {
+                    color: 'white',
+                },
+                grid: {
+                    color: 'gray',
+                },
+            },
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'white',
+                },
+            },
+            tooltip: {
+                titleColor: 'white',
+                bodyColor: 'white',
+                backgroundColor: 'rgba(0, 0, 0, 0.7)',
             },
         },
         onClick: (event) => {
             const chart = chartRef.current;
             if (!chart) return;
 
-            // Get the clicked element index
             const points = chart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
 
             if (points.length) {
@@ -61,7 +82,7 @@ const BarChart = ({ filteredResponders, setFilterValue }) => {
                 const value = chart.data.datasets[firstPoint.datasetIndex].data[firstPoint.index];
                 const status = statuses.find((status) => status.label === label).codeStatus;
                 setHighlightIndex(prev => prev === firstPoint.index ? null : firstPoint.index);
-                setFilterValue(prev => ({ ...prev, status: prev.status == status ? '' : status }));
+                setFilterValue(prev => ({ ...prev, status: prev.status === status ? '' : status }));
             }
         },
     };

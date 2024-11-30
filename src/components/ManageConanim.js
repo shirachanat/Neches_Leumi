@@ -2,18 +2,17 @@ import React, { useEffect, useState, useContext } from 'react';
 import { responsibilityDecode, regionsDecode, yechidaDecode } from '../dec';
 import './ManageConanim.css'
 
-
 import { useConanimContext } from '../contexts/context.jsx';
 
 const ShowConanim = () => {
     const { conanim, setConanim } = useConanimContext();
-    // const [data, setData] = useState(emergencyConanim);
     const [editingIndex, setEditingIndex] = useState(null);
     const [newItemData, setNewItemData] = useState({ id: '', name: '', address: '', phone: '', regions: '', yechida: '', responsibility: '' });
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
     const fields = ['id', 'name', 'address', 'phone', 'regions', 'yechida', 'responsibility'];
     const labels = { id: 'מספר זהות', name: 'שם', address: 'כתובת', phone: 'טלפון', regions: 'מחוז', yechida: 'יחידה', responsibility: 'תחום אחריות' };
+
     const getDecodedValue = (field, value) => {
         const decoders = { responsibility: responsibilityDecode, regions: regionsDecode, yechida: yechidaDecode };
         return decoders[field] ? (Array.isArray(value) ? value.map(code => decoders[field][code] || code).join(', ') : decoders[field][value] || value) : value;
@@ -25,8 +24,8 @@ const ShowConanim = () => {
         setConanim(editingIndex === 0 && conanim[0].isNew ? [newItemData, ...conanim.slice(1)] : conanim.map((item, i) => i === editingIndex ? newItemData : item));
         setNewItemData({ id: '', name: '', address: '', phone: '', regions: '', yechida: '', responsibility: '' });
         setEditingIndex(null);
-        setShowSuccessModal(true); // הצגת המודאל
-        setTimeout(() => setShowSuccessModal(false), 1500); // המודאל ייעלם לאחר 3 שניות
+        setShowSuccessModal(true);
+        setTimeout(() => setShowSuccessModal(false), 1500);
     };
 
     const handleEdit = (index) => {
@@ -57,7 +56,7 @@ const ShowConanim = () => {
     };
 
     return (
-        <div style={{   fontWeight: 'bold', padding: '50px 100px 100px' ,height: 'calc(100vh - 20rem)',overflow: 'hidden'}}>
+        <div style={{ fontWeight: 'bold', padding: '50px 100px 100px', height: 'calc(100vh - 20rem)', overflow: 'hidden', backgroundColor: '#2c2c2c' }}>
             {showSuccessModal && (
                 <div className="success-modal">
                     <div className="success-modal-content">
@@ -69,18 +68,23 @@ const ShowConanim = () => {
                 <table className="main-table">
                     <thead>
                         <tr>
+                            <th></th>
                             {fields.map((field) => (
                                 <th key={field}>{labels[field]}</th>
                             ))}
                             <th>
                                 <img
                                     title="הוסף"
-                                    className={`Icons ${editingIndex !== null ? 'disabled' : ''}`} // הוספת מחלקת 'disabled' אם במצב עריכה
-                                    src="./add2.jpg"
+                                    className={`Icons ${editingIndex !== null ? 'disabled' : ''}`}
+                                    src="./add23.png"
                                     alt="add conan"
                                     onClick={() => {
-                                        if (editingIndex === null) { // בדיקה אם לא במצב עריכה
-                                            setNewItemData({ id: '', name: '', address: '', phone: '', regions: '', yechida: '', responsibility: '' });
+                                        if (editingIndex === null) {
+                                            setNewItemData({
+                                                id: '', name: '', address: '',
+                                                phone: '', regions: '', yechida: '',
+                                                responsibility: ''
+                                            });
                                             setConanim([{ isNew: true }, ...conanim]);
                                             setEditingIndex(0);
                                         }
@@ -96,17 +100,28 @@ const ShowConanim = () => {
                     <tbody>
                         {conanim.map((item, index) => (
                             <tr key={index} className={editingIndex === index ? 'editing-row' : ''}>
+                                <td>
+                                    {item.img ? (
+                                        <img
+                                            src={item.img}
+                                            alt={item.name}
+                                            style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '50%' }}
+                                        />
+                                    ) : (
+                                        <span>-</span>
+                                    )}
+                                </td>
                                 {fields.map(field => <td key={field}>{renderTableCell(item, field, index)}</td>)}
                                 <td>
                                     {editingIndex === index ? (
                                         <>
-                                            <img style={{ paddingLeft: '20px' }} title='שמור' className='Icons' src='./save2.png' alt='save conan' onClick={() => handleSaveNewItem()} />
-                                            <img title='ביטול' className='Icons' src='./cancel.png' alt='cancel conan' onClick={() => handleCancel()} />
+                                            <img style={{ paddingLeft: '20px' }} title='שמור' className='Icons' src='./save22.png' alt='save conan' onClick={() => handleSaveNewItem()} />
+                                            <img title='ביטול' className='Icons' src='./cancel2.png' alt='cancel conan' onClick={() => handleCancel()} />
                                         </>
                                     ) : (
                                         <>
                                             <img style={{ paddingLeft: '20px' }} title='ערוך' className='Icons' src='./Edit.png' alt='Edit conan' onClick={() => handleEdit(index)} />
-                                            <img title='מחק' className='Icons' src='./delete.png' alt='delete conan' onClick={() => { if (window.confirm('האם אתה בטוח שברצונך למחוק?')) setConanim(conanim.filter((_, i) => i !== index)); }} />
+                                            <img title='מחק' className='Icons' src='./delete3 (2).png' alt='delete conan' onClick={() => { if (window.confirm('האם אתה בטוח שברצונך למחוק?')) setConanim(conanim.filter((_, i) => i !== index)); }} />
                                         </>
                                     )}
                                 </td>
@@ -118,6 +133,5 @@ const ShowConanim = () => {
         </div>
     );
 };
-
 
 export default ShowConanim;
