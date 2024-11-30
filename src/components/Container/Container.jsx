@@ -4,6 +4,12 @@ import { Link, NavLink } from 'react-router-dom';
 import './Container.css'
 import { MobileMain } from '../MobileScreens/MobileMain';
 import { MobileHaznaka } from '../MobileScreens/MobileHaznaka';
+import dashboardIcon from '../../assetst/dashboard.png';
+import haznakaIcon from '../../assetst/haznaka2.png';
+import conanimIcon from '../../assetst/conanim.png';
+
+<img className='HeaderIcons' src={dashboardIcon} alt="Dashboard icon" />
+
 
 const Container = ({ children }) => {
     const [appStarted, setAppStarted] = useState(false);
@@ -19,19 +25,19 @@ const Container = ({ children }) => {
                                     <li className="li">
                                         <NavLink to="/conanim" className={({ isActive }) => `link ${isActive ? 'active' : ''}`}>
                                             ניהול כוננים
-                                            <img className='HeaderIcons' src="./conanim.png" alt="conanim icon" />
+                                            <img className='HeaderIcons' src={conanimIcon} alt="conanim icon" />
                                         </NavLink>
                                     </li>
                                     <li className="li">
                                         <NavLink to="/" className={({ isActive }) => `link ${isActive ? 'active' : ''}`}>
                                             הזנקת כוננים
-                                            <img className='HeaderIcons' src="./haznaka2.png" alt="haznaka icon" />
+                                            <img className='HeaderIcons' src={haznakaIcon} alt="haznaka icon" />
                                         </NavLink>
                                     </li>
                                     <li className="li">
                                         <NavLink to="/filtered-responders" className={({ isActive }) => `link ${isActive ? 'active' : ''}`}>
                                             לוח הבקרה
-                                            <img className='HeaderIcons' src="./dashboard.png" alt="Dashboard icon" />
+                                            <img className='HeaderIcons' src={dashboardIcon} alt="Dashboard icon" />
                                         </NavLink>
                                     </li>
                                 </ul>

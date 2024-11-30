@@ -18,20 +18,36 @@ const MapWithRealTimeUpdates = (selectedYechida) => {
     4: 'הגיע',   // Status 4 = "Arrived"
   };
  
-  const getMarkerIcon = (status) => {
-    const color = status === 3 ? '#0066cc' : '#4caf50';
-    const svgIcon = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="${encodeURIComponent(color)}"/>
-    </svg>`;
+  // useEffect(() => {
+  //   const filteredLocations = filteredResponders
+  //     .filter(responder => responder.status === 3 || responder.status === 4)  // Filter by status 3 or 4
+  //     .map(responder => {
+  //       const location = filteredResponders.find(loc => loc.id === responder.id);
+  //       return location ? { ...location, name: responder.name, status: responder.status } : null;
+  //     })
+  //     .filter(location => location !== null);
 
+  //   console.log("Filtered Locations:", filteredLocations);
+  //   setLocations(filteredLocations);
+
+  //   if (filteredLocations.length > 0) {
+  //     setMapCenter([filteredLocations[0].latitude, filteredLocations[0].longitude]);
+  //   }
+  // }, [filteredResponders]);
+
+  // Function to create marker icon based on responder status
+  const getMarkerIcon = (status) => {
+    const iconUrl = status === 3
+      ? 'https://img.icons8.com/color/48/000000/marker--v1.png'  // Solid orange marker
+      : 'https://img.icons8.com/color/48/000000/marker--v1.png'; // Solid green marker
     return L.icon({
-      iconUrl: svgIcon,
-      iconSize: [48, 48],
-      iconAnchor: [24, 48],
-      popupAnchor: [0, -48],
-      className: 'pulse-marker'
+      iconUrl: iconUrl,
+      iconSize: [48, 48],  // Increased size from 32 to 48
+      iconAnchor: [24, 48], // Adjusted anchor point (half of width, full height)
+      popupAnchor: [0, -48], // Adjusted popup position
+      className: 'pulse-marker' // Add class for animation
     });
-};
+  };
   const getCenterMarkerIcon = () => {
     const iconUrl = 'https://media.tenor.com/8vSJsVW-1pQAAAAj/police-car-light-joypixels.gif';
     return L.icon({
@@ -48,7 +64,7 @@ const MapWithRealTimeUpdates = (selectedYechida) => {
        <MapContainer
       
         center={mapCenter}
-        zoom={9}
+        zoom={10}
         style={{ width: '100%', height: '100%' }}
       >
         <TileLayer
