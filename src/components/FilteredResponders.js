@@ -1,4 +1,4 @@
-import React, { useEffect , useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import MapWithRealTimeUpdates from './MapWithRealTimeUpdates';
 import { statusesDesc, whatsappTemplates } from '../dec';
@@ -93,42 +93,42 @@ function FilteredResponders() {
       });
   };
 
-// Helper function to create mock messages
-const createMockMessage = (sender, latitude, longitude, status = 'active') => {
-  return JSON.stringify({
-    sender,
-    body: `Test message body for ${sender}`, // Include sender in the body for clarity
-    latitude,
-    longitude,
-    status,
-  });
-};
+  // Helper function to create mock messages
+  const createMockMessage = (sender, latitude, longitude, status = 'active') => {
+    return JSON.stringify({
+      sender,
+      body: `Test message body for ${sender}`, // Include sender in the body for clarity
+      latitude,
+      longitude,
+      status,
+    });
+  };
 
-// Array of mock message configurations
-const mockMessages = [
-  { sender: '972584480345', latitude: 31.768319, longitude: 35.213737 },
-  { sender: '972584480345', latitude: 31.896379, longitude: 34.949413 , delay: 3000},
-  { sender: '972584480346', latitude: 31.543319, longitude: 35.387737 },
-  { sender: '972584480346', latitude: 31.543319, longitude: 35.387737, delay: 7000 },
-  { sender: '972505711183', latitude: 31.934634508465482, longitude: 34.8802014541373 },
-  { sender: '972505711183', latitude: 31.934671, longitude: 34.879987, delay: 9000 }, 
-  { sender: '972505711183', latitude: 31.934716, longitude: 34.879933, delay: 11000, status:5 }, // Delayed message
-  { sender: '972586529546', latitude: 31.935272, longitude: 34.879880, delay: 5000, status:5 }, // Delayed message
-   
-];
+  // Array of mock message configurations
+  const mockMessages = [
+    { sender: '972584480345', latitude: 31.768319, longitude: 35.213737 },
+    { sender: '972584480345', latitude: 31.896379, longitude: 34.949413, delay: 3000 },
+    { sender: '972584480346', latitude: 31.543319, longitude: 35.387737 },
+    { sender: '972584480346', latitude: 31.543319, longitude: 35.387737, delay: 7000 },
+    { sender: '972505711183', latitude: 31.934634508465482, longitude: 34.8802014541373 },
+    { sender: '972505711183', latitude: 31.934671, longitude: 34.879987, delay: 9000 },
+    { sender: '972505711183', latitude: 31.934716, longitude: 34.879933, delay: 11000, status: 5 }, // Delayed message
+    { sender: '972586529546', latitude: 31.935272, longitude: 34.879880, delay: 5000, status: 5 }, // Delayed message
+
+  ];
 
   useEffect(() => {
     const ws = new WebSocket('wss://neches-leumi-server.onrender.com');
     // console.log('filtered data'+filteredResponders)
     console.log("Filtered responders:", filteredResponders);
- // Simulate receiving messages with optional delays
-mockMessages.forEach((msg, index) => {
-  const delay = msg.delay || 1000; // Default delay of 1000ms
-  setTimeout(() => {
-    const mockMessage = createMockMessage(msg.sender, msg.latitude, msg.longitude, msg.status);
-    ws.onmessage({ data: mockMessage });
-  }, delay + index * 1000); // Stagger messages to simulate real-time updates
-});
+    // Simulate receiving messages with optional delays
+    mockMessages.forEach((msg, index) => {
+      const delay = msg.delay || 1000; // Default delay of 1000ms
+      setTimeout(() => {
+        const mockMessage = createMockMessage(msg.sender, msg.latitude, msg.longitude, msg.status);
+        ws.onmessage({ data: mockMessage });
+      }, delay + index * 1000); // Stagger messages to simulate real-time updates
+    });
     // Log messages from the server
     ws.onmessage = (event) => {
       try {
@@ -155,7 +155,7 @@ mockMessages.forEach((msg, index) => {
     filteredResponders.filter((responder) => {
       const filterWords = filterValue.text.split(' ');
       return filterWords.every((word) => [responder.phone, responder.name, responder.id].some((str) => str.includes(word)))
-      && (filterValue.status === '' || filterMessageStatus( filterValue.status, responder))
+        && (filterValue.status === '' || filterMessageStatus(filterValue.status, responder))
     })
   return (
     <div className="filtered-responders-container" dir="rtl">
@@ -164,59 +164,63 @@ mockMessages.forEach((msg, index) => {
           <MapWithRealTimeUpdates selectedYechida={selectedYechida} />
         </div>
 
-        <div className="responders-list-container">
-          <button className="chazlash-button" onClick={chazlashHandler}>
-            סיום אירוע
-          </button>
-          <BarChart filteredResponders={filteredResponders} setFilterValue={setFilterValue}/>
-         <Input onChange={e => setFilterValue(prev => ({ ...prev, text: e.target.value }))} onClean={() => setFilterValue(prev => ({ ...prev, text: '' }))} value={filterValue.text}/>
+        <div className="left-side-container">
+          <div className='chart-container'>
+            <button className="chazlash-button" onClick={chazlashHandler}>
+              סיום אירוע
+            </button>
+            <BarChart filteredResponders={filteredResponders} setFilterValue={setFilterValue} />
+
+          </div>
+          <div className='responders-list-container'>
+          <Input onChange={e => setFilterValue(prev => ({ ...prev, text: e.target.value }))} onClean={() => setFilterValue(prev => ({ ...prev, text: '' }))} value={filterValue.text} />
           {filteredResponders.length > 0 ? (
             <ul className="responder-list">
-             {veryfiltered.map((responder) => {
-  const estimatedArrivalTime =
-    responder.estimatedTravelTime !== null && responder.estimatedTravelTime > 0
-      ? (() => {
-          const currentTime = new Date();
-          currentTime.setMinutes(currentTime.getMinutes() + responder.estimatedTravelTime); // Add travel time
-          return currentTime.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' }); // Format as HH:mm
-        })()
-      : null;
+              {veryfiltered.map((responder) => {
+                const estimatedArrivalTime =
+                  responder.estimatedTravelTime !== null && responder.estimatedTravelTime > 0
+                    ? (() => {
+                      const currentTime = new Date();
+                      currentTime.setMinutes(currentTime.getMinutes() + responder.estimatedTravelTime); // Add travel time
+                      return currentTime.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' }); // Format as HH:mm
+                    })()
+                    : null;
 
-  return (
-    <ResponderItem
-      key={responder.id}
-      responder={responder}
-      additionalContent={
-        <>
-          <MessageStatus status={responder.messageStatus} />
+                return (
+                  <ResponderItem
+                    key={responder.id}
+                    responder={responder}
+                    additionalContent={
+                      <>
+                        <MessageStatus status={responder.messageStatus} />
 
-          {/* Show Estimated Travel Time if not arrived */}
-          {!responder.arrived && responder.estimatedTravelTime !== null && responder.estimatedTravelTime > 0 ? (
-            <div>זמן נסיעה משוער: {responder.estimatedTravelTime} דקות</div>
-          ) : !responder.arrived ? (
-            <div>מחשב זמן נסיעה...</div>
-          ) : null}
+                        {/* Show Estimated Travel Time if not arrived */}
+                        {!responder.arrived && responder.estimatedTravelTime !== null && responder.estimatedTravelTime > 0 ? (
+                          <div>זמן נסיעה משוער: {responder.estimatedTravelTime} דקות</div>
+                        ) : !responder.arrived ? (
+                          <div>מחשב זמן נסיעה...</div>
+                        ) : null}
 
-          {/* Show Estimated Arrival Time if not arrived */}
-          {!responder.arrived && responder.longitude && estimatedArrivalTime ? (
-            <div>שעת הגעה משוערת: {estimatedArrivalTime}</div>
-          ) : null}
+                        {/* Show Estimated Arrival Time if not arrived */}
+                        {!responder.arrived && responder.longitude && estimatedArrivalTime ? (
+                          <div>שעת הגעה משוערת: {estimatedArrivalTime}</div>
+                        ) : null}
 
-          {/* Arrived Button Logic */}
-          {responder.arrived ? (
-            <button onClick={() => {}} className="arrived-button" disabled>
-              הגיע
-            </button>
-          ) : (
-            <button onClick={() => arrivedButtonClicked(responder)} className="arrived-button">
-              סימון הגעה
-            </button>
-          )}
-        </>
-      }
-    />
-  );
-})}
+                        {/* Arrived Button Logic */}
+                        {responder.arrived ? (
+                          <button onClick={() => { }} className="arrived-button" disabled>
+                            הגיע
+                          </button>
+                        ) : (
+                          <button onClick={() => arrivedButtonClicked(responder)} className="arrived-button">
+                            סימון הגעה
+                          </button>
+                        )}
+                      </>
+                    }
+                  />
+                );
+              })}
             </ul>
           ) : (
             <div className="no-responders-message">
@@ -224,6 +228,7 @@ mockMessages.forEach((msg, index) => {
               <button className="back-button" onClick={() => navigate('/')}>חזור לסינון</button>
             </div>
           )}
+          </div>
         </div>
       </div>
     </div>
