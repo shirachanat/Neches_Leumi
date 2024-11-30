@@ -37,15 +37,19 @@ const MapWithRealTimeUpdates = (selectedYechida) => {
 
   // Function to create marker icon based on responder status
   const getMarkerIcon = (status) => {
-    const iconUrl = status === 3
-      ? 'https://img.icons8.com/color/48/000000/marker--v1.png'  // Solid orange marker
-      : 'https://img.icons8.com/color/48/000000/marker--v1.png'; // Solid green marker
+    const color = '#66b3ff';
+    const svgIcon = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="${encodeURIComponent(color)}"/>
+      </svg>
+    `;
+  
     return L.icon({
-      iconUrl: iconUrl,
-      iconSize: [48, 48],  // Increased size from 32 to 48
-      iconAnchor: [24, 48], // Adjusted anchor point (half of width, full height)
-      popupAnchor: [0, -48], // Adjusted popup position
-      className: 'pulse-marker' // Add class for animation
+      iconUrl: `data:image/svg+xml;utf8,${svgIcon}`,
+      iconSize: [48, 48],
+      iconAnchor: [24, 48],
+      popupAnchor: [0, -48],
+      className: 'pulse-marker'
     });
   };
   const getCenterMarkerIcon = () => {
