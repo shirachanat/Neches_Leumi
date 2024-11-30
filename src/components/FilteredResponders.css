@@ -28,7 +28,7 @@
     flex-grow: 1;
 }
 body, .filtered-responders-container {
-  background-color: #181818; /* Dark background */
+  /* background-color: #181818; Dark background */
   color: #fff; /* White text for contrast */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
