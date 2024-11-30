@@ -5,6 +5,7 @@
     border-radius: 15px;
     width: 100%;
     box-sizing: border-box;
+    margin-block: 15px ;
 }
 #clear-input {
     position: absolute;

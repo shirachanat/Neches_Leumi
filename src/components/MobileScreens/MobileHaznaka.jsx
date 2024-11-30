@@ -4,7 +4,9 @@ import { useConanimContext } from "../../contexts/context";
 import { sendTemplate } from "../../api";
 import { useNavigate } from 'react-router-dom';
 import { whatsappTemplates } from "../../dec";
-export const MobileHaznaka = ({setHuzneku}) => {
+import { useMobileContext } from "../../contexts/MobileContext";
+export const MobileHaznaka = () => {
+    const {setHuzneku} = useMobileContext();
     const { filteredResponders, setFilteredResponders,conanim } = useConanimContext();
     const navigate = useNavigate();
     useEffect(() => {

@@ -7,20 +7,23 @@ import { ConanimProvider } from "./contexts/context";
 import ShowConanim from "./components/ManageConanim";
 import Container from "./components/Container/Container";
 import './App.css'
+import { MobileProvider } from "./contexts/MobileContext";
 
 function App() {
   return (
     <ConanimProvider>
-      <Router>
-        <Container>
-          <Routes>
-            <Route path="/" element={<Haznaka />} />
-            <Route path="/conanim" element={<ShowConanim />} />
-            <Route path="/filtered-responders" element={<FilteredResponders />} />
-            <Route path="/testWS" element={<TestWebsocket />} />
-          </Routes>
-        </Container>
-      </Router>
+      <MobileProvider>
+        <Router>
+          <Container>
+            <Routes>
+              <Route path="/" element={<Haznaka />} />
+              <Route path="/conanim" element={<ShowConanim />} />
+              <Route path="/filtered-responders" element={<FilteredResponders />} />
+              <Route path="/testWS" element={<TestWebsocket />} />
+            </Routes>
+          </Container>
+        </Router>
+      </MobileProvider>
     </ConanimProvider>
   );
 }

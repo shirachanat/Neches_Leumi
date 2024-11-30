@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./MobileMain.css"
 import { MobileHaznaka } from "./MobileHaznaka";
-export const MobileMain = ({setAppStarted}) => {
+export const MobileMain = () => {
+    const {setAppStarted} = useMobileContext();
     const [opened, setOpened] = useState(false);
     return (
         <div class="mobile-screen">

@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import "./MobileMain.css"
 import { MobileHaznaka } from "./MobileHaznaka";
 import { MobileHaznakaMessage } from "./MobileHaznakaMessage";
-export const MobileMain = ({ setAppStarted }) => {
-    const [opened, setOpened] = useState(false);
-    const [backgroundImage, setBackgroundImage] = useState(`url('${process.env.PUBLIC_URL}/mobileMain.png')`);
-    const [huzneku, setHuzneku] = useState(false);
+import { useMobileContext } from "../../contexts/MobileContext";
+export const MobileMain = () => {
+    const { huzneku, setHuzneku ,iconIphoneClicked, setIconIphoneClicked} = useMobileContext();
+    const [backgroundImage, setBackgroundImage] = useState(!iconIphoneClicked? `url('${process.env.PUBLIC_URL}/mobileMain.png')`:`url('${process.env.PUBLIC_URL}/mobileHaznaka2.png')`);
     const clickHandler = () => {
         setBackgroundImage(`url('${process.env.PUBLIC_URL}/mobileHaznaka2.png')`);
-        setOpened(true);
+        setIconIphoneClicked(true);
     }
     return (
         <div class="mobile-screen" style={{ "--backgraound-image": backgroundImage }}>
-            {!opened ?
+            {!iconIphoneClicked ?
                 <svg xmlns="http://www.w3.org/2000/svg" width="73" height="96" viewBox="0 0 73 96" className="app-icon" onClick={clickHandler}>
                     <rect id="Rectangle_614" data-name="Rectangle 614" width="66" height="66" rx="26" transform="translate(3)" />
                     <g id="Group_464" data-name="Group 464" transform="translate(-1971.272 -3119.895)">
@@ -26,8 +26,8 @@ export const MobileMain = ({ setAppStarted }) => {
                         <path id="Path_472" data-name="Path 472" d="M118.953,105.435a12.936,12.936,0,0,0-25.873,0,4.248,4.248,0,0,0,0,.8v12.284h25.889v-13.08Zm-11.755-8.2c-4.866.092-8.76,3.585-8.68,7.787l0,.084-.008.041a2.037,2.037,0,0,0,.012.327.846.846,0,0,1-.757.926l-.069,0a.847.847,0,0,1-.857-.762,3.581,3.581,0,0,1-.015-.638c-.066-5.113,4.561-9.353,10.341-9.463a.847.847,0,0,1,.032,1.693" transform="translate(1901.256 3050.966)" fill="#fff" />
                     </g>
                 </svg>
-                : !huzneku ? <MobileHaznaka setHuzneku={setHuzneku} />
-                    : <MobileHaznakaMessage setBackgroundImage={setBackgroundImage} setAppStarted={setAppStarted}/>
+                : !huzneku ? <MobileHaznaka />
+                    : <MobileHaznakaMessage setBackgroundImage={setBackgroundImage} />
             }
         </div>
     )
