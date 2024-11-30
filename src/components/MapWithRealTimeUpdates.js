@@ -8,7 +8,7 @@ import { yechidaDecodeArray } from '../dec';
 const MapWithRealTimeUpdates = (selectedYechida) => {
   
   const [locations, setLocations] = useState([]); // Store filtered locations
-  const [mapCenter, setMapCenter] = useState([31.935053339768253, 34.879815216053515]);
+  const [mapCenter, setMapCenter] = useState([31.9335, 34.8735]);
   
   const {filteredResponders}= useConanimContext()
 
@@ -68,7 +68,7 @@ const MapWithRealTimeUpdates = (selectedYechida) => {
        <MapContainer
       
         center={mapCenter}
-        zoom={10}
+        zoom={17}
         style={{ width: '100%', height: '100%' }}
       >
         <TileLayer
@@ -87,7 +87,7 @@ const MapWithRealTimeUpdates = (selectedYechida) => {
           return (
             <Marker
               key={conan.id}
-              position={[conan?.latitude || 32.7940, conan?.longitude || 34.9896]}
+              position={[conan?.latitude || 31.9335, conan?.longitude || 34.8735]}
               icon={icon}
             >
               <Popup>
