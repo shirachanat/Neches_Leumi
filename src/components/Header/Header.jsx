@@ -2,7 +2,7 @@ import react from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css'
 import iconLogo from '../../assetst/Icon.svg';
-import logoShabas from '../../assetst/logoShabas.png';
+import logoShabas from '../../assetst/logoShabas-removebg-preview.png';
 import DigitalIcon from '../../assetst/Digital.png';
 
 const Header = () => {
