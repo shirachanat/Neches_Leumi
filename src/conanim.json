@@ -508,5 +508,23 @@
     ],
     "status": 1,
     "img": "https://img.icons8.com/?size=100&id=mpSjd7TWQWiy&format=png&color=000000"
+  },
+  {
+    "name": "שולי שטמלר",
+    "id": "3353",
+    "address": "רחוב המגדל 30, חיפה",
+    "messageStatus": 1,
+    "phone": "972547551904",
+    "responsibility": 1,
+    "regions": [
+      104
+    ],
+    "yechida": [
+      201,
+      202
+      
+    ],
+    "status": 1,
+    "img": "https://img.icons8.com/?size=100&id=mpSjd7TWQWiy&format=png&color=000000"
   }
 ]
