@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { statuses, statusesDesc } from '../../dec';
 
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip);
 
 export const filterMessageStatus = (status, responder) => {
     switch (status) {
@@ -59,11 +59,11 @@ const BarChart = ({ filteredResponders, setFilterValue }) => {
             },
         },
         plugins: {
-            legend: {
-                labels: {
-                    color: 'white',
-                },
-            },
+            // legend: {
+            //     labels: {
+            //         color: 'white',
+            //     },
+            // },
             tooltip: {
                 titleColor: 'white',
                 bodyColor: 'white',
