@@ -1,5 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { responsibilityDecode, regionsDecode, yechidaDecode } from '../dec';
+import editIcon from'../assetst/edit.svg'
+import addIcon from'../assetst/add.svg'
+import cancelIcon from'../assetst/cancel.svg'
+import confirmIcon from'../assetst/confirm.svg'
+import trashIcon from'../assetst/trash.svg'
 import './ManageConanim.css'
 
 import { useConanimContext } from '../contexts/context.jsx';
@@ -76,7 +81,7 @@ const ShowConanim = () => {
                                 <img
                                     title="הוסף"
                                     className={`Icons ${editingIndex !== null ? 'disabled' : ''}`}
-                                    src="./add23.png"
+                                    src={addIcon}
                                     alt="add conan"
                                     onClick={() => {
                                         if (editingIndex === null) {
@@ -115,13 +120,13 @@ const ShowConanim = () => {
                                 <td>
                                     {editingIndex === index ? (
                                         <>
-                                            <img style={{ paddingLeft: '20px' }} title='שמור' className='Icons' src='./save22.png' alt='save conan' onClick={() => handleSaveNewItem()} />
-                                            <img title='ביטול' className='Icons' src='./cancel2.png' alt='cancel conan' onClick={() => handleCancel()} />
+                                            <img style={{ paddingLeft: '20px' }} title='שמור' className='Icons' src={confirmIcon} alt='save conan' onClick={() => handleSaveNewItem()} />
+                                            <img title='ביטול' className='Icons' src={cancelIcon} alt='cancel conan' onClick={() => handleCancel()} />
                                         </>
                                     ) : (
                                         <>
-                                            <img style={{ paddingLeft: '20px' }} title='ערוך' className='Icons' src='./Edit.png' alt='Edit conan' onClick={() => handleEdit(index)} />
-                                            <img title='מחק' className='Icons' src='./delete3 (2).png' alt='delete conan' onClick={() => { if (window.confirm('האם אתה בטוח שברצונך למחוק?')) setConanim(conanim.filter((_, i) => i !== index)); }} />
+                                            <img style={{ paddingLeft: '20px' }} title='ערוך' className='Icons' src={editIcon} alt='Edit conan' onClick={() => handleEdit(index)} />
+                                            <img title='מחק' className='Icons' src={trashIcon} alt='delete conan' onClick={() => { if (window.confirm('האם אתה בטוח שברצונך למחוק?')) setConanim(conanim.filter((_, i) => i !== index)); }} />
                                         </>
                                     )}
                                 </td>
