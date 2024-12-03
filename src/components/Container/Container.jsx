@@ -3,11 +3,11 @@ import Header from '../Header/Header'
 import { Link, NavLink } from 'react-router-dom';
 import './Container.css'
 import { MobileMain } from '../MobileScreens/MobileMain';
-import { MobileHaznaka } from '../MobileScreens/MobileHaznaka';
 import dashboardIcon from '../../assetst/dashboard.png';
 import haznakaIcon from '../../assetst/haznaka2.png';
 import conanimIcon from '../../assetst/conanim.png';
 import { useMobileContext } from '../../contexts/MobileContext';
+import { useWebSocket } from '../../hooks/useWebSocket';
 
 <img className='HeaderIcons' src={dashboardIcon} alt="Dashboard icon" />
 
@@ -15,6 +15,7 @@ import { useMobileContext } from '../../contexts/MobileContext';
 const Container = ({ children }) => {
     const {appStarted, setHuzneku, setAppStarted, setIconIphoneClicked} = useMobileContext();
     const [opened, setOpened] = useState(false);
+    useWebSocket();
     const handleHaznakaNav=()=>{
         setHuzneku(false);
         setAppStarted(false);

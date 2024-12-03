@@ -81,7 +81,7 @@ const MapWithRealTimeUpdates = (selectedYechida) => {
          <Marker position={mapCenter} icon={getCenterMarkerIcon()} >
      </Marker> 
         {filteredResponders.map(conan => {
-          console.log("Rendering marker for:", conan);
+          // console.log("Rendering marker for:", conan);
           const icon = getMarkerIcon(conan.status);
 
           return (
