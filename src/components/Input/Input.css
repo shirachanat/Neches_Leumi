@@ -9,7 +9,7 @@
 }
 #clear-input {
     position: absolute;
-    top: 4px;
+    top: calc(50% - 12px);
     left: 12px;
     background-color: transparent;
     border: none;
@@ -20,6 +20,7 @@
   #clear-input svg {
     width: 24px;
     height: 24px;
-    fill: #666;
+    fill: white;
+    stroke: white;
   }
   
