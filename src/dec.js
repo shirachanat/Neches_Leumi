@@ -116,7 +116,7 @@ export const statuses =
   { label: 'התקבלה', color: '#b39eb5', codeStatus: statusesDesc.delivered },
   { label: 'נקראה', color: '#87bdd8', codeStatus: statusesDesc.read },
   { label: 'בדרך', color: '#ffeb84', codeStatus: statusesDesc.onWay },
-  { label: 'הגיע', color: '#5cb85c', codeStatus: statusesDesc.arrived },
+  { label: 'הגיע', color: '#5cb85c', codeStatus: statusesDesc.arrived }
   ];
 
 

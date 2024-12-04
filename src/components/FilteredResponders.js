@@ -11,6 +11,7 @@ import { BarChart, filterMessageStatus } from './Charts/Charts';
 import { Input } from './Input/Input';
 import './FilteredResponders.css';
 import { ResponderItemNew } from './ResponderItemNew/ResponderItemNew';
+import { Filters } from './Filters/Filters';
 
 function FilteredResponders() {
   const location = useLocation();
@@ -51,29 +52,29 @@ function FilteredResponders() {
     }
   }, [filteredResponders, setFilteredResponders]);
 
- // Periodically update travel times
-useEffect(() => {
-  const intervalId = setInterval(() => {
-    setFilteredResponders((prev) =>
-      prev.map((responder) => {
-        if (responder.estimatedTravelTime && responder.estimatedTravelTime > 0) {
-          // Reduce time randomly between 1 and 5 minutes
-          const reduction = Math.min(
-            Math.floor(Math.random() * 5) + 1, // Random reduction
-            responder.estimatedTravelTime // Ensure it doesn't go below zero
-          );
-          return {
-            ...responder,
-            estimatedTravelTime: responder.estimatedTravelTime - reduction,
-          };
-        }
-        return responder; // If no time is set or time is already zero
-      })
-    );
-  }, 2000); // Update every 2 seconds
+  // Periodically update travel times
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setFilteredResponders((prev) =>
+        prev.map((responder) => {
+          if (responder.estimatedTravelTime && responder.estimatedTravelTime > 0) {
+            // Reduce time randomly between 1 and 5 minutes
+            const reduction = Math.min(
+              Math.floor(Math.random() * 5) + 1, // Random reduction
+              responder.estimatedTravelTime // Ensure it doesn't go below zero
+            );
+            return {
+              ...responder,
+              estimatedTravelTime: responder.estimatedTravelTime - reduction,
+            };
+          }
+          return responder; // If no time is set or time is already zero
+        })
+      );
+    }, 2000); // Update every 2 seconds
 
-  return () => clearInterval(intervalId); // Cleanup on unmount
-}, [setFilteredResponders]);
+    return () => clearInterval(intervalId); // Cleanup on unmount
+  }, [setFilteredResponders]);
 
 
   const arrivedButtonClicked = (responder) => {
@@ -127,62 +128,63 @@ useEffect(() => {
 
           </div>
           <div className='responders-list-container'>
-          <Input onChange={e => setFilterValue(prev => ({ ...prev, text: e.target.value }))} onClean={() => setFilterValue(prev => ({ ...prev, text: '' }))} value={filterValue.text} />
-          {filteredResponders.length > 0 ? (
-            <div className="responder-list">
-              {veryfiltered.map((responder) => {
-                const estimatedArrivalTime =
-                  responder.estimatedTravelTime !== null && responder.estimatedTravelTime > 0
-                    ? (() => {
-                      const currentTime = new Date();
-                      currentTime.setMinutes(currentTime.getMinutes() + responder.estimatedTravelTime); // Add travel time
-                      return currentTime.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' }); // Format as HH:mm
-                    })()
-                    : null;
+            <Input onChange={e => setFilterValue(prev => ({ ...prev, text: e.target.value }))} onClean={() => setFilterValue(prev => ({ ...prev, text: '' }))} value={filterValue.text} />
+            <Filters setFilterValue={setFilterValue} />
+            {filteredResponders.length > 0 ? (
+              <div className="responder-list">
+                {veryfiltered.map((responder) => {
+                  const estimatedArrivalTime =
+                    responder.estimatedTravelTime !== null && responder.estimatedTravelTime > 0
+                      ? (() => {
+                        const currentTime = new Date();
+                        currentTime.setMinutes(currentTime.getMinutes() + responder.estimatedTravelTime); // Add travel time
+                        return currentTime.toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' }); // Format as HH:mm
+                      })()
+                      : null;
 
-                return (
-                  // <ResponderItem
-                  //   key={responder.id}
-                  //   responder={responder}
-                  //   additionalContent={
-                  //     <>
-                  //       <MessageStatus status={responder.messageStatus} />
+                  return (
+                    // <ResponderItem
+                    //   key={responder.id}
+                    //   responder={responder}
+                    //   additionalContent={
+                    //     <>
+                    //       <MessageStatus status={responder.messageStatus} />
 
-                  //       {/* Show Estimated Travel Time if not arrived */}
-                  //       {!responder.arrived && responder.estimatedTravelTime !== null && responder.estimatedTravelTime > 0 ? (
-                  //         <div>זמן נסיעה משוער: {responder.estimatedTravelTime} דקות</div>
-                  //       ) : !responder.arrived ? (
-                  //         <div>מחשב זמן נסיעה...</div>
-                  //       ) : null}
+                    //       {/* Show Estimated Travel Time if not arrived */}
+                    //       {!responder.arrived && responder.estimatedTravelTime !== null && responder.estimatedTravelTime > 0 ? (
+                    //         <div>זמן נסיעה משוער: {responder.estimatedTravelTime} דקות</div>
+                    //       ) : !responder.arrived ? (
+                    //         <div>מחשב זמן נסיעה...</div>
+                    //       ) : null}
 
-                  //       {/* Show Estimated Arrival Time if not arrived */}
-                  //       {!responder.arrived && responder.longitude && estimatedArrivalTime ? (
-                  //         <div>שעת הגעה משוערת: {estimatedArrivalTime}</div>
-                  //       ) : null}
+                    //       {/* Show Estimated Arrival Time if not arrived */}
+                    //       {!responder.arrived && responder.longitude && estimatedArrivalTime ? (
+                    //         <div>שעת הגעה משוערת: {estimatedArrivalTime}</div>
+                    //       ) : null}
 
-                  //       {/* Arrived Button Logic */}
-                  //       {responder.arrived ? (
-                  //         <button onClick={() => { }} className="arrived-button" disabled>
-                  //           הגיע
-                  //         </button>
-                  //       ) : (
-                  //         <button onClick={() => arrivedButtonClicked(responder)} className="arrived-button">
-                  //           סימון הגעה
-                  //         </button>
-                  //       )}
-                  //     </>
-                  //   }
-                  // />
-                  <ResponderItemNew responder={responder} key={responder.id}/>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="no-responders-message">
-              <p>לא נמצאו כוננים מתאימים למצב חירום שנבחר</p>
-              <button className="back-button" onClick={() => navigate('/')}>חזור לסינון</button>
-            </div>
-          )}
+                    //       {/* Arrived Button Logic */}
+                    //       {responder.arrived ? (
+                    //         <button onClick={() => { }} className="arrived-button" disabled>
+                    //           הגיע
+                    //         </button>
+                    //       ) : (
+                    //         <button onClick={() => arrivedButtonClicked(responder)} className="arrived-button">
+                    //           סימון הגעה
+                    //         </button>
+                    //       )}
+                    //     </>
+                    //   }
+                    // />
+                    <ResponderItemNew responder={responder} key={responder.id} />
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="no-responders-message">
+                <p>לא נמצאו כוננים מתאימים למצב חירום שנבחר</p>
+                <button className="back-button" onClick={() => navigate('/')}>חזור לסינון</button>
+              </div>
+            )}
           </div>
         </div>
       </div>
