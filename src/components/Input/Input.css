@@ -1,11 +1,14 @@
 #search-input {
-    padding: 6px 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    width: 100%;
-    box-sizing: border-box;
-    margin-block: 15px ;
+  padding: 10px 17px;
+  font-size: 14px;
+  /* border: 1px solid #ccc; */
+  border-radius: 23px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-block: 15px;
+}
+#search-input::placeholder {
+  color: #9e9e9e;
 }
 #clear-input {
     position: absolute;

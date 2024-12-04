@@ -6,49 +6,15 @@
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   direction: rtl;
 }
+
 .mega-container {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  
+
   /* overflow: hidden; */
 }
-.ul { 
-  display: flex;
-  justify-content: flex-start;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
 
-.li {
-  position: relative;
-}
-
-.link {
-  display: flex;
-  padding: 1rem 1.5rem;
-  color: #80726b;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: bolder;
-  transition: color 0.2s ease;
-
-}
-
-.link.active {
-  color: #d32f2f;
-}
-
-.link.active::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: #d32f2f;
-}
 
 .HeaderIcons {
   margin-right: 10px;
@@ -66,4 +32,12 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.nav-content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+  padding: 2rem;
 }

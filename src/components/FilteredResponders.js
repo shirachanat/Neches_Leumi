@@ -10,6 +10,7 @@ import { sendTemplate } from '../api';
 import { BarChart, filterMessageStatus } from './Charts/Charts';
 import { Input } from './Input/Input';
 import './FilteredResponders.css';
+import { ResponderItemNew } from './ResponderItemNew/ResponderItemNew';
 
 function FilteredResponders() {
   const location = useLocation();
@@ -128,7 +129,7 @@ useEffect(() => {
           <div className='responders-list-container'>
           <Input onChange={e => setFilterValue(prev => ({ ...prev, text: e.target.value }))} onClean={() => setFilterValue(prev => ({ ...prev, text: '' }))} value={filterValue.text} />
           {filteredResponders.length > 0 ? (
-            <ul className="responder-list">
+            <div className="responder-list">
               {veryfiltered.map((responder) => {
                 const estimatedArrivalTime =
                   responder.estimatedTravelTime !== null && responder.estimatedTravelTime > 0
@@ -140,41 +141,42 @@ useEffect(() => {
                     : null;
 
                 return (
-                  <ResponderItem
-                    key={responder.id}
-                    responder={responder}
-                    additionalContent={
-                      <>
-                        <MessageStatus status={responder.messageStatus} />
+                  // <ResponderItem
+                  //   key={responder.id}
+                  //   responder={responder}
+                  //   additionalContent={
+                  //     <>
+                  //       <MessageStatus status={responder.messageStatus} />
 
-                        {/* Show Estimated Travel Time if not arrived */}
-                        {!responder.arrived && responder.estimatedTravelTime !== null && responder.estimatedTravelTime > 0 ? (
-                          <div>זמן נסיעה משוער: {responder.estimatedTravelTime} דקות</div>
-                        ) : !responder.arrived ? (
-                          <div>מחשב זמן נסיעה...</div>
-                        ) : null}
+                  //       {/* Show Estimated Travel Time if not arrived */}
+                  //       {!responder.arrived && responder.estimatedTravelTime !== null && responder.estimatedTravelTime > 0 ? (
+                  //         <div>זמן נסיעה משוער: {responder.estimatedTravelTime} דקות</div>
+                  //       ) : !responder.arrived ? (
+                  //         <div>מחשב זמן נסיעה...</div>
+                  //       ) : null}
 
-                        {/* Show Estimated Arrival Time if not arrived */}
-                        {!responder.arrived && responder.longitude && estimatedArrivalTime ? (
-                          <div>שעת הגעה משוערת: {estimatedArrivalTime}</div>
-                        ) : null}
+                  //       {/* Show Estimated Arrival Time if not arrived */}
+                  //       {!responder.arrived && responder.longitude && estimatedArrivalTime ? (
+                  //         <div>שעת הגעה משוערת: {estimatedArrivalTime}</div>
+                  //       ) : null}
 
-                        {/* Arrived Button Logic */}
-                        {responder.arrived ? (
-                          <button onClick={() => { }} className="arrived-button" disabled>
-                            הגיע
-                          </button>
-                        ) : (
-                          <button onClick={() => arrivedButtonClicked(responder)} className="arrived-button">
-                            סימון הגעה
-                          </button>
-                        )}
-                      </>
-                    }
-                  />
+                  //       {/* Arrived Button Logic */}
+                  //       {responder.arrived ? (
+                  //         <button onClick={() => { }} className="arrived-button" disabled>
+                  //           הגיע
+                  //         </button>
+                  //       ) : (
+                  //         <button onClick={() => arrivedButtonClicked(responder)} className="arrived-button">
+                  //           סימון הגעה
+                  //         </button>
+                  //       )}
+                  //     </>
+                  //   }
+                  // />
+                  <ResponderItemNew responder={responder} key={responder.id}/>
                 );
               })}
-            </ul>
+            </div>
           ) : (
             <div className="no-responders-message">
               <p>לא נמצאו כוננים מתאימים למצב חירום שנבחר</p>

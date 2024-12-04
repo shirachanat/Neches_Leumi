@@ -1,0 +1,20 @@
+.avatar {
+    height: 2.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+
+.responder-item-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.responder-name {
+    font-size: 1.2rem;
+}
+
+.responder-yechida {
+    font-size: 0.9rem;
+}
