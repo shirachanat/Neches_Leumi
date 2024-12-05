@@ -8,6 +8,12 @@
 .responder-item-container {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.responder-details-area {
+    display: flex;
+    align-items: center;
     gap: 0.5rem;
 }
 
@@ -17,4 +23,19 @@
 
 .responder-yechida {
     font-size: 0.9rem;
+}
+
+.responder-icons {
+    height: 1.5rem;
+}
+
+.responder-icon-button {
+    background-color: unset;
+    border: unset;
+    border-radius: 54px;
+    padding: 0.5rem;
+}
+
+.responder-icon-button:active {
+    background-color: #000000;
 }
