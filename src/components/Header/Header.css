@@ -1,6 +1,6 @@
 .header {
     background-color: #18181845;
-    padding: 10px 20px;
+    padding: 5px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -12,9 +12,9 @@
 }
 
 .logoShabas {
-    height: 90px;
+    height: 60px;
 }
 
 .logoDigital {
-    height: 90px;
+    height: 60px;
 }

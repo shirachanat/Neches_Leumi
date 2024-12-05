@@ -3,7 +3,7 @@ import './Filters.css'
 import { statuses } from "../../dec";
 export const Filters = ({ setFilterValue}) => {
     const chipsList = [...statuses, { label: 'כולם', color: '#3F3323' }];
-    const [selectedChip, setSelectedChip] = useState(1);
+    const [selectedChip, setSelectedChip] = useState(chipsList.length-1);
     const clickHandler = (status, index) => { 
         setSelectedChip(index) 
         setFilterValue(prev => ({ ...prev, status: prev.status === status ? '' : status }));

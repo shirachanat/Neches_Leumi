@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import MapWithRealTimeUpdates from './MapWithRealTimeUpdates';
-import { statusesDesc, whatsappTemplates } from '../dec';
+import {  whatsappTemplates } from '../dec';
 import './FilteredResponders.css'; // Custom CSS for RTL design
 import { useConanimContext } from '../contexts/context';
-import ResponderItem from "./ResponderItem/ResponderItem";
-import MessageStatus from "./MessagesStatus/MessageStatus";
 import { sendTemplate } from '../api';
 import { BarChart, filterMessageStatus } from './Charts/Charts';
 import { Input } from './Input/Input';
 import './FilteredResponders.css';
 import { ResponderItemNew } from './ResponderItemNew/ResponderItemNew';
 import { Filters } from './Filters/Filters';
+import DraggableOverlay from './DraggableOverlay/DraggableOverlay';
+import conanimIcon from '../assetst/conanim.png';
 
 function FilteredResponders() {
   const location = useLocation();
@@ -119,15 +119,18 @@ function FilteredResponders() {
           <MapWithRealTimeUpdates selectedYechida={selectedYechida} />
         </div>
 
+        <DraggableOverlay>
+          <BarChart filteredResponders={filteredResponders} setFilterValue={setFilterValue} />
+        </DraggableOverlay>
         <div className="left-side-container">
-          <div className='chart-container'>
-            <button className="chazlash-button" onClick={chazlashHandler}>
-              סיום אירוע
-            </button>
-            <BarChart filteredResponders={filteredResponders} setFilterValue={setFilterValue} />
-
-          </div>
           <div className='responders-list-container'>
+            <div className='responders-list-header'>
+              <span>רשימת כוננים <img className='contactIcon' src={conanimIcon} alt="conanim icon" /></span>
+              <button className="chazlash-button" onClick={chazlashHandler}>
+                סיום אירוע
+              </button>
+
+            </div>
             <Input onChange={e => setFilterValue(prev => ({ ...prev, text: e.target.value }))} onClean={() => setFilterValue(prev => ({ ...prev, text: '' }))} value={filterValue.text} />
             <Filters setFilterValue={setFilterValue} />
             {filteredResponders.length > 0 ? (
