@@ -50,8 +50,11 @@
     padding: 0.5rem;
 }
 
-.responder-icon-button:active {
+button.responder-icon-button:hover {
     background-color: #000000;
+}
+button.responder-icon-button:active {
+    background-color: #f35b2161;
 }
 
 .flex-align-end {
