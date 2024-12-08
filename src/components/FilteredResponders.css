@@ -175,6 +175,7 @@ body,
   flex-direction: column;
   gap: 1rem;
   overflow-y: scroll;
+  flex-grow: 1;
 }
 
 .responder-list li {

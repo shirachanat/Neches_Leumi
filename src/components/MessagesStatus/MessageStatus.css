@@ -1,30 +1,30 @@
 /* Container for the message status */
 .message-status {
     display: flex;
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-  }
-  
-  /* Single check icon */
-  .icon-single-check {
     position: relative;
+}
+
+/* Single check icon */
+.icon-single-check {
+    position: absolute;
     width: 12px;
     height: 4px;
-    border: 2px solid gray;
+    border: 2px solid white;
     border-right: none;
     border-top: none;
     transform: rotate(-45deg);
-  }
-  
-  /* Double check icon (base style) */
-  .icon-double-check {
+    bottom: 6px;
+    left: 0;
+}
+
+/* Double check icon (base style) */
+.icon-double-check {
     position: relative;
     height: 5px;
-  }
-  
-  .icon-double-check::before,
-  .icon-double-check::after {
+}
+
+.icon-double-check::before,
+.icon-double-check::after {
     content: "";
     position: absolute;
     width: 12px;
@@ -33,26 +33,28 @@
     border-right: none;
     border-top: none;
     transform: rotate(-45deg);
-  }
-  
-  .icon-double-check::before {
-    left: 0;
+    bottom: 5px;
+}
+
+.icon-double-check::before {
     z-index: 1;
-  }
-  
-  .icon-double-check::after {
-    left: 8px;
-  }
-  
-  /* Delivered state (gray checks) */
-  .icon-double-check.delivered::before,
-  .icon-double-check.delivered::after {
-    border-color: gray;
-  }
-  
-  /* Read state (blue checks) */
-  .icon-double-check.read::before,
-  .icon-double-check.read::after {
+    bottom: 6px;
+    left: 6px;
+}
+
+.icon-double-check::after {
+    bottom: 6px;
+    left: 0;
+}
+
+/* Delivered state (gray checks) */
+.icon-double-check.delivered::before,
+.icon-double-check.delivered::after {
+    border-color: white;
+}
+
+/* Read state (blue checks) */
+.icon-double-check.read::before,
+.icon-double-check.read::after {
     border-color: #34b7f1;
-  }
-  
+}
