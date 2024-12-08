@@ -112,11 +112,11 @@ export const statusDecode = {
 
 export const statusesDesc = { sent: 1, delivered: 2, read: 3, onWay: 4, arrived: 5 }
 export const statuses =
-  [{ label: 'נשלחה הודעה', color: '#ff9aa2', codeStatus: statusesDesc.sent },
-  { label: 'התקבלה', color: '#b39eb5', codeStatus: statusesDesc.delivered },
-  { label: 'נקראה', color: '#87bdd8', codeStatus: statusesDesc.read },
-  { label: 'בדרך', color: '#ffeb84', codeStatus: statusesDesc.onWay },
-  { label: 'הגיע', color: '#5cb85c', codeStatus: statusesDesc.arrived }
+  [{ label: 'נשלחה הודעה', color: '#ff9aa2', codeStatus: statusesDesc.sent, fontColor: 'black' },
+  { label: 'התקבלה', color: '#b39eb5', codeStatus: statusesDesc.delivered , fontColor: 'black'},
+  { label: 'נקראה', color: '#87bdd8', codeStatus: statusesDesc.read , fontColor: 'black'},
+  { label: 'בדרך', color: '#ffeb84', codeStatus: statusesDesc.onWay , fontColor: 'black'},
+  { label: 'הגיע', color: '#5cb85c', codeStatus: statusesDesc.arrived , fontColor: 'black'}
   ];
 
 

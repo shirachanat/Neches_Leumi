@@ -32,7 +32,7 @@ export const ResponderItemNew = ({ responder }) => {
                 </button>
             </div>
             <div className="flex-align-end">
-                <Chip label={status.label} style={{ backgroundColor: status.color }} />
+                <Chip label={status.label} style={{ backgroundColor: status.color , color: status.fontColor}} />
                 <MessageStatus status={responder.messageStatus} />
             </div>
         </div>
