@@ -19,7 +19,7 @@ export const ResponderItemNew = ({ responder }) => {
             </div>
         </div>
         <div>
-            <div>
+            <div className="icons-area">
 
                 <button className="responder-icon-button">
                     <img src={messageIcon} className="responder-icons" alt="icon" />
