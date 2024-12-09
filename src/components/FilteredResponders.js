@@ -12,6 +12,7 @@ import { ResponderItemNew } from './ResponderItemNew/ResponderItemNew';
 import { Filters } from './Filters/Filters';
 import DraggableOverlay from './DraggableOverlay/DraggableOverlay';
 import conanimIcon from '../assetst/conanim.png';
+import { RecivedMessages } from './RecivedMessages/RecivedMessages';
 
 function FilteredResponders() {
   const location = useLocation();
@@ -118,8 +119,8 @@ function FilteredResponders() {
         <div className="map-container">
           <MapWithRealTimeUpdates selectedYechida={selectedYechida} />
         </div>
-
-        <DraggableOverlay>
+        <DraggableOverlay  top={630} left={80} key={1}><RecivedMessages/></DraggableOverlay>
+        <DraggableOverlay  top={300} left={80} key={2}>
           <BarChart filteredResponders={filteredResponders} setFilterValue={setFilterValue} />
         </DraggableOverlay>
         <div className="left-side-container">

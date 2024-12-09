@@ -1,0 +1,47 @@
+/* Dark mode styles */
+.message-bubble {
+    background-color: #2a3942;
+    /* Dark bubble background */
+    color: #e9edef;
+    /* Light text for contrast */
+    padding: 10px 15px;
+    border-radius: 12px;
+    border-top-left-radius: 0;
+    /* Slightly different shape */
+    max-width: 75%;
+    /* Limits bubble width */
+    margin: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Sender name styling */
+.message-sender {
+    font-size: 0.9rem;
+    color: #00a884;
+    font-weight: bold;
+}
+
+/* Message content styling */
+.message-content {
+    font-size: 14px;
+    line-height: 1.1;
+}
+
+/* Timestamp styling */
+.message-timestamp {
+    font-size: 0.8rem;
+    color: #8696a0;
+    align-self: flex-end;
+}
+
+/* Message container for chat layout */
+.message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.message-content-container {}

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./DraggableOverlay.css";
 
-const DraggableOverlay = ({ children }) => {
-    const [position, setPosition] = useState({ top: 630, left: 80 }); // Initial position
+const DraggableOverlay = ({ top, left, children }) => {
+    const [position, setPosition] = useState({ top: top, left: left }); // Initial position
     const [isDragging, setIsDragging] = useState(false);
     const [start, setStart] = useState({ x: 0, y: 0 });
 

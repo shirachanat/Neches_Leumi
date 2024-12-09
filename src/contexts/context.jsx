@@ -6,12 +6,13 @@ const ConanimContext = createContext();
 export const ConanimProvider = ({ children }) => {
     const [conanim, setConanim] = useState([]);
     const [filteredResponders, setFilteredResponders] = useState([]);
+    const [recivedMessage, setRecivedMessage] = useState([]);
     useEffect(() => {
         setConanim(emergencyConanim);
     }, []);
 
     return (
-        <ConanimContext.Provider value={{ conanim, setConanim, filteredResponders, setFilteredResponders }}>
+        <ConanimContext.Provider value={{ conanim, setConanim, filteredResponders, setFilteredResponders, recivedMessage, setRecivedMessage, }}>
             {children}
         </ConanimContext.Provider>
     );
