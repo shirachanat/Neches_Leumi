@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Neches_Leumi/static/css/main.0c2f62ac.css",
-    "main.js": "/Neches_Leumi/static/js/main.ab08608e.js",
+    "main.css": "/Neches_Leumi/static/css/main.4080cca8.css",
+    "main.js": "/Neches_Leumi/static/js/main.aa2d8d39.js",
     "static/js/453.23f5092a.chunk.js": "/Neches_Leumi/static/js/453.23f5092a.chunk.js",
     "static/media/1.png": "/Neches_Leumi/static/media/1.427fd9eae6d0ae31fc6f.png",
     "static/media/bg.jpg": "/Neches_Leumi/static/media/bg.d251e7d97d1ff6a9c2e8.jpg",
@@ -18,13 +18,22 @@
     "static/media/Heebo-Thin.ttf": "/Neches_Leumi/static/media/Heebo-Thin.458579aeaf19dc10d490.ttf",
     "static/media/haznaka2.png": "/Neches_Leumi/static/media/haznaka2.801b35042b9387039ede.png",
     "static/media/Icon.svg": "/Neches_Leumi/static/media/Icon.3a62d0dafeca59ae25d6ba4c8678acfb.svg",
+    "static/media/phone-call.svg": "/Neches_Leumi/static/media/phone-call.e499dc6f0b7559b38a466e1b9e937f80.svg",
+    "static/media/land-layer-location.svg": "/Neches_Leumi/static/media/land-layer-location.42d0802362b58e7bebf2b560320db3a1.svg",
+    "static/media/edit.svg": "/Neches_Leumi/static/media/edit.95f134e1039baa8eda070e34208bbc83.svg",
+    "static/media/trash.svg": "/Neches_Leumi/static/media/trash.caee7723fecbb0f48373119b177552b4.svg",
+    "static/media/confirm.svg": "/Neches_Leumi/static/media/confirm.8dec1cdfcf11123a0744a7363379d272.svg",
     "index.html": "/Neches_Leumi/index.html",
-    "main.0c2f62ac.css.map": "/Neches_Leumi/static/css/main.0c2f62ac.css.map",
-    "main.ab08608e.js.map": "/Neches_Leumi/static/js/main.ab08608e.js.map",
+    "static/media/cancel.svg": "/Neches_Leumi/static/media/cancel.3edfd03034b236df4ae9ab84502932fe.svg",
+    "static/media/comment-dots.svg": "/Neches_Leumi/static/media/comment-dots.1948c20dffea1e7a52b25fff4ffe0b56.svg",
+    "static/media/add.svg": "/Neches_Leumi/static/media/add.143cd22fff20b0542088e51587fec34c.svg",
+    "static/media/search.svg": "/Neches_Leumi/static/media/search.2195e0c8d023ac275dd50b0f68b95d9f.svg",
+    "main.4080cca8.css.map": "/Neches_Leumi/static/css/main.4080cca8.css.map",
+    "main.aa2d8d39.js.map": "/Neches_Leumi/static/js/main.aa2d8d39.js.map",
     "453.23f5092a.chunk.js.map": "/Neches_Leumi/static/js/453.23f5092a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0c2f62ac.css",
-    "static/js/main.ab08608e.js"
+    "static/css/main.4080cca8.css",
+    "static/js/main.aa2d8d39.js"
   ]
 }
