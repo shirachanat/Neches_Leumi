@@ -63,7 +63,6 @@ const createMockMessage = (sender, latitude, longitude, status , body, messageTy
         ...(latitude && { latitude: latitude }),
         ...(longitude && { longitude : longitude }),
         ...(status && { status : status }),
-        ...(status && { status : status }),
         ...(messageType && { messageType : messageType })
     });
 };
@@ -105,37 +104,37 @@ const mockMessages = [
   
 ];
 const mockTextMessages =[
-    { sender: '0501234567', messageType: 'text', body: 'אני בדרך לאירוע, הגעתי לפקק תנועה.', delay: 30000 },
-    { sender: '0501234567', messageType: 'text', body: 'יצאתי לפעולה, אשמח לעדכון נוסף.', delay: 15000 },
+    { sender: '0501234567', messageType: 'text', body: 'אני בדרך לאירוע, הגעתי לפקק תנועה.', delay: 30000 , status: 'delivered'},
+    { sender: '0501234567', messageType: 'text', body: 'יצאתי לפעולה, אשמח לעדכון נוסף.', delay: 15000 , status: 'delivered'},
     
-    { sender: '0586529546', messageType: 'text', body: 'אני מתקרב למקום האירוע, עוד 5 דקות הגעה.', delay: 25000 },
-    { sender: '0586529546', messageType: 'text', body: 'בדרך, אשמח לדעת אם יש עדכונים נוספים.', delay: 20000 },
+    { sender: '0586529546', messageType: 'text', body: 'אני מתקרב למקום האירוע, עוד 5 דקות הגעה.', delay: 25000 , status: 'delivered'},
+    { sender: '0586529546', messageType: 'text', body: 'בדרך, אשמח לדעת אם יש עדכונים נוספים.', delay: 20000 , status: 'delivered'},
     
-    { sender: '067-7788990', messageType: 'text', body: 'יצאתי לדרך, מעריך הגעה בעוד 10 דקות.', delay: 10000 },
-    { sender: '067-7788990', messageType: 'text', body: 'נתקלתי בעיכוב קל, מתקרב לאירוע.', delay: 18000 },
+    { sender: '067-7788990', messageType: 'text', body: 'יצאתי לדרך, מעריך הגעה בעוד 10 דקות.', delay: 10000 , status: 'delivered'},
+    { sender: '067-7788990', messageType: 'text', body: 'נתקלתי בעיכוב קל, מתקרב לאירוע.', delay: 18000 , status: 'delivered'},
     
-    { sender: '0584480346', messageType: 'text', body: 'בדרך לאירוע, תשתדלו לעדכן אם יש צורך נוסף.', delay: 40000 },
-    { sender: '0584480346', messageType: 'text', body: 'מגיע תוך רגעים ספורים.', delay: 15000 },
+    { sender: '0584480346', messageType: 'text', body: 'בדרך לאירוע, תשתדלו לעדכן אם יש צורך נוסף.', delay: 40000 , status: 'delivered'},
+    { sender: '0584480346', messageType: 'text', body: 'מגיע תוך רגעים ספורים.', delay: 15000 , status: 'delivered'},
     
-    { sender: '0584480345', messageType: 'text', body: 'אני מגיע עוד רגעים ספורים, ממתין להנחיות נוספות.', delay: 15000 },
-    { sender: '0584480345', messageType: 'text', body: 'מצב תקין, ממשיך להתקדם.', delay: 10000 },
+    { sender: '0584480345', messageType: 'text', body: 'אני מגיע עוד רגעים ספורים, ממתין להנחיות נוספות.', delay: 15000 , status: 'delivered'},
+    { sender: '0584480345', messageType: 'text', body: 'מצב תקין, ממשיך להתקדם.', delay: 10000 , status: 'delivered'},
     
-    { sender: '0505711183', messageType: 'text', body: 'יש עיכוב קל, תנועה כבדה בדרך לאירוע.', delay: 20000 },
-    { sender: '0505711183', messageType: 'text', body: 'מגיע בקרוב, עדכנו אם יש שינוי.', delay: 17000 },
+    { sender: '0505711183', messageType: 'text', body: 'יש עיכוב קל, תנועה כבדה בדרך לאירוע.', delay: 20000 , status: 'delivered'},
+    { sender: '0505711183', messageType: 'text', body: 'מגיע בקרוב, עדכנו אם יש שינוי.', delay: 17000 , status: 'delivered'},
     
-    { sender: '0583456789', messageType: 'text', body: 'אני בדרך, הכל תקין כרגע.', delay: 5000 },
-    { sender: '0583456789', messageType: 'text', body: 'כמעט במקום האירוע, ממתין להנחיות.', delay: 12000 },
+    { sender: '0583456789', messageType: 'text', body: 'אני בדרך, הכל תקין כרגע.', delay: 5000 , status: 'delivered'},
+    { sender: '0583456789', messageType: 'text', body: 'כמעט במקום האירוע, ממתין להנחיות.', delay: 12000 , status: 'delivered'},
     
-    { sender: '0573456789', messageType: 'text', body: 'מתקרב לאזור האירוע, מעריך הגעה תוך דקות ספורות.', delay: 12000 },
-    { sender: '0573456789', messageType: 'text', body: 'מגיע בקרוב, המצב נראה יציב.', delay: 15000 },
+    { sender: '0573456789', messageType: 'text', body: 'מתקרב לאזור האירוע, מעריך הגעה תוך דקות ספורות.', delay: 12000 , status: 'delivered'},
+    { sender: '0573456789', messageType: 'text', body: 'מגיע בקרוב, המצב נראה יציב.', delay: 15000 , status: 'delivered'},
     
-    { sender: '0561234567', messageType: 'text', body: 'יצאתי לכיוון האירוע, אעדכן בהתקדמות.', delay: 22000 },
-    { sender: '0561234567', messageType: 'text', body: 'נמצא קרוב, ייתכן שאגיע בעוד רגע.', delay: 18000 },
+    { sender: '0561234567', messageType: 'text', body: 'יצאתי לכיוון האירוע, אעדכן בהתקדמות.', delay: 22000 , status: 'delivered'},
+    { sender: '0561234567', messageType: 'text', body: 'נמצא קרוב, ייתכן שאגיע בעוד רגע.', delay: 18000 , status: 'delivered'},
     
-    { sender: '0551234567', messageType: 'text', body: 'בדרך לאירוע, נא לשמור על ערוץ פתוח לעדכונים.', delay: 18000 },
-    { sender: '0551234567', messageType: 'text', body: 'מגיע עוד מעט, הכל נראה רגוע.', delay: 16000 },
+    { sender: '0551234567', messageType: 'text', body: 'בדרך לאירוע, נא לשמור על ערוץ פתוח לעדכונים.', delay: 18000 , status: 'delivered'},
+    { sender: '0551234567', messageType: 'text', body: 'מגיע עוד מעט, הכל נראה רגוע.', delay: 16000 , status: 'delivered'},
     
-    { sender: '0541234567', messageType: 'text', body: 'מתקרב למקום, המצב כרגע תקין.', delay: 30000 },
-    { sender: '0541234567', messageType: 'text', body: 'במקום האירוע, אעדכן בקרוב.', delay: 20000 },
+    { sender: '0541234567', messageType: 'text', body: 'מתקרב למקום, המצב כרגע תקין.', delay: 30000 , status: 'delivered'},
+    { sender: '0541234567', messageType: 'text', body: 'במקום האירוע, אעדכן בקרוב.', delay: 20000 , status: 'delivered'},
     
 ]

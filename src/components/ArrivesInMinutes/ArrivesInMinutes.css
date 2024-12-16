@@ -1,0 +1,14 @@
+.arrives-in-minutes {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.minutes-label {
+    font-size: 0.8rem;
+    padding-right: 0.3rem;
+}
+
+.minutes-number {
+    font-weight: bold;
+}
