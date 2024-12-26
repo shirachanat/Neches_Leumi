@@ -28,8 +28,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-      "predeploy": "npm run build",
-  "deploy": "gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -53,5 +53,4 @@
     "gh-pages": "^6.2.0"
   },
   "homepage": "https://shirachanat.github.io/Neches_Leumi"
-
 }

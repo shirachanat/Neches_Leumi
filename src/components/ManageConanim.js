@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { responsibilityDecode, regionsDecode, yechidaDecode } from '../dec';
-import editIcon from'../assetst/edit.svg'
-import addIcon from'../assetst/add.svg'
-import cancelIcon from'../assetst/cancel.svg'
-import confirmIcon from'../assetst/confirm.svg'
-import trashIcon from'../assetst/trash.svg'
+import editIcon from '../assetst/edit.svg'
+import addIcon from '../assetst/add.svg'
+import cancelIcon from '../assetst/cancel.svg'
+import confirmIcon from '../assetst/confirm.svg'
+import trashIcon from '../assetst/trash.svg'
+import conanImg from '../assetst/conanImg.png'
 import './ManageConanim.css'
 
 import { useConanimContext } from '../contexts/context.jsx';
@@ -61,7 +62,7 @@ const ShowConanim = () => {
     };
 
     return (
-        <div style={{ fontWeight: 'bold', padding: '50px 100px 100px', height: 'calc(100vh - 20rem)', overflow: 'hidden'}}>
+        <div style={{ fontWeight: 'bold', padding: '50px 100px 100px', height: 'calc(100vh - 20rem)', overflow: 'hidden' }}>
             {showSuccessModal && (
                 <div className="success-modal">
                     <div className="success-modal-content">
@@ -108,7 +109,7 @@ const ShowConanim = () => {
                                 <td>
                                     {item.img ? (
                                         <img
-                                            src={item.img}
+                                            src={conanImg}
                                             alt={item.name}
                                             style={{ width: '50px', height: '50px', objectFit: 'cover', borderRadius: '50%' }}
                                         />

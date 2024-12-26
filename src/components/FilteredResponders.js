@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import MapWithRealTimeUpdates from './MapWithRealTimeUpdates';
-import {  whatsappTemplates } from '../dec';
+import { whatsappTemplates } from '../dec';
 import './FilteredResponders.css'; // Custom CSS for RTL design
 import { useConanimContext } from '../contexts/context';
 import { sendTemplate } from '../api';
@@ -119,8 +119,8 @@ function FilteredResponders() {
         <div className="map-container">
           <MapWithRealTimeUpdates selectedYechida={selectedYechida} />
         </div>
-        <DraggableOverlay  top={630} left={80} key={1}><RecivedMessages/></DraggableOverlay>
-        <DraggableOverlay  top={300} left={80} key={2}>
+        <DraggableOverlay top={630} left={80} key={1}><RecivedMessages /></DraggableOverlay>
+        <DraggableOverlay top={300} left={80} key={2}>
           <BarChart filteredResponders={filteredResponders} setFilterValue={setFilterValue} />
         </DraggableOverlay>
         <div className="left-side-container">

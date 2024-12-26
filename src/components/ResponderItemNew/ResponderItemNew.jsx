@@ -8,6 +8,8 @@ import MessageStatus from "../MessagesStatus/MessageStatus";
 import { Chip } from "../Chip/Chip";
 import { ArrivesInMinutes } from "../ArrivesInMinutes/ArrivesInMinutes";
 import { useConanimContext } from "../../contexts/context";
+import conanImg from '../../assetst/conanImg.png'
+
 export const ResponderItemNew = ({ responder }) => {
     const status = statusByResponder(responder);
     const { filteredResponders, setFilteredResponders } = useConanimContext();
@@ -21,7 +23,7 @@ export const ResponderItemNew = ({ responder }) => {
     }
     return (<div className="responder-item-container">
         <div className="responder-details-area">
-            <img src={responder.img} className="avatar" alt="icon" />
+            <img src={conanImg} className="avatar" alt="icon" />
             <div >
                 <div className="responder-name">{responder.name}</div>
                 <div className="responder-yechida">
