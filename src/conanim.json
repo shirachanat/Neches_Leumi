@@ -11,8 +11,7 @@
       102
     ],
     "yechida": [
-      201,
-      202
+      201
     ],
     "status": 3,
     "img": "https://lexipol.brightspotcdn.com/56/9a/986e16dd49a9b7de6d9d25743d49/lukens-philip-0008-profile-photo.jpg"
@@ -29,8 +28,7 @@
       102
     ],
     "yechida": [
-      201,
-      202
+      201
     ],
     "status": 3,
     "img": "https://lexipol.brightspotcdn.com/56/9a/986e16dd49a9b7de6d9d25743d49/lukens-philip-0008-profile-photo.jpg"
@@ -46,7 +44,7 @@
       101
     ],
     "yechida": [
-      202
+      201
     ],
     "status": 4,
     "img": "https://lexipol.brightspotcdn.com/56/9a/986e16dd49a9b7de6d9d25743d49/lukens-philip-0008-profile-photo.jpg"
@@ -63,7 +61,7 @@
       104
     ],
     "yechida": [
-      203
+      201
     ],
     "status": 3,
     "img": "https://lexipol.brightspotcdn.com/56/9a/986e16dd49a9b7de6d9d25743d49/lukens-philip-0008-profile-photo.jpg"
@@ -79,8 +77,7 @@
       103
     ],
     "yechida": [
-      201,
-      204
+      201
     ],
     "status": 4,
     "img": "https://lexipol.brightspotcdn.com/56/9a/986e16dd49a9b7de6d9d25743d49/lukens-philip-0008-profile-photo.jpg"
@@ -128,8 +125,7 @@
       101
     ],
     "yechida": [
-      202,
-      204
+      202
     ],
     "status": 2,
     "img": "https://lexipol.brightspotcdn.com/56/9a/986e16dd49a9b7de6d9d25743d49/lukens-philip-0008-profile-photo.jpg"
@@ -145,8 +141,7 @@
       102
     ],
     "yechida": [
-      201,
-      202
+      201
     ],
     "status": 4,
     "img": "https://lexipol.brightspotcdn.com/56/9a/986e16dd49a9b7de6d9d25743d49/lukens-philip-0008-profile-photo.jpg"
@@ -342,7 +337,7 @@
   },
   {
     "name": "שלמה טייטלבאום",
-    "id": "3334118",
+    "id": "3334117",
     "address": "רמלה",
     "messageStatus": 1,
     "phone": "0505711183",
@@ -408,7 +403,7 @@
   },
   {
     "name": "יאיר לובר",
-    "id": "3334118",
+    "id": "3334114",
     "address": "רמלה",
     "messageStatus": 1,
     "phone": "0561234567",
@@ -430,7 +425,7 @@
   },
   {
     "name": "נתנאל בלכר",
-    "id": "3334118",
+    "id": "8333411",
     "address": "רמלה",
     "messageStatus": 1,
     "phone": "0551234567",
@@ -452,7 +447,7 @@
   },
   {
     "name": "שלמה טייטלבאום",
-    "id": "3334118",
+    "id": "3334113",
     "address": "רמלה",
     "messageStatus": 1,
     "phone": "0541234567",

@@ -179,7 +179,7 @@ function FilteredResponders() {
                     //     </>
                     //   }
                     // />
-                    <ResponderItemNew responder={responder} key={responder.id} />
+                    <ResponderItemNew responder={responder} key={responder.id} timeToArrive={Math.floor(Math.random() * 30) + 1} />
                   );
                 })}
               </div>

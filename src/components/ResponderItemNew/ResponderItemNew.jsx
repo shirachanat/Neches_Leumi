@@ -9,8 +9,7 @@ import { Chip } from "../Chip/Chip";
 import { ArrivesInMinutes } from "../ArrivesInMinutes/ArrivesInMinutes";
 import { useConanimContext } from "../../contexts/context";
 import conanImg from '../../assetst/conanImg.png'
-
-export const ResponderItemNew = ({ responder }) => {
+export const ResponderItemNew = ({ responder, timeToArrive }) => {
     const status = statusByResponder(responder);
     const { filteredResponders, setFilteredResponders } = useConanimContext();
     const setStatusArrived = () => {
@@ -46,7 +45,7 @@ export const ResponderItemNew = ({ responder }) => {
             </div>
             <div className="flex-align-end">
                 {status.codeStatus === statusesDesc.onWay ?
-                    <ArrivesInMinutes minutes={13} />
+                    <ArrivesInMinutes minutes={timeToArrive} />
                     :
                     <Chip label={status.label} style={{ backgroundColor: status.color, color: status.fontColor }} />
                 }
