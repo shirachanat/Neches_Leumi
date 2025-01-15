@@ -87,7 +87,7 @@ const MapWithRealTimeUpdates = (selectedYechida) => {
           return (
             <Marker
               key={conan.id}
-              position={[conan?.latitude || 31.9335, conan?.longitude || 34.8735]}
+              position={[conan?.latitude || 31.9341, conan?.longitude || 34.8736]}
               icon={icon}
             >
               <Popup>
