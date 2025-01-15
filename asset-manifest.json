@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Neches_Leumi/static/css/main.84a3f185.css",
-    "main.js": "/Neches_Leumi/static/js/main.0070e53f.js",
+    "main.js": "/Neches_Leumi/static/js/main.c5096aea.js",
     "static/js/453.23f5092a.chunk.js": "/Neches_Leumi/static/js/453.23f5092a.chunk.js",
     "static/media/1.png": "/Neches_Leumi/static/media/1.427fd9eae6d0ae31fc6f.png",
     "static/media/bg.jpg": "/Neches_Leumi/static/media/bg.d251e7d97d1ff6a9c2e8.jpg",
@@ -30,11 +30,11 @@
     "static/media/add.svg": "/Neches_Leumi/static/media/add.143cd22fff20b0542088e51587fec34c.svg",
     "static/media/search.svg": "/Neches_Leumi/static/media/search.2195e0c8d023ac275dd50b0f68b95d9f.svg",
     "main.84a3f185.css.map": "/Neches_Leumi/static/css/main.84a3f185.css.map",
-    "main.0070e53f.js.map": "/Neches_Leumi/static/js/main.0070e53f.js.map",
+    "main.c5096aea.js.map": "/Neches_Leumi/static/js/main.c5096aea.js.map",
     "453.23f5092a.chunk.js.map": "/Neches_Leumi/static/js/453.23f5092a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.84a3f185.css",
-    "static/js/main.0070e53f.js"
+    "static/js/main.c5096aea.js"
   ]
 }
